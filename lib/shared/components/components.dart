@@ -97,7 +97,7 @@ Widget defaultTextButton({
       ),
     );
 
-
+var pageController = PageController();
 Widget defaultButton(
     {
       double width = double.infinity,

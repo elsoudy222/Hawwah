@@ -124,6 +124,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Container(
                 height: 150.0,
+
                 child: PageView.builder(
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) =>
@@ -137,12 +138,13 @@ class HomeScreen extends StatelessWidget {
               ),
               Container(
                 height: 550.0,
+                width: double.infinity,
                 child: Stack(
                   children: [
                     Positioned(
                       top: 100.0,
                       height: 400.0,
-                      width: 350,
+                      width: 370,
                       child: Container(
                         decoration: BoxDecoration(
                           color: secondaryColor,
@@ -151,54 +153,56 @@ class HomeScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  "- قللى من تناول الكحوليات",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.pink,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    "- قللى من تناول الكحوليات",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pink,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "-الاستمرار فى ممارسة الرياضه",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.pink,
+                                Text(
+                                  "-الاستمرار فى ممارسة الرياضه",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pink,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "- الرضاعة الطبيعية",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.pink,
+                                Text(
+                                  "- الرضاعة الطبيعية",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pink,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "- تناول الأغذيه الصحيه",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.pink,
+                                Text(
+                                  "- تناول الأغذيه الصحيه",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pink,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.pink,
+                                Text(
+                                  "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pink,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "- وللمدخنات: يجب الابتعاد عن التدخين",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.pink,
+                                Text(
+                                  "- وللمدخنات: يجب الابتعاد عن التدخين",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pink,
+                                  ),
                                 ),
-                              ),
 
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
