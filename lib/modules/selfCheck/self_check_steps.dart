@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hawwah/modules/selfCheck/self_check_result_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 
 import '../../layout/home_layout.dart';
 
 class FirstSteps extends StatelessWidget {
-  const FirstSteps({Key? key}) : super(key: key);
-
+   FirstSteps({Key? key}) : super(key: key);
+  var pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,7 +284,7 @@ class SecondSteps extends StatelessWidget {
                             )),
                       ),
                       onTap: () {
-                        navigateToAndFinish(context, HomeLayout());
+                        navigateToAndFinish(context, SelfCheckResultScreen());
                       },
                     ),
                   ),

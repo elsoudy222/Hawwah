@@ -12,30 +12,30 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<Model> pages = [
     Model(
-      image: 'assets/images/boarding_1.png',
+      image: 'assets/images/onBoarding1.png',
       title: 'Welcome',
       body: 'Hello in Shop App',
     ),
     Model(
-      image: 'assets/images/boarding_2.png',
+      image: 'assets/images/onBoarding2.png',
       title: 'Easy to Shopping',
       body:
       'The Shop App is real-time buying and browsing experience for customers',
     ),
     Model(
-      image: 'assets/images/boarding_3.png',
+      image: 'assets/images/onBoarding3.png',
       title: 'Online Shopping',
       body:
       'The Shop App is all about making it easier for people to purchase from your online store',
     ),
     Model(
-        image: "assets/images/boarding_4.png",
+        image: "assets/images/cloud.png",
         title: "Easy to Use",
         body: "The Shop App is real-time buying and browsing experience for customers"),
-    Model(
-        image: "assets/images/boarding_5.png",
-        title: "Online Shopping",
-        body: "The Shop App is all about making it easier for people to purchase from your online store"),
+    // Model(
+    //     image: "assets/images/boarding_5.png",
+    //     title: "Online Shopping",
+    //     body: "The Shop App is all about making it easier for people to purchase from your online store"),
   ];
 
   var pageController = PageController();
@@ -58,8 +58,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.pink,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
         actions: [
           TextButton(
               onPressed: (){

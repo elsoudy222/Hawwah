@@ -48,8 +48,8 @@ dependencies:
   dots_indicator:
   hexcolor:
   carousel_slider:
-  curved_navigation_bar: ^1.0.3
-  circle_bottom_navigation_bar: ^1.0.0
+  circle_nav_bar:
+  rflutter_alert: ^2.0.4
 
 
 

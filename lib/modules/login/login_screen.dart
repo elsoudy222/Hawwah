@@ -4,6 +4,7 @@ import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/login/cubit/login_cubit.dart';
 import 'package:hawwah/modules/login/cubit/login_states.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../shared/components/components.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -93,7 +94,26 @@ class LoginScreen extends StatelessWidget {
                                 }
                               ),
                               defaultTextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                 return Alert(
+                                    context: context,
+                                    title: "تغير كلمه المرور",
+                                   desc: "قم بادخال البريد الالكترونى المرتبط بحسابك وسنرسل اليك رابط تعيين كلمه المرور",
+                                   type: AlertType.warning,
+                                   content: defaultFormField(
+                                     controller: emailController,
+                                     keyboardType: TextInputType.emailAddress,
+                                     hintText: "ادخل البريد الالكترونى الخاص بك ",
+                                     prefix: Icons.email_outlined,
+                                     validate: (String? value){
+                                       if (value!.isEmpty) {
+                                         return 'البريد الالكترونى غسر صحيح';
+                                       }
+                                     },
+                                   ),
+
+                                  ).show();
+                                },
                                 text: "نسيت كلمه المرور؟",
                               ),
                               const SizedBox(

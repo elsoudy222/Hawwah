@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hawwah/layout/home_layout.dart';
+import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/onBoarding/on_boarding_screen.dart';
 import 'package:hawwah/modules/splash/splash_screen.dart';
 import 'package:hawwah/shared/components/themes.dart';
+
+import 'modules/signUp/sign_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('ar', 'AE'),
       ],
-      home:HomeLayout(),
+      home:LoginScreen(),
     );
   }
 }

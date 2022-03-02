@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -33,47 +35,41 @@ Widget defaultFormField({
   VoidCallback? suffixPressed,
   bool isClickable = true,
 }) =>
-    Container(
-      padding: EdgeInsets.symmetric(horizontal: 15.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
-        color: secondaryColor,
-      ),
-      child: TextFormField(
-        cursorColor: Colors.pink,
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        enabled: isClickable,
-        onFieldSubmitted: onSubmit,
-        onChanged: onChange,
-        onTap: onTap,
-        validator: validate,
-        decoration: InputDecoration(
+    TextFormField(
+      cursorColor: Colors.pink,
+      controller: controller,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+      enabled: isClickable,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChange,
+      onTap: onTap,
+      validator: validate,
 
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              borderSide: BorderSide(color:secondaryColor,)
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              borderSide: BorderSide(color:secondaryColor,)
-          ),
-          labelText: label,
-          hintText: hintText,
-          prefixIcon: Icon(
-            prefix,
-          ),
-          suffixIcon: suffix != null
-              ? IconButton(
-            onPressed: suffixPressed,
-            icon: Icon(
-              suffix,
-            ),
-          )
-              : null,
+      decoration: InputDecoration(
 
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: BorderSide(color:secondaryColor,width:2 )
         ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: BorderSide(color:secondaryColor,width: 2)
+        ),
+        labelText: label,
+        hintText: hintText,
+        prefixIcon: Icon(
+          prefix,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+          onPressed: suffixPressed,
+          icon: Icon(
+            suffix,
+          ),
+        )
+            : null,
+
       ),
     );
 
@@ -97,11 +93,14 @@ Widget defaultTextButton({
       ),
     );
 
-var pageController = PageController();
+
+
 Widget defaultButton(
     {
       double width = double.infinity,
       double radius = 0.0,
+      double? fontSize,
+      FontWeight fontWeight = FontWeight.normal,
       required Function onPressed,
       required String text,
       bool isUpperCase = true,
@@ -118,7 +117,7 @@ Widget defaultButton(
     },
     child: Text(
       isUpperCase ? text.toUpperCase() : text,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: fontSize),
     ),
   ),
 );

@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,10 +21,53 @@ class HomeCubit extends Cubit<HomeStates> {
 
 
   int currentIndex = 2;
+  List<Widget> activeIcons = [
+    Image(
+      image: AssetImage("assets/images/logo.png"),
+      height: 30.0,
+      color: Colors.pink,
+    ),
+    Image(
+      image: AssetImage("assets/images/logo.png"),
+      height: 30.0,
+      color: Colors.pink,
+    ),
+    Image(
+      image: AssetImage("assets/images/logo.png"),
+      height: 30.0,
+      color: Colors.pink,
+    ),
+    Image(
+      image: AssetImage("assets/images/logo.png"),
+      height: 30.0,
+      color: Colors.pink,
+    ),
+    Image(
+      image: AssetImage("assets/images/logo.png"),
+      height: 30.0,
+      color: Colors.pink,
+    ),
+
+
+  ];
+  List<Widget> inactiveIcons = [
+    Text("risk"),
+    Text("risk"),
+    Text("risk"),
+    Text("risk"),
+    Text("risk"),
+
+  ];
+
 
   List<BottomNavigationBarItem> bottomNavItems = const[
+
     BottomNavigationBarItem(
-      icon: Icon(FontAwesomeIcons.searchLocation),
+      icon: CircleAvatar(
+        radius: 15,
+        backgroundImage: AssetImage("assets/images/logo.png"),
+        backgroundColor: Colors.transparent,
+      ),
       label: "Prediction",
     ),
     BottomNavigationBarItem(
@@ -29,7 +75,10 @@ class HomeCubit extends Cubit<HomeStates> {
       label: "Calender",
     ),
     BottomNavigationBarItem(
-      icon: Icon(FontAwesomeIcons.home, size: 30,),
+      icon: Image(
+        image: AssetImage("assets/images/logo.png"),
+        height: 30.0,
+      ),
       label: "Home",
     ),
     BottomNavigationBarItem(
@@ -48,6 +97,15 @@ class HomeCubit extends Cubit<HomeStates> {
     HomeScreen(),
     RiskCalculatorScreen(),
     SelfCheckScreen(),
+  ];
+
+  List<String> appbar = [
+    "Prediction",
+    "Calender",
+    "Home",
+    "Risk",
+    "SelfCheck",
+
   ];
 
   void changeBottomNavBar(int index){

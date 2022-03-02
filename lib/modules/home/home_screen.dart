@@ -1,13 +1,18 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hawwah/modules/home/models.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   var pageController = PageController();
+
   List<Model> experments = [
     //zainab
     Model(
@@ -84,6 +89,8 @@ class HomeScreen extends StatelessWidget {
     ),
   ];
 
+  var _expermentsIndex = 0;
+  var _informationsIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,6 +102,8 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+              // EXPERMENT...
               Text(
                 "التجــارب .",
                 style: TextStyle(
@@ -104,16 +113,36 @@ class HomeScreen extends StatelessWidget {
               ),
               Container(
                 height: 230.0,
+                //margin: EdgeInsets.all(10.0),
                 child: PageView.builder(
+                  onPageChanged: (index){
+                    setState(() {
+                      _expermentsIndex = index;
+                    });
+                  },
+                  controller: pageController,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) =>
-                      Experments(context, experments[index]),
+                      Container(
+                          margin: EdgeInsets.all(10.0),
+                          child: Experments(context, experments[index])),
                   itemCount: experments.length,
-                  controller: pageController,
+
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...List.generate(experments.length, (index) => Indicator(
+                     isActive : _expermentsIndex == index ? true : false
+                  ))
+
+                ],
+              ),
+
+              // INFORMATION...
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               Text(
                 "معلومـات.",
@@ -123,18 +152,35 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               Container(
-                height: 150.0,
-
+                height: 200.0,
                 child: PageView.builder(
+                  onPageChanged: (index){
+                    setState(() {
+                      _informationsIndex = index;
+                    });
+                  },
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) =>
-                      Informations(context, information[index]),
+                      Container(
+                          margin: EdgeInsets.all(10.0),
+                          child: Informations(context, information[index])),
                   itemCount: information.length,
                   controller: pageController,
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...List.generate(information.length, (index) => Indicator(
+                      isActive : _informationsIndex == index ? true : false
+                  ))
+
+                ],
+              ),
+
+              //ADVICES...
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               Container(
                 height: 550.0,
@@ -213,12 +259,22 @@ class HomeScreen extends StatelessWidget {
                       height: 150.0,
                       width: 150,
                       child: Container(
+                        child: Center(
+                          child: Text(
+                            "نصائح",
+                            style: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
-                                  "assets/images/logo.png",
+                                  "assets/images/cloud.png",
                                 )
-                            )
+                            ),
+
                         ),
                       ),
                     ),
@@ -233,8 +289,32 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+
+//CUSTOM WIDGETS...
+class Indicator extends StatelessWidget {
+  final bool? isActive;
+   Indicator({
+    Key? key,
+   this.isActive,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 3.0),
+      child: Container(
+        width: isActive!? 20.0 :8.0,
+        height: 8.0,
+        decoration: BoxDecoration(
+          color:isActive!? Colors.pink : secondaryColor,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
+    );
+  }
+}
+
 Widget Experments(context, Model experments) => Container(
-      height: 230.0,
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.circular(15.0),
@@ -332,7 +412,7 @@ Widget Experments(context, Model experments) => Container(
     );
 
 Widget Informations(context, Model information) => Container(
-      height: 150.0,
+
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.circular(15.0),

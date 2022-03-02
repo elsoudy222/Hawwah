@@ -12,14 +12,11 @@ class SelfCheckScreen extends StatefulWidget {
 }
 
 class _SelfCheckScreenState extends State<SelfCheckScreen> {
+  PageController? pageController;
   List<Widget> pages=[
     FirstSteps(),
     SecondSteps(),
   ];
-
-
-  bool isLast = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,50 +24,12 @@ class _SelfCheckScreenState extends State<SelfCheckScreen> {
         children: [
           Expanded(
             child: PageView.builder(
-              onPageChanged: (int index) {
-                if (index == pages.length - 1) {
-                  setState(() {
-                    isLast = true;
-                  });
-                } else {
-                  setState(() {
-                    isLast = false;
-                  });
-                }
-              },
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) => pages[index],
               itemCount: pages.length,
               controller: pageController,
             ),
           ),
-          // Center(
-          //   child: GestureDetector(
-          //     child: Container(
-          //       width: 150.0,
-          //       height: 50.0,
-          //       decoration: BoxDecoration(
-          //         color: primaryColor,
-          //         borderRadius: BorderRadius.circular(15.0),
-          //       ),
-          //       child: const Center(
-          //           child: Text(
-          //             "التــالى",
-          //             style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold, color: Colors.white),
-          //           )),
-          //     ),
-          //     onTap: () {
-          //       if(isLast) {
-          //         //submit();
-          //         navigateToAndFinish(context, HomeLayout());
-          //       } else {
-          //         pageController.nextPage(
-          //             duration: Duration(milliseconds: 750),
-          //             curve: Curves.fastLinearToSlowEaseIn);
-          //       };
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );
