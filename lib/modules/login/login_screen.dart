@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/login/cubit/login_cubit.dart';
 import 'package:hawwah/modules/login/cubit/login_states.dart';
+import 'package:hawwah/shared/components/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../shared/components/components.dart';
+import '../changePassword/change_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -96,10 +98,35 @@ class LoginScreen extends StatelessWidget {
                               defaultTextButton(
                                 onPressed: () {
                                  return Alert(
+                                   style: AlertStyle(
+                                     backgroundColor: primaryColor,
+                                     animationType: AnimationType.fromTop,
+                                     isCloseButton: false,
+                                     isOverlayTapDismiss: false,
+
+                                     descTextAlign: TextAlign.start,
+
+                                     animationDuration: Duration(milliseconds: 400),
+                                     alertBorder: RoundedRectangleBorder(
+                                       borderRadius: BorderRadius.circular(15.0),
+                                       side: BorderSide(
+                                         color: Colors.grey,
+                                       ),
+                                     ),
+                                     descStyle: TextStyle(
+
+                                       color: secondaryColor,
+                                     ),
+                                     titleStyle: TextStyle(
+                                       fontWeight: FontWeight.bold,
+                                       fontSize: 25.0,
+                                       color: Colors.pink,
+                                     ),
+                                     alertAlignment: Alignment.center,
+                                   ),
                                     context: context,
                                     title: "تغير كلمه المرور",
                                    desc: "قم بادخال البريد الالكترونى المرتبط بحسابك وسنرسل اليك رابط تعيين كلمه المرور",
-                                   type: AlertType.warning,
                                    content: defaultFormField(
                                      controller: emailController,
                                      keyboardType: TextInputType.emailAddress,
@@ -111,7 +138,28 @@ class LoginScreen extends StatelessWidget {
                                        }
                                      },
                                    ),
-
+                                   buttons: [
+                                     DialogButton(
+                                       onPressed: () {
+                                         Navigator.pushAndRemoveUntil(context,
+                                             MaterialPageRoute(
+                                                 builder: (context) => ChangePasswordScreen(),
+                                             ), (route) => false
+                                         );
+                                       },
+                                       child: Container(
+                                         color: Colors.pink,
+                                         child: Text(
+                                             "اعادة التعيين ",
+                                           style: TextStyle(
+                                             fontWeight: FontWeight.bold,
+                                             fontSize: 25.0,
+                                             color: Colors.white,
+                                           ),
+                                         ),
+                                       ) ,
+                                     )
+                                   ]
                                   ).show();
                                 },
                                 text: "نسيت كلمه المرور؟",

@@ -5,9 +5,15 @@ import 'package:hawwah/shared/components/components.dart';
 
 import '../../layout/home_layout.dart';
 
-class FirstSteps extends StatelessWidget {
+class FirstSteps extends StatefulWidget {
    FirstSteps({Key? key}) : super(key: key);
+
+  @override
+  State<FirstSteps> createState() => _FirstStepsState();
+}
+class _FirstStepsState extends State<FirstSteps> {
   var pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +129,6 @@ class FirstSteps extends StatelessWidget {
     );
   }
 
-
   Widget buildSelfCheckQuItem({
     required String question,
     required String image,
@@ -183,9 +188,16 @@ class FirstSteps extends StatelessWidget {
   }
 }
 
-class SecondSteps extends StatelessWidget {
+
+
+
+class SecondSteps extends StatefulWidget {
   const SecondSteps({Key? key}) : super(key: key);
 
+  @override
+  State<SecondSteps> createState() => _SecondStepsState();
+}
+class _SecondStepsState extends State<SecondSteps> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

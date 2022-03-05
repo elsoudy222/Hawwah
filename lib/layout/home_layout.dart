@@ -1,10 +1,14 @@
 
+
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 import 'package:circle_nav_bar/circle_nav_bar.dart';
+import '../modules/profile/profile_screen.dart';
 import 'cubit/home_cubit.dart';
 
 class HomeLayout extends StatelessWidget {
@@ -26,15 +30,12 @@ class HomeLayout extends StatelessWidget {
               title: Text("${cubit.appbar[cubit.currentIndex]}"),
               actions: [
                 IconButton(
-                  icon: Icon(Icons.search,),
+                  icon: const Icon(Icons.search,),
                   onPressed: () {
-                    navigateTo(context, SearchScreen());
+                    navigateTo(context, const SearchScreen());
                   },
                 ),
-                IconButton(
-                  icon: Icon(Icons.menu,),
-                  onPressed: () {},
-                ),
+               
 
               ],
             ),
@@ -64,11 +65,123 @@ class HomeLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
             ),
+            drawer: Drawer(
+              backgroundColor: secondaryColor,
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    children: [
+                      const drawerHeader(),
+                      Divider(
+                        thickness: 0.4,
+                        height: 1.5,
+                      ),
+                      drawerBody(context),
+                    ],
+                  ),
+                ),
+              )
+            ),
           );
         },
       ),
     );
   }
+}
+
+class drawerHeader extends StatelessWidget {
+  const drawerHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: primaryColor,
+      width: double.infinity,
+      height: 200,
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center ,
+        children: [
+          GestureDetector(
+            onTap: (){
+              navigateTo(context, ProfileScreen());
+            },
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              height: 70.0,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage("assets/images/logo.png"),
+                )
+              ),
+            ),
+          ),
+          const Text(
+            "LADY NAME",
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.pink,
+              fontSize: 25.0
+
+            ),
+          ),
+          const Text(
+            "info@gmail.com",
+            style: TextStyle(
+              color: Colors.white,
+
+            ),
+          ),
+        ],
+      ),
+
+    );
+  }
+}
+
+Widget drawerBody(context){
+  return Container(
+    color: secondaryColor,
+    height: MediaQuery.of(context).size.height - 200,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        menuItem(icon: Icons.book_outlined, text: 'التــقرير'),
+        menuItem(icon: Icons.help_outline, text: 'المسـاعده'),
+        menuItem(icon: Icons.logout_outlined, text: 'تـسجيل الخروج'),
+      ],
+    ),
+  );
+}
+
+
+Widget menuItem({
+  required IconData icon,
+  required String text,
+}){
+  return Material(
+    color: secondaryColor,
+    child: InkWell(
+      onTap: (){},
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          children:  [
+            Expanded(flex:1,child: Icon(icon,size: 30.0,color: Colors.pink,)),
+            Expanded(flex:3,child: Text(
+                text,
+              style: const TextStyle(
+                  color: Colors.pink,
+                  fontSize: 25.0
+
+              ),
+            )),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 
