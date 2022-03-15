@@ -48,14 +48,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
 
   ];
-  List<Widget> inactiveIcons = [
-    Text("risk"),
-    Text("risk"),
-    Text("risk"),
-    Text("risk"),
-    Text("risk"),
 
-  ];
 
 
   List<BottomNavigationBarItem> bottomNavItems = const[
@@ -94,17 +87,9 @@ class HomeCubit extends Cubit<HomeStates> {
      CalenderScreen(),
     HomeScreen(),
     RiskCalculatorScreen(),
-    SelfCheckScreen(),
+    IntroSelfCheckScreen(),
   ];
 
-  List<String> appbar = [
-    "Prediction",
-    "Calender",
-    "Home",
-    "Risk",
-    "SelfCheck",
-
-  ];
 
   void changeBottomNavBar(int index){
     currentIndex = index;

@@ -1,11 +1,7 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
-
 import 'package:hawwah/modules/signUp/cubit/login_cubit.dart';
 import 'package:hawwah/modules/signUp/cubit/login_states.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -33,7 +29,7 @@ class SignupScreen extends StatelessWidget {
               backgroundColor: HexColor("#FAACC3"),
               body: Center(
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Form(
@@ -62,6 +58,7 @@ class SignupScreen extends StatelessWidget {
                                         if (value!.isEmpty) {
                                           return 'برجاء ادخال الاسم بصوره صحيحه';
                                         }
+                                        return null;
                                       },
                                     ),
                                   ),
@@ -76,6 +73,8 @@ class SignupScreen extends StatelessWidget {
                                         if (value!.isEmpty) {
                                           return 'برجاء ادخال الاسم بصوره صحيحه';
                                         }
+                                        return null;
+
                                       },
                                     ),
                                   ),
@@ -94,6 +93,8 @@ class SignupScreen extends StatelessWidget {
                                   if (value!.isEmpty) {
                                     return 'برجاء ادخال العمر';
                                   }
+                                  return null;
+
                                 },
                               ),
                               const SizedBox(
@@ -109,6 +110,8 @@ class SignupScreen extends StatelessWidget {
                                   if (value!.isEmpty) {
                                     return 'رقم الهاتف غير صحيح';
                                   }
+                                  return null;
+
                                 },
                               ),
                               const SizedBox(
@@ -123,6 +126,8 @@ class SignupScreen extends StatelessWidget {
                                   if (value!.isEmpty) {
                                     return 'البريد الالكترونى غسر صحيح';
                                   }
+                                  return null;
+
                                 },
                               ),
                               const SizedBox(
@@ -140,10 +145,11 @@ class SignupScreen extends StatelessWidget {
                                   //     );
                                   //   }
                                   // },
-                                  validate: (String? value) {
+                                  validate: (String ?value) {
                                     if (value!.isEmpty) {
                                       return 'الرقم السرى غير صحيح ';
                                     }
+                                    return null;
                                   },
                                   prefix: Icons.lock_outline,
                                   suffix: SignupCubit.get(context).suffix,

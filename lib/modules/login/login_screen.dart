@@ -141,11 +141,11 @@ class LoginScreen extends StatelessWidget {
                                    buttons: [
                                      DialogButton(
                                        onPressed: () {
-                                         Navigator.pushAndRemoveUntil(context,
-                                             MaterialPageRoute(
-                                                 builder: (context) => ChangePasswordScreen(),
-                                             ), (route) => false
-                                         );
+                                         // Navigator.pushAndRemoveUntil(context,
+                                         //     MaterialPageRoute(
+                                         //         builder: (context) => ChangePasswordScreen(),
+                                         //     ), (route) => false
+                                         // );
                                        },
                                        child: Container(
                                          color: Colors.pink,

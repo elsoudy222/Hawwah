@@ -10,14 +10,15 @@ class SelfCheckResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         elevation: 0.0,
         backgroundColor: primaryColor,
         centerTitle: true,
         title: const Text(
-            "*(نتيجة الاختبار)*",
+            "نتيجة الاختبار",
           style: TextStyle(
               color: Colors.pink,
-              fontSize: 30.0,
+              fontSize: 35.0,
               fontWeight: FontWeight.bold
           ),
         ),
@@ -25,13 +26,15 @@ class SelfCheckResultScreen extends StatelessWidget {
       body: Stack(
         children:  [
           const Center(
-            child: const Image(
+            child:  Image(
+              height: 500,
+                width: 500.0,
                 image: AssetImage(
                     "assets/images/selfCheckResult.png",
                 ),),
           ),
-          Center(
-              child: const Text(
+         const Center(
+              child:  Text(
                   "اذا استمرت هذه الأعراض \n  لمده اسبوعين يجب التوجه\n الى اقرب طبيب متخصص",
                 style: TextStyle(
                   color: Colors.pink,

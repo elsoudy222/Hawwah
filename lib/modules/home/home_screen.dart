@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:hawwah/modules/home/models.dart';
 import 'package:hawwah/shared/components/colors.dart';
@@ -16,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Model> experments = [
     //zainab
     Model(
-      image: "assets/images/logo.png",
+      image: "assets/images/home/zainab.png",
       title: "كلكيعة وسن صغير",
       description:
           "٢٣سنة وعندي سرطان ثدي، ويمكن الدعم والعيلة وقوتي هما اللي ساعدوني اتخطى التجربة دي كل يوم بواجه أسئلة كتيرة زي إيه ده عندك سرطان ثدي ؟ هتتجوزي إزاي ؟",
@@ -26,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     //Bassma
     Model(
-      image: "assets/images/logo.png",
+      image: "assets/images/home/bassma.png",
       title: "باسمة يوسف(36 عاما)",
       description:
           "كتشفت باسمة إصابتها بسرطان الثدي في الرابع عشر من أبريل هذا العامفي إحدى المرّات، لاحظت باسمة تورمّا في منطقة الثدي ونخزا وتغيّرا في لون الجلد، وعندما هرعت إلى المستشفيات كانت نتيجة الفحص",
@@ -35,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     //Maria
     Model(
-      image: "assets/images/logo.png",
+      image: "assets/images/home/maria.png",
       title: "كلكيعة وسن صغير",
       description:
           "٢٣سنة وعندي سرطان ثدي، ويمكن الدعم والعيلة وقوتي هما اللي ساعدوني اتخطى التجربة دي كل يوم بواجه أسئلة كتيرة زي إيه ده عندك سرطان ثدي ؟ هتتجوزي إزاي ؟",
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     //Elisa
     Model(
-      image: "assets/images/logo.png",
+      image: "assets/images/home/elissa.jpg",
       title: "كلكيعة وسن صغير",
       description:
           "٢٣سنة وعندي سرطان ثدي، ويمكن الدعم والعيلة وقوتي هما اللي ساعدوني اتخطى التجربة دي كل يوم بواجه أسئلة كتيرة زي إيه ده عندك سرطان ثدي ؟ هتتجوزي إزاي ؟",
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     //Semona
     Model(
-      image: "assets/images/logo.png",
+      image: "assets/images/home/semona.png",
       title: "كلكيعة وسن صغير",
       description:
           "٢٣سنة وعندي سرطان ثدي، ويمكن الدعم والعيلة وقوتي هما اللي ساعدوني اتخطى التجربة دي كل يوم بواجه أسئلة كتيرة زي إيه ده عندك سرطان ثدي ؟ هتتجوزي إزاي ؟",
@@ -67,21 +69,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Model> information = [
     Model(
-      image: "assets/images/google.png",
+      image: "assets/images/home/info2.jpg",
       title: "ما هو سرطان الثدي؟",
       description: "سرطان الثدي عبارة عن سرطان يتشكل في خلايا الثدي",
       info:
           "ما هي أسباب سرطان الثدي؟\n ويعرِّف الأطباء أن سرطان الثدي يحدث عندماتبدأ بعض خلايا الثدي في النموبطريقة غير طبيعية. تنقسم هذه الخلايا بسرعةأكبر من الخلايا السليمة وتستمر لتتراكم، وتشكِّلكتلة أو ورمًا. وقد تنتشر الخلايا (تنتقل) من خلالالثدي إلى العُقَد اللمفية، أو إلى أجزاء أخرىمن جسمك.يبدأ سرطان الثدي عادةً مع الخلايا الموجودةفي القنوات المنتجة للحليب (السرطان اللبني العنيف).يمكن أن يبدأ سرطان الثدي أيضًا في الأنسجةالغُدِّيَّة التي يُطلق عليها اسمالفصيصات (السرطان الفصيصي الغزوي)،أو في خلايا أو أنسجة أخرى داخل الثدي.",
     ),
     Model(
-      image: "assets/images/google.png",
+      image: "assets/images/home/info1.png",
       title: "ما هو سرطان الثدي؟",
       description: "سرطان الثدي عبارة عن سرطان يتشكل في خلايا الثديي",
       info:
           "ما هي أسباب سرطان الثدي؟\n ويعرِّف الأطباء أن سرطان الثدي يحدث عندماتبدأ بعض خلايا الثدي في النموبطريقة غير طبيعية. تنقسم هذه الخلايا بسرعةأكبر من الخلايا السليمة وتستمر لتتراكم، وتشكِّلكتلة أو ورمًا. وقد تنتشر الخلايا (تنتقل) من خلالالثدي إلى العُقَد اللمفية، أو إلى أجزاء أخرىمن جسمك.يبدأ سرطان الثدي عادةً مع الخلايا الموجودةفي القنوات المنتجة للحليب (السرطان اللبني العنيف).يمكن أن يبدأ سرطان الثدي أيضًا في الأنسجةالغُدِّيَّة التي يُطلق عليها اسمالفصيصات (السرطان الفصيصي الغزوي)،أو في خلايا أو أنسجة أخرى داخل الثدي.",
     ),
     Model(
-      image: "assets/images/google.png",
+      image: "assets/images/home/info3.png",
       title: "ما هو سرطان الثدي؟",
       description: "سرطان الثدي عبارة عن سرطان يتشكل في خلايا الثديي",
       info:
@@ -102,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // EXPERMENT...
               Text(
                 "التجــارب .",
@@ -152,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold),
               ),
               Container(
-                height: 200.0,
+                height: 180.0,
                 child: PageView.builder(
                   onPageChanged: (index){
                     setState(() {
@@ -198,12 +199,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           border: Border.all(color: Colors.pink),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
                           child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              children: const [
                                 Text(
                                     "- قللى من تناول الكحوليات",
                                   style: TextStyle(
@@ -256,8 +257,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     Positioned(
                       top: 0.0,
                       right: 0.0,
-                      height: 150.0,
-                      width: 150,
+                      height: 200.0,
+                      width: 200,
                       child: Container(
                         child: Center(
                           child: Text(
@@ -328,13 +329,15 @@ Widget Experments(context, Model experments) => Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Title..
                   Text(
                     "${experments.title}",
                     style: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.pink,
+                        color: Color(0xFFE91E63),
                         fontWeight: FontWeight.bold),
                   ),
+                  //Description
                   Text(
                     "${experments.description}",
                     style: TextStyle(fontSize: 15.0, color: Colors.pink),
@@ -397,16 +400,20 @@ Widget Experments(context, Model experments) => Container(
           ),
           // Image :
           Container(
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(15.0),
+            height: 230.0,
+            width: 160.0,
+            decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                image: DecorationImage(
+                    image: AssetImage(
+                      "${experments.image}",
+                    ),
+                    fit: BoxFit.cover
+                )
             ),
-            child: Image.asset(
-              "${experments.image}",
-              height: 200.0,
-              width: 150.0,
-            ),
+
           ),
+
         ],
       ),
     );
@@ -494,16 +501,24 @@ Widget Informations(context, Model information) => Container(
           ),
           // Image :
           Container(
+            height: 200.0,
+            width: 145.0,
             decoration: BoxDecoration(
-              color: Colors.transparent,
               borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                image: AssetImage(
+                  "${information.image}",
+                ),
+                fit: BoxFit.cover
+              )
             ),
-            child: Image.asset(
-              "${information.image}",
-              height: 125.0,
-              width: 125.0,
-            ),
+            // child: Image.asset(
+            //   "${information.image}",
+            //   fit: BoxFit.cover,
+            //
+            // ),
           ),
+          //SizedBox(width: 5.0,)
         ],
       ),
     );
