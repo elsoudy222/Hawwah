@@ -6,38 +6,40 @@ import 'package:splash_screen_view/SplashScreenView.dart';
 
 
 
-class IntroSelfCheckScreen extends StatelessWidget {
-  const IntroSelfCheckScreen({Key? key}) : super(key: key);
+class IntroSelfCheckScreen1 extends StatelessWidget {
+  const IntroSelfCheckScreen1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-      backgroundColor: HexColor("#FAACC3"),
-      duration: 6000,
+      //backgroundColor: HexColor("#FAACC3"),
+      duration: 5000,
       speed: 200,
-      navigateRoute: SelfCheckScreen(),
-      imageSrc: "assets/images/logo.png",
-      imageSize: 200,
-      text: "اختــبار الفحص الذاتى",
+      navigateRoute: SelfCheckScreen1(),
+      imageSrc: "assets/images/selfCheck/first_step.png",
+      imageSize: 300,
+      text: "الاختــبار الأول أمام المراه",
       textStyle: const TextStyle(
-          color: Colors.pink,
-          fontSize: 40.0
+          color: Colors.white,
+          fontSize: 40.0,
+        shadows: [
+          Shadow(
+              color: Colors.black38,
+              blurRadius: 1.2,
+              offset: Offset(3, 3)),
+        ],
       ),
     );
   }
 }
-class SelfCheckScreen extends StatefulWidget {
-  const SelfCheckScreen({Key? key}) : super(key: key);
+class SelfCheckScreen1 extends StatefulWidget {
+  const SelfCheckScreen1({Key? key}) : super(key: key);
   @override
-  _SelfCheckScreenState createState() => _SelfCheckScreenState();
+  _SelfCheckScreen1State createState() => _SelfCheckScreen1State();
 }
 
-class _SelfCheckScreenState extends State<SelfCheckScreen> {
-  PageController? pageController;
-  List<Widget> pages=[
-    FirstSteps(),
-    const SecondSteps(),
-  ];
+class _SelfCheckScreen1State extends State<SelfCheckScreen1> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,16 +50,44 @@ class _SelfCheckScreenState extends State<SelfCheckScreen> {
 
 
 
-/*
-Expanded(
-            child: PageView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => pages[index],
-              itemCount: pages.length,
-              controller: pageController,
-              scrollDirection: Axis.horizontal,
-              reverse: false,
+class IntroSelfCheckScreen2 extends StatelessWidget {
+  const IntroSelfCheckScreen2({Key? key}) : super(key: key);
 
-            ),
-          ),
- */
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreenView(
+      backgroundColor: HexColor("#FAACC3"),
+      duration: 5000,
+      speed: 200,
+      navigateRoute: SelfCheckScreen2(),
+      imageSrc: "assets/images/selfCheck/second_step2.png",
+      imageSize: 300,
+      text: "الاختــبار الثانى اثناء الاستحمام او الاستلقاء",
+      textStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 30.0,
+        shadows: [
+          Shadow(
+              color: Colors.black38,
+              blurRadius: 1.2,
+              offset: Offset(3, 3)),
+        ],
+      ),
+    );
+  }
+}
+class SelfCheckScreen2 extends StatefulWidget {
+  const SelfCheckScreen2({Key? key}) : super(key: key);
+  @override
+  _SelfCheckScreen2State createState() => _SelfCheckScreen2State();
+}
+
+class _SelfCheckScreen2State extends State<SelfCheckScreen2> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body:SecondSteps(),
+    );
+  }
+}

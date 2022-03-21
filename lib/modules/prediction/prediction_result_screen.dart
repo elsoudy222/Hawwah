@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:hawwah/shared/components/colors.dart';
 
 class PredictionResultScreen extends StatefulWidget {
   const PredictionResultScreen({Key? key}) : super(key: key);
@@ -11,54 +14,40 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title:  Text(
+          'التحليل',
+          style: TextStyle(fontSize: 40,color: secondaryColor,fontWeight: FontWeight.bold),
+        ) ,
+        leading: InkWell(
+          onTap: Navigator.of(context).pop,
+          child:  Icon(
+            Icons.arrow_back_ios,
+            size: 35,
+            color: secondaryColor,
 
-        body: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Stack(
-            children: [
-              _background(),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 25,
-                  ),
-                  GestureDetector(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_back_ios,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          'التحليل',
-                          style: TextStyle(fontSize: 35, color: Colors.white),
-                        )
-                      ],
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Container(
-                      height: 350,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/icons/2.png'),fit: BoxFit.cover)),
-                      child:Center(child:  Text(
-                        'النتيجه ',
-                        style: TextStyle(
-                          fontFamily: 'Segoe UI',
-                          fontSize: 35,
-                          color: Color.fromRGBO(206, 86, 139, 1.0),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),))
-                ],
-              )
-            ],
           ),
+        ),
+      ),
+        body: Center(
+          child: Container(
+              height: 300,
+              width: 300,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/cloud.png'),fit: BoxFit.fill)),
+              child:
+              const Center(child:  Text(
+                'النتيجة ',
+                style: TextStyle(
+                  fontFamily: 'Segoe UI',
+                  fontSize: 35,
+                  color: Color.fromRGBO(206, 86, 139, 1.0),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),)),
         ));
   }
 
@@ -71,7 +60,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       color: Color.fromRGBO(253, 220, 230, 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: const [
            Text(
             'حَوَّاء ',
             style:

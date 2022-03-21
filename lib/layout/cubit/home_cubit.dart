@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
@@ -20,28 +19,28 @@ class HomeCubit extends Cubit<HomeStates> {
 
   int currentIndex = 2;
   List<Widget> activeIcons = [
-    Image(
-      image: AssetImage("assets/images/logo.png"),
+    const Image(
+      image: AssetImage("assets/icons/searching.png"),
       height: 30.0,
       color: Colors.pink,
     ),
-    Image(
-      image: AssetImage("assets/images/logo.png"),
+    const Image(
+      image: AssetImage("assets/icons/calendar.png"),
       height: 30.0,
       color: Colors.pink,
     ),
-    Image(
-      image: AssetImage("assets/images/logo.png"),
+    const Image(
+      image: AssetImage("assets/icons/home.png"),
       height: 30.0,
       color: Colors.pink,
     ),
-    Image(
-      image: AssetImage("assets/images/logo.png"),
+    const Image(
+      image: AssetImage("assets/icons/checklist.png"),
       height: 30.0,
       color: Colors.pink,
     ),
-    Image(
-      image: AssetImage("assets/images/logo.png"),
+    const Image(
+      image: AssetImage("assets/icons/breast.png"),
       height: 30.0,
       color: Colors.pink,
     ),
@@ -54,40 +53,48 @@ class HomeCubit extends Cubit<HomeStates> {
   List<BottomNavigationBarItem> bottomNavItems = const[
 
     BottomNavigationBarItem(
-      icon: CircleAvatar(
-        radius: 15,
-        backgroundImage: AssetImage("assets/images/logo.png"),
-        backgroundColor: Colors.transparent,
+      icon: Image(
+        image: AssetImage("assets/icons/searching.png"),
+        height: 30.0,
       ),
       label: "Prediction",
     ),
     BottomNavigationBarItem(
-      icon: Icon(FontAwesomeIcons.calendarCheck),
+      icon: Image(
+        image: AssetImage("assets/icons/calendar.png"),
+        height: 30.0,
+      ),
       label: "Calender",
     ),
     BottomNavigationBarItem(
       icon: Image(
-        image: AssetImage("assets/images/logo.png"),
+        image: AssetImage("assets/icons/home.png"),
         height: 30.0,
       ),
       label: "Home",
     ),
     BottomNavigationBarItem(
-      icon: Icon(FontAwesomeIcons.userNurse),
+      icon: Image(
+        image: AssetImage("assets/icons/checklist.png"),
+        height: 30.0,
+      ),
       label: "Risk",
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.bug_report_outlined),
+      icon: Image(
+        image: AssetImage("assets/icons/breast.png"),
+        height: 30.0,
+      ),
       label: "SelfCheck",
     ),
   ];
 
   List<Widget> screens = [
-     PredictionScreen(),
-     CalenderScreen(),
-    HomeScreen(),
-    RiskCalculatorScreen(),
-    IntroSelfCheckScreen(),
+     const PredictionScreen(),
+     const CalenderScreen(),
+    const HomeScreen(),
+    const RiskCalculatorScreen(),
+    const IntroSelfCheckScreen1(),
   ];
 
 

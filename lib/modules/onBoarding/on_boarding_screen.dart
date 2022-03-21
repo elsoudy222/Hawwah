@@ -1,6 +1,11 @@
 
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/components.dart';
+import '../../layout/home_layout.dart';
 import 'model.dart';
 import "package:smooth_page_indicator/smooth_page_indicator.dart";
 
@@ -12,30 +17,35 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<Model> pages = [
     Model(
-      image: 'assets/images/onBoarding1.png',
-      title: 'Welcome',
-      body: 'Hello in Shop App',
+      image: 'assets/images/onboarding/onboarding1.svg',
+      title: 'مرحبا بكم',
+      body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
     ),
     Model(
-      image: 'assets/images/onBoarding2.png',
-      title: 'Easy to Shopping',
+      image: 'assets/images/onboarding/onboarding2.svg',
+      title: 'مرحبا بكم',
+      body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
+    ),
+    Model(
+      image: 'assets/images/onboarding/onboarding3.svg',
+      title: 'مرحبا بكم',
       body:
-      'The Shop App is real-time buying and browsing experience for customers',
+      'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
     ),
     Model(
-      image: 'assets/images/onBoarding3.png',
-      title: 'Online Shopping',
+      image: 'assets/images/onboarding/onboarding4.svg',
+      title: 'مرحبا بكم',
       body:
-      'The Shop App is all about making it easier for people to purchase from your online store',
+      'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
     ),
     Model(
-        image: "assets/images/cloud.png",
-        title: "Easy to Use",
-        body: "The Shop App is real-time buying and browsing experience for customers"),
-    // Model(
-    //     image: "assets/images/boarding_5.png",
-    //     title: "Online Shopping",
-    //     body: "The Shop App is all about making it easier for people to purchase from your online store"),
+        image: "assets/images/onboarding/onboarding5.svg",
+        title: "مرحبا بكم",
+        body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',),
+    Model(
+        image: "assets/images/onboarding/onboarding6.svg",
+        title: "مرحبا بكم",
+        body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',),
   ];
 
   var pageController = PageController();
@@ -58,18 +68,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         actions: [
           TextButton(
               onPressed: (){
                // submit();
+                navigateToAndFinish(context, HomeLayout());
               },
               child: Text(
-                "SKIP",
-                style: TextStyle(color: Colors.pink),))
+                "تخــطى",
+                style: TextStyle(
+                    color: Colors.pink[700],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25
+                ),))
         ],
       ),
       body: Padding(
@@ -105,7 +120,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     controller: pageController,
                     count: pages.length,
                     effect: ExpandingDotsEffect(
-                        dotColor: Colors.grey,
+                        dotColor: secondaryColor,
                         dotHeight: 10,
                         expansionFactor:4,
                         dotWidth: 10,
@@ -115,7 +130,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                   Spacer(),
                   FloatingActionButton(
-                    backgroundColor: Colors.pink,
+                    backgroundColor: Colors.pink[700],
                     onPressed: () {
                       if(isLast) {
                        //submit();
@@ -141,28 +156,30 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              child: Image(
-            image: AssetImage(
+              child:SvgPicture.asset(
               '${pages.image}',
             ),
-          )),
+          ),
           SizedBox(
             height: 30,
           ),
           Text(
             "${pages.title}",
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 30,
+           fontWeight: FontWeight.bold,
+           color: Colors.pink[700]
            //   fontFamily: "MyFlutterApp",
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           Text(
             "${pages.body}",
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 20,
+                color: Colors.pink
              // fontFamily: "MyFlutterApp",
             ),
           )

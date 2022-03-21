@@ -58,9 +58,10 @@ class LoginScreen extends StatelessWidget {
                                 hintText: "ادخل البريد الالكترونى الخاص بك ",
                                 prefix: Icons.email_outlined,
                                 validate: (String? value){
-                                  if (value!.isEmpty) {
+                                  if (value!.isEmpty || !value.contains("@")) {
                                     return 'البريد الالكترونى غسر صحيح';
                                   }
+                                  return "";
                                 },
                               ),
                               const SizedBox(
@@ -87,6 +88,7 @@ class LoginScreen extends StatelessWidget {
                                   if (value!.isEmpty) {
                                     return 'الرقم السرى غير صحيح ';
                                   }
+                                  return "";
                                 },
                                 prefix: Icons.lock_outline,
                                   suffix: LoginCubit.get(context).suffix,
@@ -133,9 +135,10 @@ class LoginScreen extends StatelessWidget {
                                      hintText: "ادخل البريد الالكترونى الخاص بك ",
                                      prefix: Icons.email_outlined,
                                      validate: (String? value){
-                                       if (value!.isEmpty) {
+                                       if (value!.isEmpty || !value.contains("@")) {
                                          return 'البريد الالكترونى غسر صحيح';
                                        }
+                                       return "" ;
                                      },
                                    ),
                                    buttons: [

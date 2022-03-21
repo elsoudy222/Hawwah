@@ -89,6 +89,10 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hawwah/modules/search/search_doctor.dart';
+import 'package:hawwah/modules/search/search_lape.dart';
+
+import 'package:hawwah/shared/components/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -97,128 +101,104 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(249, 157, 185, 1.0),
+       // backgroundColor: Color.fromRGBO(236, 156, 184, 90.0),
+        backgroundColor: primaryColor,
         elevation: 0.0,
-        actions: [
-          IconButton(onPressed: () {},
-              icon: Image.asset(
-                'assets/images/logo.png',
-              )),
+        title: Text(
+          'البحث',
 
-        ],
+        ),
       ),
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromRGBO(249, 157, 185, 1.0),
-                    Color.fromRGBO(253, 220, 230, 1.0)
-                  ]),
-            ),
-          ),
+          // Container(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          //   decoration: const BoxDecoration(
+          //     gradient: LinearGradient(
+          //         begin: Alignment.topCenter,
+          //         end: Alignment.bottomCenter,
+          //         colors: [
+          //           Color.fromRGBO(236, 156, 184, 90.0),
+          //           Color.fromRGBO(250, 250, 250,1.0),
+          //         ]),
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Image(image: AssetImage('assets/images/logo.png'),
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(35),
-                      color: HexColor('FDDCE6'),
-                    ),
-                    child: TextFormField(
-                      decoration:InputDecoration(
-                        prefixIcon: Image.asset('assets/icons/search.png'),
-                        hintText: 'Search',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(35.0),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 150.0),
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Container(
+                        height: 204,
+                        width: 312,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder:(context,index)=>Container(
-                      height: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: HexColor('FDDCE6'),                         ),
+                    Center(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          textDirection: TextDirection.rtl,
-                          children: [
-                            Image(image: AssetImage('assets/icons/doctor.png'),
-                              height: 70,
-                              fit: BoxFit.cover,
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.only(end: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Expanded(
-                                      child: Text('محمد عمرو',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: Container(
+                          height: 200,
+                          width: 310,
+                          decoration: BoxDecoration(
+                            color: HexColor('FAACC3'),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  child: IconButton(
+                                      icon: Image.asset(
+                                        'assets/icons/search_laboratory.png',
+                                        fit: BoxFit.cover,
+                                        width: 100,
+                                        height: 100,
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Text('دكتور امراض نساء',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                      onPressed: ()
+                                      {
+                                        Navigator.push(context, MaterialPageRoute(
+                                            builder: (context)=>SearchLap()));
+                                      }),
                                 ),
-                              ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  child: IconButton(
+                                      icon: Image.asset(
+                                        'assets/icons/search_doctor.png',
+                                        fit: BoxFit.cover,
+                                        width: 100,
+                                        height: 100,
+                                      ),
+                                      onPressed: ()
+                                      {
+                                        Navigator.push(context, MaterialPageRoute(
+                                            builder: (context)=>SearchDoctor()));
+                                      }),
+                                ),
+                              ],
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/icons/doctor.png'),
-                                  )
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                    separatorBuilder: (context,index)=>SizedBox(
-                      height: 15,
-                    ),
-                    itemCount: 10,
-                  )
-                ],
+                  ],
+                ),
               ),
             ),
           ),

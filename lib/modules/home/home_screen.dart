@@ -1,12 +1,10 @@
 
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:hawwah/modules/home/models.dart';
 import 'package:hawwah/shared/components/colors.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -96,195 +94,222 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // EXPERMENT...
-              Text(
-                "التجــارب .",
-                style: TextStyle(
-                    fontSize: 30.0,
-                    color: Colors.pink,
-                    fontWeight: FontWeight.bold),
-              ),
-              Container(
-                height: 230.0,
-                //margin: EdgeInsets.all(10.0),
-                child: PageView.builder(
-                  onPageChanged: (index){
-                    setState(() {
-                      _expermentsIndex = index;
-                    });
-                  },
-                  controller: pageController,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) =>
-                      Container(
-                          margin: EdgeInsets.all(10.0),
-                          child: Experments(context, experments[index])),
-                  itemCount: experments.length,
-
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        physics: const BouncingScrollPhysics(),
+        child: Stack(
+          children: [
+           // _background(),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ...List.generate(experments.length, (index) => Indicator(
-                     isActive : _expermentsIndex == index ? true : false
-                  ))
+                  // EXPERMENT...
+                  const Text(
+                    "التجــارب .",
+                    style:  TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.pink,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    height: 230.0,
+                    //margin: EdgeInsets.all(10.0),
+                    child: PageView.builder(
+                      onPageChanged: (index){
+                        setState(() {
+                          _expermentsIndex = index;
+                        });
+                      },
+                      controller: pageController,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) =>
+                          Container(
+                              margin: const EdgeInsets.all(10.0),
+                              child: Experments(context, experments[index])),
+                      itemCount: experments.length,
 
-                ],
-              ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ...List.generate(experments.length, (index) => Indicator(
+                         isActive : _expermentsIndex == index ? true : false
+                      ))
 
-              // INFORMATION...
-              SizedBox(
-                height: 10.0,
-              ),
-              Text(
-                "معلومـات.",
-                style: TextStyle(
-                    fontSize: 30.0,
-                    color: Colors.pink,
-                    fontWeight: FontWeight.bold),
-              ),
-              Container(
-                height: 180.0,
-                child: PageView.builder(
-                  onPageChanged: (index){
-                    setState(() {
-                      _informationsIndex = index;
-                    });
-                  },
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) =>
-                      Container(
-                          margin: EdgeInsets.all(10.0),
-                          child: Informations(context, information[index])),
-                  itemCount: information.length,
-                  controller: pageController,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ...List.generate(information.length, (index) => Indicator(
-                      isActive : _informationsIndex == index ? true : false
-                  ))
+                    ],
+                  ),
 
-                ],
-              ),
+                  // INFORMATION...
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  const Text(
+                    "معلومـات.",
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.pink,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    height: 180.0,
+                    child: PageView.builder(
+                      onPageChanged: (index){
+                        setState(() {
+                          _informationsIndex = index;
+                        });
+                      },
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) =>
+                          Container(
+                              margin: const EdgeInsets.all(10.0),
+                              child: Informations(context, information[index])),
+                      itemCount: information.length,
+                      controller: pageController,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ...List.generate(information.length, (index) => Indicator(
+                          isActive : _informationsIndex == index ? true : false
+                      ))
 
-              //ADVICES...
-              SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                height: 550.0,
-                width: double.infinity,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 100.0,
-                      height: 400.0,
-                      width: 370,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: secondaryColor,
-                            borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Colors.pink),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                    "- قللى من تناول الكحوليات",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                  ),
-                                ),
-                                Text(
-                                  "-الاستمرار فى ممارسة الرياضه",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                  ),
-                                ),
-                                Text(
-                                  "- الرضاعة الطبيعية",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                  ),
-                                ),
-                                Text(
-                                  "- تناول الأغذيه الصحيه",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                  ),
-                                ),
-                                Text(
-                                  "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                  ),
-                                ),
-                                Text(
-                                  "- وللمدخنات: يجب الابتعاد عن التدخين",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                  ),
-                                ),
+                    ],
+                  ),
 
-                              ],
+                  //ADVICES...
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    height: 550.0,
+                    width: double.infinity,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 100.0,
+                          height: 400.0,
+                          width: 370,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // image: DecorationImage(
+                              //   image: Image.asset("assets/images/home/home_back.png"),
+                              // ),
+                              color: secondaryColor,
+                                borderRadius: BorderRadius.circular(15.0),
+                              border: Border.all(color: Colors.pink),
+                            ),
+
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                        "- قللى من تناول الكحوليات",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                      ),
+                                    ),
+                                    Text(
+                                      "-الاستمرار فى ممارسة الرياضه",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                      ),
+                                    ),
+                                    Text(
+                                      "- الرضاعة الطبيعية",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                      ),
+                                    ),
+                                    Text(
+                                      "- تناول الأغذيه الصحيه",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                      ),
+                                    ),
+                                    Text(
+                                      "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                      ),
+                                    ),
+                                    Text(
+                                      "- وللمدخنات: يجب الابتعاد عن التدخين",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 0.0,
-                      right: 0.0,
-                      height: 200.0,
-                      width: 200,
-                      child: Container(
-                        child: Center(
-                          child: Text(
-                            "نصائح",
-                            style: TextStyle(
-                              fontSize: 25.0,
-                              color: Colors.pink,
+                        Positioned(
+                          top: 0.0,
+                          right: 0.0,
+                          height: 200.0,
+                          width: 200,
+                          child: Container(
+                            child: const Center(
+                              child:  Text(
+                                "نصائح",
+                                style: TextStyle(
+                                  fontSize: 25.0,
+                                  color: Colors.pink,
+                                ),
+                              ),
+                            ),
+                            decoration: const BoxDecoration(
+                                image:  DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/cloud.png",
+                                    )
+                                ),
+
                             ),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                  "assets/images/cloud.png",
-                                )
-                            ),
-
-                        ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+
+  _background() {
+    return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromRGBO(248, 157, 185, 1.0),
+              Color.fromRGBO(250, 250, 250, 1.0)
+            ]),
       ),
     );
   }
@@ -294,7 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //CUSTOM WIDGETS...
 class Indicator extends StatelessWidget {
   final bool? isActive;
-   Indicator({
+   const Indicator({
     Key? key,
    this.isActive,
   }) : super(key: key);
@@ -315,6 +340,7 @@ class Indicator extends StatelessWidget {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget Experments(context, Model experments) => Container(
       decoration: BoxDecoration(
         color: secondaryColor,
@@ -332,7 +358,7 @@ Widget Experments(context, Model experments) => Container(
                   // Title..
                   Text(
                     "${experments.title}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20.0,
                         color: Color(0xFFE91E63),
                         fontWeight: FontWeight.bold),
@@ -340,11 +366,11 @@ Widget Experments(context, Model experments) => Container(
                   //Description
                   Text(
                     "${experments.description}",
-                    style: TextStyle(fontSize: 15.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 15.0, color: Colors.pink),
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                     child: Container(
                       width: 100.0,
@@ -378,13 +404,13 @@ Widget Experments(context, Model experments) => Container(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
 
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: ListView(
                               controller: controller,
                               children: [
                                 Text(
                                   "${experments.info}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20.0, color: Colors.pink),
                                 ),
                               ],
@@ -435,18 +461,18 @@ Widget Informations(context, Model information) => Container(
                 children: [
                   Text(
                     "${information.title}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.pink,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "${information.description}",
-                    style: TextStyle(fontSize: 15.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 15.0, color: Colors.pink),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                     child: Container(
                       width: 100.0,
@@ -462,9 +488,9 @@ Widget Informations(context, Model information) => Container(
                     ),
                     onTap: () {
                       showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(25.0))),
+                                top: const Radius.circular(25.0))),
                         isDismissible: false,
                         backgroundColor: Colors.transparent,
                         isScrollControlled: true,
@@ -479,13 +505,13 @@ Widget Informations(context, Model information) => Container(
                               color: primaryColor,
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: ListView(
                               controller: controller,
                               children: [
                                 Text(
                                   "${information.info}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20.0, color: Colors.pink),
                                 ),
                               ],

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hawwah/modules/selfCheck/self_check_result_screen.dart';
+import 'package:hawwah/modules/selfCheck/self_check_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 
@@ -81,7 +82,7 @@ class _FirstStepsState extends State<FirstSteps> {
                   ),
                   buildSelfCheckQuItem(
                     question: "عل يوجد اختلاف عن المعتاد فى شكل الحلمه\n (فى حالة كانت مائله او ليست فى الوسط)",
-                    image: "assets/images/logo.png",
+                    image: "assets/images/selfCheck/self3.png",
                     onPressed: (){},
                   ),
                   const Divider(
@@ -124,7 +125,7 @@ class _FirstStepsState extends State<FirstSteps> {
                             )),
                       ),
                       onTap: () {
-                        navigateTo(context, SecondSteps());
+                        navigateTo(context, IntroSelfCheckScreen2());
                       },
                     ),
                   ),

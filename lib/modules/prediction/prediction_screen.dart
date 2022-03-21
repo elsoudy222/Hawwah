@@ -17,22 +17,24 @@ class _PredictionScreenState extends State<PredictionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Center(
-            child: Stack(
-              children: [
-                _background(),
-                _body(),
-              ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Center(
+              child: Stack(
+                children: [
+                  //_background(),
+                  _body(),
+                ],
+              ),
             ),
           ),
         ));
   }
 
   Widget _body() {
-    TextEditingController area_meanController;
-    TextEditingController texture_meanController;
+    TextEditingController area_meanController= TextEditingController();
+    TextEditingController texture_meanController= TextEditingController();
     TextEditingController concavity_meanController = TextEditingController();
     TextEditingController texture_seController = TextEditingController();
     TextEditingController area_seController = TextEditingController();
@@ -41,10 +43,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
     TextEditingController smoothness_worstController = TextEditingController();
     TextEditingController concavity_worstController = TextEditingController();
     TextEditingController symmetry_worstController = TextEditingController();
-    TextEditingController fractal_dimension_worstController =
-        TextEditingController();
-    return Directionality(
-      textDirection: TextDirection.rtl,
+    TextEditingController fractal_dimension_worstController = TextEditingController();
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -58,6 +58,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
               color: Color.fromRGBO(206, 86, 139, 1),
             ),
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Form(
             child: Column(
@@ -86,9 +89,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         child: TextFormField(
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 21),
-                         // controller: area_meanController,
+                          controller: area_meanController,
                           onSaved: (value) {
-                          //  value = area_meanController.text;
+                            value = area_meanController.text;
                           },
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -119,17 +122,19 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         padding: const EdgeInsets.all(10),
                         child: TextFormField(
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 22),
-                         // controller: texture_meanController,
+                          style: TextStyle(fontSize: 20),
+                          controller: texture_meanController,
                           onSaved: (value) {
                            // value = texture_meanController.text;
                           },
                           decoration: InputDecoration(
                               border: InputBorder.none,
+
                               hintText: "texture_mean",
                               hintStyle: TextStyle(
                                   fontSize: 17,
                                   color: Color.fromRGBO(112, 73, 90, 1))),
+
                         ),
                       ),
                     ),
@@ -494,7 +499,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
               ),
             ),
             onPressed: () {
-              navigateToAndFinish(context, PredictionResultScreen());
+              navigateTo(context, PredictionResultScreen());
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(

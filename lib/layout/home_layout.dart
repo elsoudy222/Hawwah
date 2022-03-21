@@ -1,19 +1,18 @@
 
 
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
-import 'package:circle_nav_bar/circle_nav_bar.dart';
 import '../modules/profile/profile_screen.dart';
 import '../modules/report/report_screen.dart';
 import 'cubit/home_cubit.dart';
 
 class HomeLayout extends StatelessWidget {
-   HomeLayout({Key? key}) : super(key: key);
+   const HomeLayout({Key? key}) : super(key: key);
 
 
   @override
@@ -28,38 +27,15 @@ class HomeLayout extends StatelessWidget {
           var cubit = HomeCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text("حــواء"),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.search,),
-                  onPressed: () {
-                    navigateTo(context,  SearchScreen());
-                  },
-                ),
-               
-
-              ],
+              title: const Text('حَوَّاء '),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
+
             body: cubit.screens[cubit.currentIndex],
-            // bottomNavigationBar: CircleNavBar(
-            //   activeIcons:cubit.activeIcons,
-            //   inactiveIcons: cubit.inactiveIcons,
-            //   color: secondaryColor,
-            //   height: 60,
-            //   circleWidth: 60,
-            //   initIndex: cubit.currentIndex,
-            //   onChanged: (index) {
-            //     cubit.changeBottomNavBar(index);
-            //   },
-            //   elevation: 10,
-            //   padding: const EdgeInsets.all(10.0),
-            //   cornerRadius: const BorderRadius.only(
-            //     topLeft: Radius.circular(8),
-            //     topRight: Radius.circular(8),
-            //
-            //   ),
-            // ),
             bottomNavigationBar: BottomNavigationBar(
+              elevation: 0,
+              backgroundColor: primaryColor,
               items: cubit.bottomNavItems,
               currentIndex: cubit.currentIndex,
               onTap: (index) {
@@ -73,7 +49,7 @@ class HomeLayout extends StatelessWidget {
                   child: Column(
                     children: [
                       const drawerHeader(),
-                      Divider(
+                      const Divider(
                         thickness: 0.4,
                         height: 1.5,
                       ),
@@ -98,22 +74,22 @@ class drawerHeader extends StatelessWidget {
     return Container(
       color: primaryColor,
       width: double.infinity,
-      height: 200,
+      height: 250,
       padding: const EdgeInsets.only(top: 30.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center ,
         children: [
           GestureDetector(
             onTap: (){
-              navigateTo(context, Profile());
+              navigateTo(context, ProfileScreen());
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 10),
-              height: 70.0,
+              height: 90.0,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage("assets/images/logo.png"),
+                  image: AssetImage("assets/icons/profile_pic.png"),
                 )
               ),
             ),
@@ -131,6 +107,7 @@ class drawerHeader extends StatelessWidget {
             "info@gmail.com",
             style: TextStyle(
               color: Colors.white,
+              fontSize: 17
 
             ),
           ),
@@ -140,7 +117,6 @@ class drawerHeader extends StatelessWidget {
     );
   }
 }
-
 Widget drawerBody(context){
   return Container(
     color: secondaryColor,
@@ -148,17 +124,16 @@ Widget drawerBody(context){
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        menuItem(icon: Icons.book_outlined, text: 'التــقرير', onTap: () { navigateTo(context, ReportScreen()); }),
-        menuItem(icon: Icons.help_outline, text: 'المسـاعده', onTap: () {  }),
-        menuItem(icon: Icons.logout_outlined, text: 'تـسجيل الخروج', onTap: () {  }),
+        menuItem(icon: "assets/icons/report.png", text: 'التــقرير', onTap: () { navigateTo(context, ReportScreen()); }),
+        menuItem(icon: "assets/icons/search.png", text: 'البحـث', onTap: () { navigateTo(context, SearchScreen()); }),
+        menuItem(icon: "assets/images/logo.png", text: 'المسـاعده', onTap: () {  }),
+        menuItem(icon: "assets/icons/sign-out.png", text: 'تـسجيل الخروج', onTap: () {  }),
       ],
     ),
   );
 }
-
-
 Widget menuItem({
-  required IconData icon,
+  required String icon,
   required String text,
   required VoidCallback onTap,
 }){
@@ -172,7 +147,8 @@ Widget menuItem({
         padding: const EdgeInsets.all(15.0),
         child: Row(
           children:  [
-            Expanded(flex:1,child: Icon(icon,size: 30.0,color: Colors.pink,)),
+            Expanded(flex:1,child: Image.asset(icon,height: 40.0,)),
+            SizedBox(width: 10.0,),
             Expanded(flex:3,child: Text(
                 text,
               style: const TextStyle(
