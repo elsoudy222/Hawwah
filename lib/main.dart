@@ -15,6 +15,7 @@ import 'package:hawwah/shared/network/remote/dio_helper.dart';
 // TODO: Complete Search Screen [ DONE ]
 // TODO: Edit SelfCheck Screen [ DONE ]
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
