@@ -1,10 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/layout/cubit/home_cubit.dart';
 import 'package:hawwah/shared/components/colors.dart';
 
 class PredictionResultScreen extends StatefulWidget {
-  const PredictionResultScreen({Key? key}) : super(key: key);
+  String text;
+  PredictionResultScreen({Key? key,required this.text}) : super(key: key);
 
   @override
   _PredictionResultScreenState createState() => _PredictionResultScreenState();
@@ -13,45 +16,54 @@ class PredictionResultScreen extends StatefulWidget {
 class _PredictionResultScreenState extends State<PredictionResultScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title:  Text(
-          'التحليل',
-          style: TextStyle(fontSize: 40,color: secondaryColor,fontWeight: FontWeight.bold),
-        ) ,
-        leading: InkWell(
-          onTap: Navigator.of(context).pop,
-          child:  Icon(
-            Icons.arrow_back_ios,
-            size: 35,
-            color: secondaryColor,
-
-          ),
-        ),
-      ),
-        body: Center(
-          child: Container(
-              height: 300,
-              width: 300,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/cloud.png'),fit: BoxFit.fill)),
-              child:
-              const Center(child:  Text(
-                'النتيجة ',
+    return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Text(
+                'التحليل',
                 style: TextStyle(
-                  fontFamily: 'Segoe UI',
-                  fontSize: 35,
-                  color: Color.fromRGBO(206, 86, 139, 1.0),
-                  fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: secondaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              leading: InkWell(
+                onTap: Navigator.of(context).pop,
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 35,
+                  color: secondaryColor,
                 ),
-              ),)),
-        ));
+              ),
+            ),
+            body: Center(
+              child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/cloud.png'),
+                          fit: BoxFit.fill)),
+                  child: Center(
+                    child: Text(
+                      widget.text,
+                      style: const TextStyle(
+                        fontFamily: 'Segoe UI',
+                        fontSize: 35,
+                        color: Color.fromRGBO(206, 86, 139, 1.0),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )),
+            ));
+      },
+    );
   }
-
-
 
   Widget _appBar() {
     return Container(
@@ -61,7 +73,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-           Text(
+          Text(
             'حَوَّاء ',
             style:
             TextStyle(fontSize: 35, color: Color.fromRGBO(206, 86, 139, 1)),

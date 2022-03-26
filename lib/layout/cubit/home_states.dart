@@ -4,4 +4,11 @@ part of 'home_cubit.dart';
 abstract class HomeStates {}
 
 class HomeInitialState extends HomeStates {}
-class ChangeBottomNavBarState extends HomeStates{}
+
+class ChangeBottomNavBarState extends HomeStates {}
+
+class LoadingPredictionDataState extends HomeStates {}
+
+class SuccessPredictionDataState extends HomeStates {}
+
+class ErrorPredictionDataState extends HomeStates {}

@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
 import 'package:hawwah/modules/riskCalculator/risk_calculator_screen.dart';
-
+import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
 
@@ -13,9 +12,8 @@ part 'home_states.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitialState());
+
   static HomeCubit get(context) => BlocProvider.of(context);
-
-
 
   int currentIndex = 2;
   List<Widget> activeIcons = [
@@ -44,14 +42,9 @@ class HomeCubit extends Cubit<HomeStates> {
       height: 30.0,
       color: Colors.pink,
     ),
-
-
   ];
 
-
-
-  List<BottomNavigationBarItem> bottomNavItems = const[
-
+  List<BottomNavigationBarItem> bottomNavItems = const [
     BottomNavigationBarItem(
       icon: Image(
         image: AssetImage("assets/icons/searching.png"),
@@ -90,17 +83,56 @@ class HomeCubit extends Cubit<HomeStates> {
   ];
 
   List<Widget> screens = [
-     const PredictionScreen(),
-     const CalenderScreen(),
+    const PredictionScreen(),
+    const CalenderScreen(),
     const HomeScreen(),
     const RiskCalculatorScreen(),
     const IntroSelfCheckScreen1(),
   ];
 
-
-  void changeBottomNavBar(int index){
+  void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(ChangeBottomNavBarState());
+  }
+
+  var prediction;
+
+  void sendPredictionData({
+    required String texture_mean,
+    required String area_mean,
+    required String concavity_mean,
+    required String texture_se,
+    required String area_se,
+    required String concavity_se,
+    required String symmetry_se,
+    required String smoothness_worst,
+    required String concavity_worst,
+    required String symmetry_worst,
+    required String fractal_dimension_worst,
+  }) {
+    emit(LoadingPredictionDataState());
+    DioHelper.postData(
+      url: '/api/',
+      data: {
+        "texture mean": texture_mean,
+        "area_mean": area_mean,
+        "concavity_mean": concavity_mean,
+        "texture_se": texture_se,
+        "area_se": area_se,
+        "concavity_se": concavity_se,
+        "symmetry_se": symmetry_se,
+        "smoothness_worst": smoothness_worst,
+        "concavity_worst": concavity_worst,
+        "symmetry_worst": symmetry_worst,
+        "fractal_dimension_worst": fractal_dimension_worst,
+      },
+    ).then((value) {
+      prediction = value.data;
+      emit(SuccessPredictionDataState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorPredictionDataState());
+    });
   }
 
 }
