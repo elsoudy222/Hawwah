@@ -30,6 +30,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
     TextEditingController fractal_dimension_worstController = TextEditingController();
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
+
         if (state is SuccessPredictionDataState) {
           navigateTo(
               context,
