@@ -1,4 +1,6 @@
 
+import 'package:dropdown_button2/custom_dropdown_button2.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/riskCalculator/risk_result_screen.dart';
@@ -34,7 +36,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
   List<String> answer5=["لا أعلم","0","1","أكثر من 1",];
   List<String> answer6=["لا أعلم","نعم","لا",];
   List<String> answer7=["لا أعلم","0","1","أكثر من 1",];
-  List<String> answer8=["لا أعلم","أبيض","أفريقى","اصول اسبانية","أسيوى",'هندى',];
+  List<String> answer8=["لا أعلم","أبيض","أفريقى","اصول اسبانية",'هندى',];
+
 
 
   @override
@@ -91,6 +94,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                   controller: ageController,
                                   keyboardType: TextInputType.number,
                                   prefix: Icons.accessibility,
+                                hintText: 'العمر من 35 الي 85',
                                 validate: (String ?value){
                                     if (value!.isEmpty){
                                       return "svsvzszcvz";
@@ -366,7 +370,6 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                         height: 1.5,
                       ),
                       const SizedBox(height: 20.0,),
-
                       Question(question: Q4, answers: answer4),
                       const Divider(
                         thickness: 0.4,
@@ -391,7 +394,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                         height: 1.5,
                       ),
                       const SizedBox(height: 20.0,),
-                      Question(question: Q8, answers: answer8),
+                      Question(question: Q8, answers: answer8,isDrop: true,),
                       const Divider(
                         thickness: 0.4,
                         height: 1.5,
@@ -410,7 +413,6 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                           // width: MediaQuery.of(context).size.width ,
                         ),
                       ),
-
                     ],
                   ),
                 )),
