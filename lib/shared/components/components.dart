@@ -35,6 +35,8 @@ Widget defaultFormField({
   IconData? suffix,
   VoidCallback? suffixPressed,
   bool isClickable = true,
+  Color? hintColor,
+  Color? prefixColor,
 }) =>
     TextFormField(
       cursorColor: Colors.pink,
@@ -57,10 +59,12 @@ Widget defaultFormField({
             borderRadius: BorderRadius.circular(30.0),
             borderSide: BorderSide(color:secondaryColor,width: 2)
         ),
-        labelText: label,
+        labelText: label ,
         hintText: hintText,
+        hintStyle: TextStyle(color: hintColor),
         prefixIcon: Icon(
           prefix,
+          color: prefixColor,
         ),
         suffixIcon: suffix != null
             ? IconButton(

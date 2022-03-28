@@ -30,7 +30,9 @@ class _ReportScreenState extends State<ReportScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                       icon: const Icon(
                         Icons.arrow_back_ios_sharp,
                         color: Colors.white,
@@ -92,8 +94,9 @@ class _ReportScreenState extends State<ReportScreen> {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: Image.asset('assets/icons/download.png'),
+                            icon: Image.asset('assets/icons/download.png',color: Color.fromRGBO(206, 86, 139, 1),),
                           ),
+                          SizedBox(width: 10,),
                           IconButton(
                             onPressed: () {},
                             icon: Image.asset('assets/icons/printer.png'),

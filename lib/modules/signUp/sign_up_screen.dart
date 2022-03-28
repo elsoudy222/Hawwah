@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
-import 'package:hawwah/modules/signUp/cubit/login_cubit.dart';
-import 'package:hawwah/modules/signUp/cubit/login_states.dart';
+import 'package:hawwah/modules/signUp/cubit/signup_cubit.dart';
+import 'package:hawwah/modules/signUp/cubit/signup_states.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../shared/components/components.dart';
 
@@ -37,7 +37,8 @@ class SignupScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Image.asset(
-                            "assets/images/logo.png",
+                            "assets/images/logo_white.png",
+                            fit: BoxFit.contain,
                             height: 200.0,
                           ),
                           Column(

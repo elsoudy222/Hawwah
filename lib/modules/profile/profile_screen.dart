@@ -1,610 +1,424 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-//
-// class Profile extends StatefulWidget {
-//   @override
-//   _ProfileState createState() => _ProfileState();
-// }
-//
-// class _ProfileState extends State<Profile> {
-//   final _bottomNavigationBarColor = Colors.white;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Stack(
-//         children: [
-//           //
-//           background(),
-//           profileCircle(),
-//           Center(
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [ const SizedBox(
-//                   height: 20,
-//                 ),
-//                   Padding(padding: EdgeInsets.all(5),
-//                     child:   GestureDetector(
-//                       child: Row(
-//                         children: [
-//                           Icon(
-//                             Icons.arrow_back_ios_sharp,
-//                             size: 40,
-//                             color: Colors.white,
-//                           ),
-//
-//                         ],
-//                       ),
-//                       onTap: () {
-//                         Navigator.pop(context);
-//                       },
-//                     ),),
-//                   const SizedBox(
-//                     height: 50,
-//                   ),
-//                   const Text(
-//                     'اسم المستخدم ',
-//                     style: TextStyle(
-//                       fontFamily: 'Barada Reqa',
-//                       fontSize: 30,
-//                       color: Color(0xffffffff),
-//                     ),
-//                     textAlign: TextAlign.center,
-//                   ),
-//                   CircleAvatar(
-//                     backgroundColor: const Color.fromRGBO(206, 86, 139, 1),
-//                     minRadius: 50,
-//                     // child: Image.asset(
-//                     //   'assets/images/Group 31.png',
-//                     //   fit: BoxFit.contain,
-//                     //   width: 110,
-//                     // ),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   Container(
-//                     height: 40,
-//                     width: double.infinity,
-//                     margin: const EdgeInsets.all(5),
-//                     decoration: BoxDecoration(
-//                       boxShadow: [
-//                         BoxShadow(
-//                           color: Colors.grey.withOpacity(0.5),
-//                           spreadRadius: 5,
-//                           blurRadius: 7,
-//                           offset: const Offset(0, 3), // changes position of shadow
-//                         ),
-//                       ],
-//                       color: const Color.fromRGBO(249, 192, 209, 1),
-//                       borderRadius: BorderRadius.circular(70.0),
-//                     ),
-//                     child: const Padding(
-//                       padding: EdgeInsets.all(10),
-//                       child: Text(
-//                         '',
-//                         style: TextStyle(fontSize: 18),
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   Container(
-//                     height: 40,
-//                     width: double.infinity,
-//                     margin: const EdgeInsets.all(5),
-//                     decoration: BoxDecoration(
-//                       boxShadow: [
-//                         BoxShadow(
-//                           color: Colors.grey.withOpacity(0.5),
-//                           spreadRadius: 5,
-//                           blurRadius: 7,
-//                           offset: const Offset(0, 3), // changes position of shadow
-//                         ),
-//                       ],
-//                       color: const Color.fromRGBO(249, 192, 209, 1),
-//                       borderRadius: BorderRadius.circular(70.0),
-//                     ),
-//                     child: const Padding(
-//                       padding: EdgeInsets.all(10),
-//                       child: Text(
-//                         '',
-//                         style: TextStyle(fontSize: 18),
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   Container(
-//                     height: 40,
-//                     width: double.infinity,
-//                     margin: const EdgeInsets.all(5),
-//                     decoration: BoxDecoration(
-//                       boxShadow: [
-//                         BoxShadow(
-//                           color: Colors.grey.withOpacity(0.5),
-//                           spreadRadius: 5,
-//                           blurRadius: 7,
-//                           offset: const Offset(0, 3), // changes position of shadow
-//                         ),
-//                       ],
-//                       color: const Color.fromRGBO(249, 192, 209, 1),
-//                       borderRadius: BorderRadius.circular(70.0),
-//                     ),
-//                     child: const Padding(
-//                       padding: EdgeInsets.all(10),
-//                       child: Text(
-//                         '',
-//                         style: TextStyle(fontSize: 18),
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   Container(
-//                     height: 40,
-//                     width: double.infinity,
-//                     margin: const EdgeInsets.all(5),
-//                     decoration: BoxDecoration(
-//                       boxShadow: [
-//                         BoxShadow(
-//                           color: Colors.grey.withOpacity(0.5),
-//                           spreadRadius: 5,
-//                           blurRadius: 7,
-//                           offset: const Offset(0, 3), // changes position of shadow
-//                         ),
-//                       ],
-//                       color: const Color.fromRGBO(249, 192, 209, 1),
-//                       borderRadius: BorderRadius.circular(70.0),
-//                     ),
-//                     child: const Padding(
-//                       padding: EdgeInsets.all(10),
-//                       child: Text(
-//                         '',
-//                         style: TextStyle(fontSize: 18),
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   Container(
-//                     height: 40,
-//                     width: double.infinity,
-//                     margin: const EdgeInsets.all(5),
-//                     decoration: BoxDecoration(
-//                       boxShadow: [
-//                         BoxShadow(
-//                           color: Colors.grey.withOpacity(0.5),
-//                           spreadRadius: 5,
-//                           blurRadius: 7,
-//                           offset: const Offset(0, 3), // changes position of shadow
-//                         ),
-//                       ],
-//                       color: const Color.fromRGBO(249, 192, 209, 1),
-//                       borderRadius: BorderRadius.circular(70.0),
-//                     ),
-//                     child: const Padding(
-//                       padding: EdgeInsets.all(10),
-//                       child: Text(
-//                         '',
-//                         style: TextStyle(fontSize: 18),
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//
-//                   TextButton(
-//                     onPressed: () {},
-//                     child: Center(
-//                       child: Container(
-//                         width: 100,
-//                         padding: const EdgeInsets.all(10),
-//                         alignment: Alignment.center,
-//                         decoration: const BoxDecoration(
-//                           color: Color.fromRGBO(250, 172, 195, 1),
-//                           borderRadius: BorderRadius.all(Radius.circular(25)),
-//                         ),
-//                         child: const Text(
-//                           'تعديل',
-//                           style: TextStyle(
-//                               fontSize: 22,
-//                               color: Colors.white,
-//                               fontWeight: FontWeight.bold),
-//                         ),
-//                       ),
-//                     ),
-//                   )
-//                 ],
-//               ))
-//         ],
-//       ),
-//     );
-//   }
-//
-//   Widget background() {
-//     return Container(
-//       width: double.infinity,
-//       decoration: const BoxDecoration(
-//         gradient: LinearGradient(
-//             begin: Alignment.topCenter,
-//             end: Alignment.bottomCenter,
-//             colors: [
-//               Color.fromRGBO(249, 157, 185, 1.0),
-//               Color.fromRGBO(253, 220, 230, 1.0)
-//             ]),
-//       ),
-//     );
-//   }
-//
-//   Widget profileCircle() {
-//     return Positioned(
-//       child: Container(
-//         width: 545,
-//         height: 507,
-//         decoration: const BoxDecoration(
-//             color: Color.fromRGBO(206, 86, 139, 1), shape: BoxShape.circle),
-//       ),
-//       top: -230,
-//       right: -80,
-//     );
-//   }
-//
-// }
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hawwah/layout/cubit/home_cubit.dart';
+import 'package:hawwah/modules/profile/cubit/profile_cubit.dart';
+import 'package:hawwah/shared/components/components.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var formKey1 = GlobalKey<FormState>();
+  var formKey2 = GlobalKey<FormState>();
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
+  var birthController = TextEditingController();
+  var oldPasswordController = TextEditingController();
+  var newPasswordController = TextEditingController();
+  var confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeStates>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    return Scaffold(
-      body: Stack(
-        children: [
-         // background(),
-          profileCircle(),
-          Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return BlocProvider(
+  create: (context) => ProfileCubit(),
+  child: BlocConsumer<ProfileCubit, ProfileStates>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(200),
+            child: SizedBox(
+              height: 400,
+              child: Stack(
                 children: [
-                  const SizedBox(
-                    height: 20,
+                  AppBar(
+                    leading: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios_sharp,
+                        size: 40,
+                        color: Colors.white,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(200)),
+                    ),
+                    backgroundColor: Color.fromRGBO(206, 86, 139, 1),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: GestureDetector(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_back_ios_sharp,
-                            size: 40,
-                            color: Colors.white,
+                  Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink, width: 2),
+                          shape: BoxShape.circle),
+                      height: 150,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        maxRadius: 50,
+                        child: Image.asset(
+                          'assets/icons/profile_pic.png',
+                          fit: BoxFit.fill,
+                          height: 70,
+                          width: 70,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          body: Center(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Form(
+                key: formKey1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+
+                    // Name formField ....
+                    Container(
+                      height: 55.0,
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(249, 192, 209, 1),
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset:
+                                const Offset(0, 3), // changes position of shadow
                           ),
                         ],
                       ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  CircleAvatar(
-                    backgroundColor: const Color.fromRGBO(206, 86, 139, 1),
-                    minRadius: 50,
-                    child: Image.asset(
-                      'assets/icons/profile_pic.png',
-                      fit: BoxFit.fill,
-                      height: 80,
-                      width: 80,
 
+                      child: defaultFormField(
+                          prefix: Icons.person,
+                          keyboardType: TextInputType.text,
+                          controller: nameController,
+                          hintText: "الاســم",
+                          hintColor: Colors.white,
+                          prefixColor: Colors.white,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return " يجب إدخال الاسم بصوره صحيحة";
+                            }
+                            return null;
+                          }),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    height: 55.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 15,
                     ),
-                    padding: EdgeInsets.all(5),
-                    child: TextField(
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        hintText: 'الاسم',
-                        hintStyle: TextStyle(
-                          color: Colors.pink,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Colors.pink,
-                        ),
-                        filled: true,
-                        fillColor: Color.fromRGBO(249, 192, 209, 1),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0 ),
-                          borderSide: BorderSide(
+
+                    // Email FormField...
+                    Container(
+                      height: 55.0,
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(249, 192, 209, 1),
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset:
+                            const Offset(0, 3), // changes position of shadow
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
+                        ],
+                      ),
+
+                      child: defaultFormField(
+                          prefix: Icons.email,
+                          keyboardType: TextInputType.text,
+                          controller: emailController,
+                          hintText: "البريد الإلكترونى",
+                          hintColor: Colors.white,
+                          prefixColor: Colors.white,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return " يجب إدخال الاسم بصوره صحيحة";
+                            }
+                            return null;
+                          }),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    //Phone FormField ...
+                    Container(
+                      height: 55.0,
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(249, 192, 209, 1),
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset:
+                            const Offset(0, 3), // changes position of shadow
                           ),
+                        ],
+                      ),
+
+                      child: defaultFormField(
+                          prefix: Icons.phone,
+                          keyboardType: TextInputType.phone,
+                          controller: phoneController,
+                          hintText: "رقم الهاتف",
+                          hintColor: Colors.white,
+                          prefixColor: Colors.white,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return " يجب إدخال الاسم بصوره صحيحة";
+                            }
+                            return null;
+                          }),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    // birthDate ...
+                    Container(
+                      height: 55.0,
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(249, 192, 209, 1),
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset:
+                            const Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+
+                      child: defaultFormField(
+                          prefix: Icons.date_range,
+                          keyboardType: TextInputType.numberWithOptions(),
+                          controller: birthController,
+                          hintText: "تاريخ الميلاد",
+                          hintColor: Colors.white,
+                          prefixColor: Colors.white,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return " يجب إدخال الاسم بصوره صحيحة";
+                            }
+                            return null;
+                          }),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    // Change Password ...
+                    Container(
+                      width: double.infinity,
+                      height: 55,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(250, 138, 198, 1),
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                      BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset:
+                      const Offset(0, 3), // changes position of shadow
+                    ),],
+                      ),
+                      child: MaterialButton(
+                        focusColor: Colors.pink,
+                        onPressed: () {
+                          final AlertDialog alert = AlertDialog(
+
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+
+                            title: Text("تغيير كلمة المرور") ,
+                            titleTextStyle: TextStyle(
+                                color: Color.fromRGBO(239, 92, 147, 1),
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold
+                            ),
+                            content: Container(
+                              height: 350,
+                              child: Form(
+                                key: formKey2,
+                                child: Column(
+                                  children: [
+                                    Divider(
+                                      color:  Color.fromRGBO(239, 92, 147, 1),
+                                      thickness: 1.0,
+                                      height: 20.0,
+                                    ),
+                                    defaultFormField(
+                                        controller: oldPasswordController,
+                                        keyboardType: TextInputType.text,
+                                        hintText: "ادخل الرقم السرى القديم ",
+                                        // onSubmit: (value) {
+                                        //   if (formKey.currentState!.validate()) {
+                                        //     LoginCubit.get(context).userLogin(
+                                        //       email: emailController.text,
+                                        //       password: passController.text,
+                                        //     );
+                                        //   }
+                                        // },
+                                        validate: (String? value) {
+                                          if (value!.isEmpty) {
+                                            return 'الرقم السرى غير صحيح ';
+                                          }
+                                          return "";
+                                        },
+                                        prefix: Icons.lock_outline,
+                                        // suffix: ProfileCubit.get(context).suffix,
+                                        // obscureText: ProfileCubit.get(context).isPassword,
+                                        // suffixPressed: (){
+                                        //   ProfileCubit.get(context).changePasswordVisibilityy();
+                                        // }
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    defaultFormField(
+                                        controller: newPasswordController,
+                                        keyboardType: TextInputType.text,
+                                        hintText: "ادخل الرقم السرى الجديد ",
+                                        // onSubmit: (value) {
+                                        //   if (formKey.currentState!.validate()) {
+                                        //     LoginCubit.get(context).userLogin(
+                                        //       email: emailController.text,
+                                        //       password: passController.text,
+                                        //     );
+                                        //   }
+                                        // },
+                                        validate: (String? value) {
+                                          if (value!.isEmpty) {
+                                            return 'الرقم السرى غير صحيح ';
+                                          }
+                                          return "";
+                                        },
+                                        prefix: Icons.lock_outline,
+                                        // suffix: ProfileCubit.get(context).suffix,
+                                        // obscureText: ProfileCubit.get(context).isPassword,
+                                        // suffixPressed: (){
+                                        //   ProfileCubit.get(context).changePasswordVisibilityy();
+                                        // }
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    defaultFormField(
+                                        controller: confirmPasswordController,
+                                        keyboardType: TextInputType.text,
+                                        hintText: "إعادة ادخال الرقم السرى الجديد ",
+                                        // onSubmit: (value) {
+                                        //   if (formKey.currentState!.validate()) {
+                                        //     LoginCubit.get(context).userLogin(
+                                        //       email: emailController.text,
+                                        //       password: passController.text,
+                                        //     );
+                                        //   }
+                                        // },
+                                        validate: (String? value) {
+                                          if (value!.isEmpty) {
+                                            return 'الرقم السرى غير صحيح ';
+                                          }
+                                          return "";
+                                        },
+                                        prefix: Icons.lock_outline,
+                                        //suffix: ProfileCubit.get(context).suffix,
+                                        //obscureText: ProfileCubit.get(context).isPassword,
+                                        // suffixPressed: (){
+                                        //   ProfileCubit.get(context).changePasswordVisibilityy();
+                                        // }
+                                    ),
+                                    Spacer(),
+                                    GestureDetector(
+                                      onTap: (){
+                                        print("tapped");
+                                      },
+                                      child: Container(
+                                        width: 150,
+                                        height: 60,
+                                        padding: const EdgeInsets.all(10),
+                                        alignment: Alignment.center,
+                                        decoration:  BoxDecoration(
+                                          color:  Color.fromRGBO(250, 138, 198, 1),
+                                          border: Border.all(color: Colors.white),
+                                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                                        ),
+                                        child: const Text(
+                                          'تعديل',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ) ,
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context)=> alert,) ;
+                        },
+                        child: Row(
+                          children: [
+                            Icon(Icons.lock , color: Colors.white,),
+                            Text(
+                              "تغيير الرقم السرى",
+                              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 55.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 15,
                     ),
-                    padding: EdgeInsets.all(5),
-                    child: TextField(
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        hintText: 'البريد الالكتروني',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
+
+                    GestureDetector(
+                      onTap: (){
+                        print("tapped");
+                      },
+                      child: Container(
+                        width: 150,
+                        height: 60,
+                        padding: const EdgeInsets.all(10),
+                        alignment: Alignment.center,
+                        decoration:  BoxDecoration(
+                          color:  Color.fromRGBO(250, 138, 198, 1),
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
                         ),
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Colors.white,
-                        ),
-                        filled: true,
-                        fillColor: Color.fromRGBO(249, 192, 209, 1),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 55.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(5),
-                    child: TextField(
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        hintText: 'الرقم السري',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Colors.white,
-                        ),
-                        filled: true,
-                        fillColor: Color.fromRGBO(249, 192, 209, 1),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 55.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(5),
-                    child: TextField(
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        hintText: 'تاريخ الميلاد',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.calendar_today,
-                          color: Colors.white,
-                        ),
-                        filled: true,
-                        fillColor: Color.fromRGBO(249, 192, 209, 1),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 55.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(5),
-                    child: TextField(
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        hintText: 'الرقم',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.phone,
-                          color: Colors.white,
-                        ),
-                        filled: true,
-                        fillColor: Color.fromRGBO(249, 192, 209, 1),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    height: 55.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(5),
-                    child: TextField(
-                      cursorColor: Colors.grey,
-                      decoration: InputDecoration(
-                        hintText: 'تغيير كلمة السر',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.lock_open,
-                          color: Colors.white,
-                        ),
-                        filled: true,
-                        fillColor: Color.fromRGBO(249, 192, 209, 1),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(70.0),
-                          borderSide: BorderSide(
-                            color: Colors.grey.withOpacity(0.5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    width: 150,
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.all(Radius.circular(25)),
-                    ),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Center(
                         child: const Text(
                           'تعديل',
                           style: TextStyle(
@@ -614,44 +428,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ],
-      ),
-    );
-  },
+        );
+      },
+    ),
 );
   }
 
-  Widget background() {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromRGBO(249, 157, 185, 1.0),
-              Color.fromRGBO(253, 220, 230, 1.0)
-            ]),
-      ),
-    );
+  void buildDialog(BuildContext context,state) {
+    ;
   }
-
-  Widget profileCircle() {
-    return Positioned(
-      child: Container(
-        width: 545,
-        height: 507,
-        decoration: const BoxDecoration(
-            color: Color.fromRGBO(206, 86, 139, 1), shape: BoxShape.circle),
-      ),
-      top: -255,
-      right: -80,
-    );
-  }
-
 }

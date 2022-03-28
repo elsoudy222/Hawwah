@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hawwah/layout/cubit/home_cubit.dart';
-import 'package:hawwah/modules/splash/splash_screen.dart';
-import 'package:hawwah/shared/bloc_observer.dart';
+import 'package:hawwah/layout/home_layout.dart';
+import 'package:hawwah/modules/changePassword/change_password_screen.dart';
+import 'package:hawwah/modules/login/login_screen.dart';
+import 'package:hawwah/modules/profile/profile_screen.dart';
 import 'package:hawwah/shared/components/themes.dart';
-import 'package:hawwah/shared/network/local/cache_helper.dart';
-import 'package:hawwah/shared/network/remote/dio_helper.dart';
+import 'modules/onBoarding/on_boarding_screen.dart';
 
 // TODO: Complete Editing on PredictionResultScreen [ DONE ]
 // TODO: Edit Calender Screen [ DONE ]
@@ -15,12 +16,7 @@ import 'package:hawwah/shared/network/remote/dio_helper.dart';
 // TODO: Complete Search Screen [ DONE ]
 // TODO: Edit SelfCheck Screen [ DONE ]
 
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = MyBlocObserver();
-  DioHelper.init();
-  await CacheHelper.init();
+void main() {
   runApp(const MyApp());
 }
 
@@ -48,7 +44,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('ar', 'AE'),
             ],
-            home: SplashScreen(),
+            home: HomeLayout(),
           );
         },
       ),

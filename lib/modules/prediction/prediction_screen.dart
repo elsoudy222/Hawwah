@@ -16,18 +16,7 @@ class PredictionScreen extends StatefulWidget {
 class _PredictionScreenState extends State<PredictionScreen> {
   @override
   Widget build(BuildContext context) {
-    var formKey = GlobalKey<FormState>();
-    TextEditingController area_meanController = TextEditingController();
-    TextEditingController texture_meanController = TextEditingController();
-    TextEditingController concavity_meanController = TextEditingController();
-    TextEditingController texture_seController = TextEditingController();
-    TextEditingController area_seController = TextEditingController();
-    TextEditingController concavity_seController = TextEditingController();
-    TextEditingController symmetry_seController = TextEditingController();
-    TextEditingController smoothness_worstController = TextEditingController();
-    TextEditingController concavity_worstController = TextEditingController();
-    TextEditingController symmetry_worstController = TextEditingController();
-    TextEditingController fractal_dimension_worstController = TextEditingController();
+
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
 
@@ -43,6 +32,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
         }
       },
       builder: (context, state) {
+        var formKey = GlobalKey<FormState>();
+        TextEditingController area_meanController = TextEditingController();
+        TextEditingController texture_meanController = TextEditingController();
+        TextEditingController concavity_meanController = TextEditingController();
+        TextEditingController texture_seController = TextEditingController();
+        TextEditingController area_seController = TextEditingController();
+        TextEditingController concavity_seController = TextEditingController();
+        TextEditingController symmetry_seController = TextEditingController();
+        TextEditingController smoothness_worstController = TextEditingController();
+        TextEditingController concavity_worstController = TextEditingController();
+        TextEditingController symmetry_worstController = TextEditingController();
+        TextEditingController fractal_dimension_worstController = TextEditingController();
         return Scaffold(
             body: SafeArea(
               child: SingleChildScrollView(

@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   Container(
-                    height: 230.0,
+                    height: 250.0,
                     //margin: EdgeInsets.all(10.0),
                     child: PageView.builder(
                       onPageChanged: (index){
@@ -186,19 +186,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 10.0,
                   ),
                   Container(
-                    height: 550.0,
+                    height: 650.0,
                     width: double.infinity,
                     child: Stack(
                       children: [
                         Positioned(
                           top: 100.0,
-                          height: 400.0,
+                          height: 500.0,
                           width: 370,
                           child: Container(
                             decoration: BoxDecoration(
-                              // image: DecorationImage(
-                              //   image: Image.asset("assets/images/home/home_back.png"),
-                              // ),
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/home/home_back.png"),
+                              ),
                               color: secondaryColor,
                                 borderRadius: BorderRadius.circular(15.0),
                               border: Border.all(color: Colors.pink),
@@ -210,47 +210,83 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
                                         "- قللى من تناول الكحوليات",
                                       style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink,
+                                        fontSize: 25.0,
+                                        color: Colors.pink[900],
+                                        shadows: const[
+                                          Shadow(
+                                              color: Colors.white,
+                                              blurRadius: 1.2,
+                                              offset: Offset(3, 3)),
+                                        ],
                                       ),
                                     ),
                                     Text(
                                       "-الاستمرار فى ممارسة الرياضه",
                                       style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink,
+                                        fontSize: 25.0,
+                                        color: Colors.pink[900],
+                                        shadows:const [
+                                          Shadow(
+                                              color: Colors.white,
+                                              blurRadius: 1.2,
+                                              offset: Offset(3, 3)),
+                                        ],
                                       ),
                                     ),
                                     Text(
                                       "- الرضاعة الطبيعية",
                                       style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink,
+                                        fontSize: 25.0,
+                                        color: Colors.pink[900],
+                                        shadows:const [
+                                          Shadow(
+                                              color: Colors.white,
+                                              blurRadius: 1.2,
+                                              offset: Offset(3, 3)),
+                                        ],
                                       ),
                                     ),
                                     Text(
                                       "- تناول الأغذيه الصحيه",
                                       style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink,
+                                        fontSize: 25.0,
+                                        color: Colors.pink[900],
+                                        shadows: const[
+                                          Shadow(
+                                              color: Colors.white,
+                                              blurRadius: 1.2,
+                                              offset: Offset(3, 3)),
+                                        ],
                                       ),
                                     ),
                                     Text(
                                       "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
                                       style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink,
+                                        fontSize: 25.0,
+                                        color: Colors.pink[900],
+                                        shadows: const[
+                                          Shadow(
+                                              color: Colors.white,
+                                              blurRadius: 1.2,
+                                              offset: Offset(3, 3)),
+                                        ],
                                       ),
                                     ),
                                     Text(
                                       "- وللمدخنات: يجب الابتعاد عن التدخين",
                                       style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink,
+                                        fontSize: 25.0,
+                                        color: Colors.pink[900],
+                                        shadows: const[
+                                          Shadow(
+                                              color: Colors.white,
+                                              blurRadius: 1.2,
+                                              offset: Offset(3, 3)),
+                                        ],
                                       ),
                                     ),
 
@@ -375,13 +411,13 @@ Widget Experments(context, Model experments) => Container(
                     child: Container(
                       width: 100.0,
                       decoration: BoxDecoration(
-                        color: primaryColor,
+                        //color: primaryColor,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: const Center(
+                      child:  Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 15.0, color: Colors.white),
+                        style: TextStyle(fontSize: 18.0, color: Colors.pink[900]),
                       )),
                     ),
                     onTap: () {
@@ -477,13 +513,13 @@ Widget Informations(context, Model information) => Container(
                     child: Container(
                       width: 100.0,
                       decoration: BoxDecoration(
-                        color: primaryColor,
+                       // color: primaryColor,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: const Center(
+                      child:  Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 15.0, color: Colors.white),
+                        style: TextStyle(fontSize: 18.0, color: Colors.pink[900]),
                       )),
                     ),
                     onTap: () {

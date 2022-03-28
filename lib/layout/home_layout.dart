@@ -1,16 +1,14 @@
-
-
-
-
+import 'package:circle_bottom_navigation_bar/circle_bottom_navigation_bar.dart';
+import 'package:circle_bottom_navigation_bar/widgets/tab_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 import '../modules/profile/profile_screen.dart';
 import '../modules/report/report_screen.dart';
 import 'cubit/home_cubit.dart';
-
 class HomeLayout extends StatelessWidget {
    const HomeLayout({Key? key}) : super(key: key);
 
@@ -28,20 +26,42 @@ class HomeLayout extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: const Text('حَوَّاء '),
-              backgroundColor: Colors.transparent,
+              backgroundColor: secondaryColor,
               elevation: 0,
             ),
-
             body: cubit.screens[cubit.currentIndex],
+            // bottomNavigationBar: StylishBottomBar(
+            //     items: cubit.navBarItems,
+            //   onTap: (index){
+            //     cubit.changeBottomNavBar(index!);
+            //   },
+            //   currentIndex: cubit.currentIndex,
+            //   backgroundColor: secondaryColor,
+            //   iconStyle: IconStyle.animated,
+            //   barAnimation: BarAnimation.blink,
+            //
+            // ),
+
+
+
             bottomNavigationBar: BottomNavigationBar(
               elevation: 0,
-              backgroundColor: primaryColor,
+              backgroundColor: secondaryColor,
               items: cubit.bottomNavItems,
               currentIndex: cubit.currentIndex,
               onTap: (index) {
                 cubit.changeBottomNavBar(index);
               },
             ),
+            // bottomNavigationBar: CircleBottomNavigationBar(
+            //   initialSelection:2,
+            //   activeIconColor: Colors.white,
+            //   tabs: [
+            //     TabData(icon: Icons.home,),
+            //
+            //   ], onTabChangedListener: (int index) {
+            // },
+            // ),
             drawer: Drawer(
               backgroundColor: secondaryColor,
               child: SingleChildScrollView(
