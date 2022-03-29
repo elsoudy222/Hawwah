@@ -1,4 +1,5 @@
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/layout/home_layout.dart';
@@ -151,11 +152,7 @@ class LoginScreen extends StatelessWidget {
                                    buttons: [
                                      DialogButton(
                                        onPressed: () {
-                                         // Navigator.pushAndRemoveUntil(context,
-                                         //     MaterialPageRoute(
-                                         //         builder: (context) => ChangePasswordScreen(),
-                                         //     ), (route) => false
-                                         // );
+                                         navigateTo(context, ChangePassword());
                                        },
                                        child: Container(
                                          color: Colors.pink,
@@ -177,6 +174,8 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 10.0,
                               ),
+
+                              // Login Bottom..
                               defaultButton(
                                 text: 'تسجيل الدخول',
                                 onPressed: () {

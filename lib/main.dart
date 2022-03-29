@@ -6,15 +6,10 @@ import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/changePassword/change_password_screen.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/profile/profile_screen.dart';
+import 'package:hawwah/modules/splash/splash_screen.dart';
 import 'package:hawwah/shared/components/themes.dart';
 import 'modules/onBoarding/on_boarding_screen.dart';
 
-// TODO: Complete Editing on PredictionResultScreen [ DONE ]
-// TODO: Edit Calender Screen [ DONE ]
-// TODO: Edit Profile Screen []
-// TODO: Complete Risk Calculator Screen [ DONE ]
-// TODO: Complete Search Screen [ DONE ]
-// TODO: Edit SelfCheck Screen [ DONE ]
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +39,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('ar', 'AE'),
             ],
-            home: HomeLayout(),
+            home: SplashScreen(),
           );
         },
       ),

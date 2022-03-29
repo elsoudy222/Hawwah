@@ -1,5 +1,3 @@
-import 'package:circle_bottom_navigation_bar/circle_bottom_navigation_bar.dart';
-import 'package:circle_bottom_navigation_bar/widgets/tab_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
@@ -53,15 +51,7 @@ class HomeLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
             ),
-            // bottomNavigationBar: CircleBottomNavigationBar(
-            //   initialSelection:2,
-            //   activeIconColor: Colors.white,
-            //   tabs: [
-            //     TabData(icon: Icons.home,),
-            //
-            //   ], onTabChangedListener: (int index) {
-            // },
-            // ),
+
             drawer: Drawer(
               backgroundColor: secondaryColor,
               child: SingleChildScrollView(
