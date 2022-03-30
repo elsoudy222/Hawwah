@@ -6,6 +6,7 @@ import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
 import 'package:hawwah/modules/riskCalculator/risk_calculator_screen.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
 
@@ -44,6 +45,8 @@ class HomeCubit extends Cubit<HomeStates> {
       color: Colors.pink,
     ),
   ];
+
+
 
   List<BottomNavigationBarItem> bottomNavItems = const [
     BottomNavigationBarItem(

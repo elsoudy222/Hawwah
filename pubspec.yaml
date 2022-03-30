@@ -40,7 +40,9 @@ dependencies:
   rflutter_alert: ^2.0.4
   fluttertoast: ^8.0.7
   dropdown_button2: ^1.2.2
-
+  google_fonts: ^2.3.1
+  stylish_bottom_bar: ^0.1.1
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:

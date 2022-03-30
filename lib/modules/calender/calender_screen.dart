@@ -589,8 +589,14 @@ class _CalenderScreenState extends State<CalenderScreen> {
                           if (value.toString() == days[i].title) {
                             days[i].isChecked = true;
                             days[i].color = Color.fromRGBO(170, 207, 207, 1);
-                            if (i + 8 >= days.length) {
+                            if (i + 7 >= days.length) {
                               days[days.length-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                            } else {
+                              days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
+                            }
+                            if (i + 8 >= days.length) {
+                              print((i+8)-days.length);
+                              days[(i+8)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
                             } else {
                               days[i + 8].color = Color.fromRGBO(239, 79, 147, 1);
                             }
@@ -600,36 +606,30 @@ class _CalenderScreenState extends State<CalenderScreen> {
                             } else {
                               days[i + 9].color = Color.fromRGBO(239, 79, 147, 1);
                             }
-                            if (i + 3 >= days.length) {
-                              print((i+3)-days.length);
-                              days[(i+3)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                            if (i + 10 >= days.length) {
+                              print((i+10)-days.length);
+                              days[(i+10)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
                             } else {
-                              days[i + 3].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[i + 10].color = Color.fromRGBO(239, 79, 147, 1);
                             }
-                            if (i + 4 >= days.length) {
-                              print((i+4)-days.length);
-                              days[(i+4)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            } else {
-                              days[i + 4].color = Color.fromRGBO(239, 79, 147, 1);
-                            }
-                            if (i + 5 >= days.length) {
-                              print((i+5)-days.length);
-                              days[(i+5)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            } else {
-                              days[i + 5].color = Color.fromRGBO(239, 79, 147, 1);
-                            }
-                            if (i + 6 >= days.length) {
-                              print((i+6)-days.length);
-                              days[(i+6)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            } else {
-                              days[i + 6].color = Color.fromRGBO(239, 79, 147, 1);
-                            }
-                            if (i + 7 >= days.length) {
-                              print((i+7)-days.length);
-                              days[(i+7)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            } else {
-                              days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
-                            }
+                            // if (i + 5 >= days.length) {
+                            //   print((i+5)-days.length);
+                            //   days[(i+5)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                            // } else {
+                            //   days[i + 5].color = Color.fromRGBO(239, 79, 147, 1);
+                            // }
+                            // if (i + 6 >= days.length) {
+                            //   print((i+6)-days.length);
+                            //   days[(i+6)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                            // } else {
+                            //   days[i + 6].color = Color.fromRGBO(239, 79, 147, 1);
+                            // }
+                            // if (i + 7 >= days.length) {
+                            //   print((i+7)-days.length);
+                            //   days[(i+7)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                            // } else {
+                            //   days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
+                            // }
                           }
                         }
                       });

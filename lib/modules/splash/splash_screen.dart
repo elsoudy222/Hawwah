@@ -15,11 +15,11 @@ class SplashScreen extends StatelessWidget {
       speed: 200,
       navigateRoute: LoginScreen(),
       imageSrc: "assets/images/logo.png",
-      imageSize: 200,
-      text: "حـــواء",
+      imageSize: 300,
+      text: "حَوَّاء ",
       textStyle: const TextStyle(
           color: Colors.pink,
-          fontSize: 40.0
+          fontSize: 50.0
       ),
     );
   }

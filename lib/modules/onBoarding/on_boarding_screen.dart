@@ -17,35 +17,35 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<Model> pages = [
     Model(
-      image: 'assets/images/onboarding/onboarding1.svg',
+      image: 'assets/images/onboarding/onboarding1.png',
       title: 'مرحبا بكم',
       body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
     ),
     Model(
-      image: 'assets/images/onboarding/onboarding2.svg',
-      title: 'مرحبا بكم',
-      body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
+      image: 'assets/images/onboarding/onboarding2.png',
+      title: 'الكشف المبكر ',
+      body: 'اجراء الفحوصات الطبيه مبكرا قادرة على انقاذ حياتك واحتواء المرض ان وجد ',
     ),
     Model(
-      image: 'assets/images/onboarding/onboarding3.svg',
-      title: 'مرحبا بكم',
+      image: 'assets/images/onboarding/onboarding3.png',
+      title: 'انتى مش لوحدك',
       body:
-      'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
+      'انتى اهم فرد فى المجتمع صحتك تهمنا كلنا معاكى ',
     ),
     Model(
-      image: 'assets/images/onboarding/onboarding4.svg',
-      title: 'مرحبا بكم',
+      image: 'assets/images/onboarding/onboarding4.png',
+      title: 'الفحص الذاتى ',
       body:
-      'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
+      'من الخطوات المهمه اللى ممكن تعمليها فى البيت للتأكد من عدم وجود تكتلات او أورام',
     ),
     Model(
-        image: "assets/images/onboarding/onboarding5.svg",
-        title: "مرحبا بكم",
-        body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',),
+        image: "assets/images/onboarding/onboarding5.png",
+        title: "انتـى فد التحدى",
+        body: 'متيأسيش لانك اقوى من اى مرض انتى قد التحدى ',),
     Model(
-        image: "assets/images/onboarding/onboarding6.svg",
-        title: "مرحبا بكم",
-        body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',),
+        image: "assets/images/onboarding/onboarding6.png",
+        title: "التوعيه مهمه",
+        body: 'لازم الكل يعرف اهميه التوعيه لأنها ممكن تنقذ حياة شخص اخر',),
   ];
 
   var pageController = PageController();
@@ -156,7 +156,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              child:SvgPicture.asset(
+              child: Image.asset(
               '${pages.image}',
             ),
           ),

@@ -1,259 +1,167 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/modules/login/cubit/login_cubit.dart';
+import 'package:hawwah/modules/login/cubit/login_states.dart';
 import 'package:hawwah/shared/components/components.dart';
 
+
 class ChangePassword extends StatefulWidget {
+  const ChangePassword({Key? key}) : super(key: key);
+
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  var emailController = TextEditingController();
+  var confirmPasswordController = TextEditingController();
   var passwordController = TextEditingController();
-  bool ishidden = true;
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          background(),
-          SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                const SizedBox(height: 10),
-                const Text(
-                  'حَوَّاء ',
-                  style: TextStyle(
-                    fontFamily: 'Barada Reqa',
-                    fontSize: 120,
-                    color: Color(0xffffffff),
-                    shadows: [
-                      Shadow(
-                        color: Color(0x29000000),
-                        offset: Offset(5, 5),
-                        blurRadius: 6,
-                      )
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(
-                              0, 3), // changes position of shadow
-                        ),
-                      ],
-                      color: const Color.fromRGBO(253, 220, 230, 1.0),
-                      borderRadius: BorderRadius.circular(70.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 5, bottom: 5),
-                      child: TextFormField(
-                        cursorColor: Colors.grey,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          labelText: "البريد الالكترونى",
-                          labelStyle: TextStyle(
-                            color: Colors.black45,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Directionality(
-                  textDirection: TextDirection.ltr,
+    return BlocProvider(
+  create: (context) => LoginCubit(),
+  child: BlocConsumer<LoginCubit, LoginStates>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: Stack(
+            children: [
+              background(),
+              SafeArea(
+                child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 3), // changes position of shadow
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(height: 40.0,),
+                          const Text(
+                            "انشــاء رقم سرى جديد",
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(206, 86, 139, 1),
+                            ),
+                          ),
+                          const SizedBox(height: 15.0,),
+                          const Text(
+                            "يجب ان يكون القم السرى الجديد مختلف عن الرقم القديم ويكون اكثر من 8 عناصر",
+                            style: TextStyle(
+                              fontSize: 20.0,
+
+                              color: Color.fromRGBO(206, 86, 139, 1),
+                            ),
+                          ),
+                          const SizedBox(height: 30.0,),
+                           const Text(
+                            "الرقم السرى",
+                            style: TextStyle(fontSize: 30.0, color:Color.fromRGBO(206, 86, 139, 1),
+                                fontWeight: FontWeight.bold),
+                          ),
+                          defaultFormField(
+                            controller: passwordController,
+                            keyboardType: TextInputType.text,
+                            hintText: "ادخل الرقم السرى الجديد ",
+                            // onSubmit: (value) {
+                            //   if (formKey.currentState!.validate()) {
+                            //     LoginCubit.get(context).userLogin(
+                            //       email: emailController.text,
+                            //       password: passController.text,
+                            //     );
+                            //   }
+                            // },
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'الرقم السرى غير صحيح ';
+                              }
+                              return "";
+                            },
+                            prefix: Icons.lock_outline,
+                             suffix: LoginCubit.get(context).suffix,
+                            obscureText: LoginCubit.get(context).isPassword,
+                            suffixPressed: (){
+                             LoginCubit.get(context).changePasswordVisibility();
+                            }
+                          ),
+                          const SizedBox(height: 40.0,),
+                           const Text(
+                            "تأكيد الرقم السرى",
+                            style: const TextStyle(
+                                fontSize: 30.0,
+                                color:Color.fromRGBO(206, 86, 139, 1),
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                          defaultFormField(
+                            controller: confirmPasswordController,
+                            keyboardType: TextInputType.text,
+                            hintText: "ادخل الرقم السرى الخاص بك ",
+                            // onSubmit: (value) {
+                            //   if (formKey.currentState!.validate()) {
+                            //     LoginCubit.get(context).userLogin(
+                            //       email: emailController.text,
+                            //       password: passController.text,
+                            //     );
+                            //   }
+                            // },
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'الرقم السرى غير صحيح ';
+                              }
+                              return "";
+                            },
+                            prefix: Icons.lock_outline,
+                             suffix: LoginCubit.get(context).suffix,
+                             obscureText: LoginCubit.get(context).isPassword,
+                             suffixPressed: (){
+                               LoginCubit.get(context).changePasswordVisibility();
+                             }
+                          ),
+                          const SizedBox(height: 40.0,),
+                          //Bottom
+                          Center(
+                            child: GestureDetector(
+                              onTap: (){
+                                print("tapped");
+                              },
+                              child: Container(
+                                width:260,
+                                height: 60,
+                                padding: const EdgeInsets.all(10),
+                                alignment: Alignment.center,
+                                decoration:  BoxDecoration(
+                                  color:  const Color.fromRGBO(250, 172, 195, 1),
+                                  border: Border.all(color: Colors.white),
+                                  borderRadius: const BorderRadius.all(Radius.circular(25)),
+                                ),
+                                child: const Text(
+                                  'إعادة تعيين الرقم السرى',
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
                           ),
                         ],
-                        color: const Color.fromRGBO(253, 220, 230, 1.0),
-                        borderRadius: BorderRadius.circular(70.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20, top: 5, bottom: 5),
-                        child: TextFormField(
-                          cursorColor: Colors.grey,
-                          obscureText: ishidden,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'الرقم السري',
-                              hintStyle: TextStyle(
-                                color: Colors.black45,
-                              ),
-                              hintTextDirection: TextDirection.rtl,
-                              icon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    ishidden = !ishidden;
-                                  });
-                                },
-                                icon: ishidden
-                                    ? Image.asset(
-                                  'assets/images/hidden.png',
-                                  fit: BoxFit.contain,
-                                  width: 25,
-                                )
-                                    : Icon(
-                                  Icons.remove_red_eye,
-                                  color: Colors.black,
-                                ),
-                              )),
-                        ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            bottomSheet(context);
-                          },
-                          child: const Text('هل نسيت الرقم السري ؟'),
-                          style: TextButton.styleFrom(
-                            primary: const Color.fromRGBO(239, 92, 147, 1.0),
-                            textStyle: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        child: const Text(
-                          'تسجيل الدخول ',
-                          style: TextStyle(
-                            fontFamily: 'Segoe UI',
-                            fontSize: 22,
-                            color: Color(0xffffffff),
-                            letterSpacing: 3.1,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(206, 86, 139, 1.0),
-                          ),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(70.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  width: 310,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'continue with gmail',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontFamily: 'Segoe UI',
-                                fontSize: 20,
-                                color: Color.fromRGBO(112, 73, 90, 0.9),
-                                letterSpacing: 3.1,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Image.asset(
-                              'assets/images/search.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ],
-                        ),
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(70.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: TextButton(
-                    onPressed: () {
-
-                    },
-                    child: const Text('انشاء حساب '),
-                    style: TextButton.styleFrom(
-                      primary: const Color.fromRGBO(239, 92, 147, 1.0),
-                      textStyle: const TextStyle(
-                          fontSize: 19, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        );
+      },
+    ),
+);
   }
 
   Widget background() {
@@ -264,8 +172,8 @@ class _ChangePasswordState extends State<ChangePassword> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromRGBO(249, 157, 185, 1.0),
-              Color.fromRGBO(253, 220, 230, 1.0)
+              Color.fromRGBO(250, 167, 192, 1.0),
+              Color.fromRGBO(253, 216, 227, 1.0)
             ]),
       ),
     );
@@ -274,8 +182,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   void bottomSheet(BuildContext context,) {
     showCupertinoModalPopup(
         context: context,
-        builder: (context)
-        {
+        builder: (context) {
           return Center(
             child: Container(
               margin: const EdgeInsets.all(10),
@@ -318,7 +225,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         style: TextStyle(fontSize: 22, color: Colors.white),
                         textAlign: TextAlign.right,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       Padding(
@@ -354,7 +261,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30.0,
                       ),
                       Container(
@@ -364,8 +271,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             ElevatedButton(
-                              child: Center(
-                                child: const Text(
+                              child: const Center(
+                                child: Text(
                                   'ارسل التعليمات ',
                                   style: TextStyle(
                                     fontFamily: 'Segoe UI',
@@ -376,8 +283,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   ),
                                 ),
                               ),
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
                                   const Color.fromRGBO(206, 86, 139, 1.0),

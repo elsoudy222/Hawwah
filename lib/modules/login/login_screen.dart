@@ -1,8 +1,11 @@
+
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/login/cubit/login_cubit.dart';
 import 'package:hawwah/modules/login/cubit/login_states.dart';
+import 'package:hawwah/modules/signUp/sign_up_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -41,17 +44,22 @@ class LoginScreen extends StatelessWidget {
                           //   height: 20.0,
                           // ),
                           Image.asset(
-                            "assets/images/logo.png",
+
+                            "assets/images/logo_white.png",
+                            fit: BoxFit.contain,
                             height: 200.0,
+                            width: 400,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "البريد الالكترونى",
-                                style: TextStyle(fontSize: 20.0, color: Colors.pink),
+                                "تســجيل الدخول",
+                                style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold, color: Colors.pink),
                               ),
-
+                              const SizedBox(
+                                height: 20.0,
+                              ),
                               defaultFormField(
                                 controller: emailController,
                                 keyboardType: TextInputType.emailAddress,
@@ -67,10 +75,10 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              const Text(
-                                "الرقم السرى",
-                                style: TextStyle(fontSize: 20.0, color: Colors.pink),
-                              ),
+                              // const Text(
+                              //   "الرقم السرى",
+                              //   style: TextStyle(fontSize: 20.0, color: Colors.pink),
+                              // ),
 
                               defaultFormField(
                                 controller: passwordController,
@@ -144,11 +152,7 @@ class LoginScreen extends StatelessWidget {
                                    buttons: [
                                      DialogButton(
                                        onPressed: () {
-                                         // Navigator.pushAndRemoveUntil(context,
-                                         //     MaterialPageRoute(
-                                         //         builder: (context) => ChangePasswordScreen(),
-                                         //     ), (route) => false
-                                         // );
+                                         navigateTo(context, ChangePassword());
                                        },
                                        child: Container(
                                          color: Colors.pink,
@@ -170,6 +174,8 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 10.0,
                               ),
+
+                              // Login Bottom..
                               defaultButton(
                                 text: 'تسجيل الدخول',
                                 onPressed: () {
@@ -183,16 +189,16 @@ class LoginScreen extends StatelessWidget {
                               ),
                               Row(
                                 children:  [
-                                  const Text(
+                                   Text(
                                     "- ليس لديك حساب؟",
                                     style: TextStyle(
                                         fontSize: 20.0,
-                                        color: Colors.pinkAccent),
+                                        color: Colors.pink[50]),
                                   ),
-
                                   defaultTextButton(
                                     onPressed: () {
-
+                                      Navigator.push(context, MaterialPageRoute(
+                                          builder: (context)=>SignupScreen()));
                                     },
                                     text: "انشاء حساب",
 
@@ -204,7 +210,9 @@ class LoginScreen extends StatelessWidget {
                                 height: 10.0,
                               ),
                               GestureDetector(
-                                onTap: (){},
+                                onTap: (){
+                                  // TODO:
+                                },
                                 child: Container(
                                   height: 50.0,
                                   decoration: BoxDecoration(
