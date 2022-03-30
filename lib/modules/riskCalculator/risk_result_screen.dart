@@ -6,7 +6,8 @@ import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 
 class RiskResultScreen extends StatefulWidget {
-  const RiskResultScreen({Key? key}) : super(key: key);
+  final result;
+  const RiskResultScreen({Key? key, required this.result}) : super(key: key);
 
   @override
   State<RiskResultScreen> createState() => _RiskResultScreenState();
@@ -31,10 +32,10 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
                 "assets/images/selfCheckResult.png",
               ),),
           ),
-          const Center(
-            child:  Text(
-              "نســبة الإصابة",
-              style: TextStyle(
+           Center(
+            child: Text(
+              '${widget.result*100} %',
+              style: const TextStyle(
                   color: Colors.pink,
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold
@@ -61,9 +62,8 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
               onTap: () {
                 navigateToAndFinish(context, const HomeLayout());
               },
-            ),)
-
-
+            ),
+          )
         ],
       ),
     );

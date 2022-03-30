@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/models/risk_model.dart';
 import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
@@ -132,6 +133,40 @@ class HomeCubit extends Cubit<HomeStates> {
     }).catchError((error) {
       print(error.toString());
       emit(ErrorPredictionDataState());
+    });
+  }
+
+  RiskModel ?riskModel;
+  void sendRiskData({
+    required int age,
+    required int menarch_age,
+    required int live_birth_age,
+    required int ever_had_biopsy,
+    required int num_biopsy,
+    required int first_deg_relatives,
+    required int ihyp,
+    required int race,
+  }) {
+    emit(LoadingRiskDataState());
+    DioHelper.postData(
+      url: '/api/v1.0/gail',
+      data: {
+        "age":age,
+        "menarch_age":menarch_age,
+        "live_birth_age":live_birth_age,
+        "ever_had_biopsy":ever_had_biopsy,
+        "num_biopsy":num_biopsy,
+        "first_deg_relatives":first_deg_relatives,
+        "ihyp":ihyp,
+        "race":race
+      },
+    ).then((value) {
+      riskModel=RiskModel.fromJson(value.data);
+      print(value);
+      emit(SuccessRiskDataState(riskModel!));
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorRiskDataState());
     });
   }
 

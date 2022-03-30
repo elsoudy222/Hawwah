@@ -3,10 +3,12 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static late Dio dio;
 
+  // https://predictionapidjango.herokuapp.com
+
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://predictionapidjango.herokuapp.com',
+        baseUrl: 'https://riskcalculator-app.herokuapp.com/',
         receiveDataWhenStatusError: true,
       ),
     );
