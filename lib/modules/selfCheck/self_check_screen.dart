@@ -12,7 +12,7 @@ class IntroSelfCheckScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-      //backgroundColor: HexColor("#FAACC3"),
+      backgroundColor: HexColor("#FAACC3"),
       duration: 5000,
       speed: 200,
       navigateRoute: SelfCheckScreen1(),

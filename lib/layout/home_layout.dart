@@ -39,9 +39,6 @@ class HomeLayout extends StatelessWidget {
             //   barAnimation: BarAnimation.blink,
             //
             // ),
-
-
-
             bottomNavigationBar: BottomNavigationBar(
               elevation: 0,
               backgroundColor: secondaryColor,
@@ -51,11 +48,19 @@ class HomeLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
             ),
-
             drawer: Drawer(
               backgroundColor: secondaryColor,
               child: SingleChildScrollView(
                 child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromRGBO(248, 157, 185, 1.0),
+                          Color.fromRGBO(250, 250, 250, 1.0)
+                        ]),
+                  ),
                   child: Column(
                     children: [
                       const drawerHeader(),
@@ -67,7 +72,7 @@ class HomeLayout extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
             ),
           );
         },
@@ -82,7 +87,7 @@ class drawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor,
+      // color: primaryColor,
       width: double.infinity,
       height: 250,
       padding: const EdgeInsets.only(top: 30.0),
@@ -129,14 +134,25 @@ class drawerHeader extends StatelessWidget {
 }
 Widget drawerBody(context){
   return Container(
-    color: secondaryColor,
     height: MediaQuery.of(context).size.height - 200,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         menuItem(icon: "assets/icons/report.png", text: 'التــقرير', onTap: () { navigateTo(context, ReportScreen()); }),
+        const Divider(
+          thickness: 0.4,
+          height: 1.5,
+        ),
         menuItem(icon: "assets/icons/search.png", text: 'البحـث', onTap: () { navigateTo(context, SearchScreen()); }),
+        const Divider(
+          thickness: 0.4,
+          height: 1.5,
+        ),
         menuItem(icon: "assets/images/logo.png", text: 'المسـاعده', onTap: () {  }),
+        const Divider(
+          thickness: 0.4,
+          height: 1.5,
+        ),
         menuItem(icon: "assets/icons/sign-out.png", text: 'تـسجيل الخروج', onTap: () {  }),
       ],
     ),

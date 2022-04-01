@@ -109,100 +109,111 @@ class SearchScreen extends StatelessWidget {
 
         ),
       ),
-      body: Stack(
-        children: [
-          // Container(
-          //   width: double.infinity,
-          //   height: double.infinity,
-          //   decoration: const BoxDecoration(
-          //     gradient: LinearGradient(
-          //         begin: Alignment.topCenter,
-          //         end: Alignment.bottomCenter,
-          //         colors: [
-          //           Color.fromRGBO(236, 156, 184, 90.0),
-          //           Color.fromRGBO(250, 250, 250,1.0),
-          //         ]),
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 150.0),
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Container(
-                        height: 204,
-                        width: 312,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 2.0),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(248, 157, 185, 1.0),
+                Color.fromRGBO(250, 250, 250, 1.0)
+              ]),
+        ),
+        child: Stack(
+          children: [
+            // Container(
+            //   width: double.infinity,
+            //   height: double.infinity,
+            //   decoration: const BoxDecoration(
+            //     gradient: LinearGradient(
+            //         begin: Alignment.topCenter,
+            //         end: Alignment.bottomCenter,
+            //         colors: [
+            //           Color.fromRGBO(236, 156, 184, 90.0),
+            //           Color.fromRGBO(250, 250, 250,1.0),
+            //         ]),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 150.0),
+                  child: Stack(
+                    children: [
+                      Center(
                         child: Container(
-                          height: 200,
-                          width: 310,
+                          height: 204,
+                          width: 312,
                           decoration: BoxDecoration(
-                            color: HexColor('FAACC3'),
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Center(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  child: IconButton(
-                                      icon: Image.asset(
-                                        'assets/icons/search_laboratory.png',
-                                        fit: BoxFit.cover,
-                                        width: 100,
-                                        height: 100,
-                                      ),
-                                      onPressed: ()
-                                      {
-                                        Navigator.push(context, MaterialPageRoute(
-                                            builder: (context)=>SearchLap()));
-                                      }),
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  child: IconButton(
-                                      icon: Image.asset(
-                                        'assets/icons/search_doctor.png',
-                                        fit: BoxFit.cover,
-                                        width: 100,
-                                        height: 100,
-                                      ),
-                                      onPressed: ()
-                                      {
-                                        Navigator.push(context, MaterialPageRoute(
-                                            builder: (context)=>SearchDoctor()));
-                                      }),
-                                ),
-                              ],
+                        ),
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 2.0),
+                          child: Container(
+                            height: 200,
+                            width: 310,
+                            decoration: BoxDecoration(
+                              color: HexColor('FAACC3'),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: IconButton(
+                                        icon: Image.asset(
+                                          'assets/icons/search_laboratory.png',
+                                          fit: BoxFit.cover,
+                                          width: 100,
+                                          height: 100,
+                                        ),
+                                        onPressed: ()
+                                        {
+                                          Navigator.push(context, MaterialPageRoute(
+                                              builder: (context)=>SearchLap()));
+                                        }),
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: IconButton(
+                                        icon: Image.asset(
+                                          'assets/icons/search_doctor.png',
+                                          fit: BoxFit.cover,
+                                          width: 100,
+                                          height: 100,
+                                        ),
+                                        onPressed: ()
+                                        {
+                                          Navigator.push(context, MaterialPageRoute(
+                                              builder: (context)=>SearchDoctor()));
+                                        }),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

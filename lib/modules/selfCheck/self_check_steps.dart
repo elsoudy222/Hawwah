@@ -29,108 +29,119 @@ class _FirstStepsState extends State<FirstSteps> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            // height:MediaQuery.of(context).size.height,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: secondaryColor,
-                borderRadius: BorderRadius.circular(20.0)
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all( 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  buildSelfCheckQuItem(
-                    question: "هل يوجد اختلاف شكلى فى حجم الثديين؟",
-                    image: "assets/images/selfCheck/self1.png",
-                    onPressed: (){},
-                  ),
-                  const Divider(
-                    color: Colors.pink,
-                    thickness: 0.4,
-                    indent: 15.0,
-                    endIndent: 15.0,
-                  ),
-                  buildSelfCheckQuItem(
-                    question: "هل يوجد دمامل أو بروز فى الجلد",
-                    image: "assets/images/selfCheck/self2.png",
-                    onPressed: (){},
-                  ),
-                  const Divider(
-                    color: Colors.pink,
-                    thickness: 0.4,
-                    indent: 15.0,
-                    endIndent: 15.0,
-                  ),
-                  //
-                  buildSelfCheckQuItem(
-                    question: "هل يوج تغير فى لون الحلمه الى(الأحمر)",
-                    image: "assets/images/selfCheck/self3.png",
-                    onPressed: (){},
-                  ),
-                  const Divider(
-                    color: Colors.pink,
-                    thickness: 0.4,
-                    indent: 15.0,
-                    endIndent: 15.0,
-                  ),
-                  buildSelfCheckQuItem(
-                    question: "عل يوجد اختلاف عن المعتاد فى شكل الحلمه\n (فى حالة كانت مائله او ليست فى الوسط)",
-                    image: "assets/images/selfCheck/self3.png",
-                    onPressed: (){},
-                  ),
-                  const Divider(
-                    color: Colors.pink,
-                    thickness: 0.4,
-                    indent: 15.0,
-                    endIndent: 15.0,
-                  ),
-                  buildSelfCheckQuItem(
-                    question: "هل يوجد افرازات (دم) أو مائله الى اللون الأحمر",
-                    image: "assets/images/selfCheck/self5.png",
-                    onPressed: (){
-                    },
-                  ),
-                  const Divider(
-                    color: Colors.pink,
-                    thickness: 0.4,
-                    indent: 15.0,
-                    endIndent: 15.0,
-                  ),
-                  buildSelfCheckQuItem(
-                    question: "هل يوجد تقشر او تجعد حاد فى جلد الثدى",
-                    image: "assets/images/selfCheck/self6.png",
-                    onPressed: (){},
-                  ),
-                  SizedBox(height: 20.0,),
-                  Center(
-                    child: GestureDetector(
-                      child: Container(
-                        width: 150.0,
-                        height: 50.0,
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: const Center(
-                            child: Text(
-                              "التــالى",
-                              style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold, color: Colors.white),
-                            )),
-                      ),
-                      onTap: () {
-                        navigateTo(context, IntroSelfCheckScreen2());
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(248, 157, 185, 1.0),
+                Color.fromRGBO(250, 250, 250, 1.0)
+              ]),
+        ),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              // height:MediaQuery.of(context).size.height,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(20.0)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all( 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    buildSelfCheckQuItem(
+                      question: "هل يوجد اختلاف شكلى فى حجم الثديين؟",
+                      image: "assets/images/selfCheck/self1.png",
+                      onPressed: (){},
+                    ),
+                    const Divider(
+                      color: Colors.pink,
+                      thickness: 0.4,
+                      indent: 15.0,
+                      endIndent: 15.0,
+                    ),
+                    buildSelfCheckQuItem(
+                      question: "هل يوجد دمامل أو بروز فى الجلد",
+                      image: "assets/images/selfCheck/self2.png",
+                      onPressed: (){},
+                    ),
+                    const Divider(
+                      color: Colors.pink,
+                      thickness: 0.4,
+                      indent: 15.0,
+                      endIndent: 15.0,
+                    ),
+                    //
+                    buildSelfCheckQuItem(
+                      question: "هل يوج تغير فى لون الحلمه الى(الأحمر)",
+                      image: "assets/images/selfCheck/self3.png",
+                      onPressed: (){},
+                    ),
+                    const Divider(
+                      color: Colors.pink,
+                      thickness: 0.4,
+                      indent: 15.0,
+                      endIndent: 15.0,
+                    ),
+                    buildSelfCheckQuItem(
+                      question: "عل يوجد اختلاف عن المعتاد فى شكل الحلمه\n (فى حالة كانت مائله او ليست فى الوسط)",
+                      image: "assets/images/selfCheck/self3.png",
+                      onPressed: (){},
+                    ),
+                    const Divider(
+                      color: Colors.pink,
+                      thickness: 0.4,
+                      indent: 15.0,
+                      endIndent: 15.0,
+                    ),
+                    buildSelfCheckQuItem(
+                      question: "هل يوجد افرازات (دم) أو مائله الى اللون الأحمر",
+                      image: "assets/images/selfCheck/self5.png",
+                      onPressed: (){
                       },
                     ),
-                  ),
+                    const Divider(
+                      color: Colors.pink,
+                      thickness: 0.4,
+                      indent: 15.0,
+                      endIndent: 15.0,
+                    ),
+                    buildSelfCheckQuItem(
+                      question: "هل يوجد تقشر او تجعد حاد فى جلد الثدى",
+                      image: "assets/images/selfCheck/self6.png",
+                      onPressed: (){},
+                    ),
+                    SizedBox(height: 20.0,),
+                    Center(
+                      child: GestureDetector(
+                        child: Container(
+                          width: 150.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: const Center(
+                              child: Text(
+                                "التــالى",
+                                style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold, color: Colors.white),
+                              )),
+                        ),
+                        onTap: () {
+                          navigateTo(context, IntroSelfCheckScreen2());
+                        },
+                      ),
+                    ),
 
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -225,79 +236,90 @@ class _SecondStepsState extends State<SecondSteps> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-           height:MediaQuery.of(context).size.height,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              color: secondaryColor,
-              borderRadius: BorderRadius.circular(20.0)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all( 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                buildSelfCheckQuItem(
-                  question: "هل يوجد تكتل في منطقة الابطين؟",
-                  image: "assets/images/selfCheck/self7.png",
-                  onPressed: (){},
-                ),
-                const Divider(
-                  color: Colors.pink,
-                  thickness: 0.4,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                ),
-                buildSelfCheckQuItem(
-                  question: "هل يوجد تكتل فى الثدى 'حول الحلمة'",
-                  image: "assets/images/selfCheck/self3.png",
-                  onPressed: (){},
-                ),
-                const Divider(
-                  color: Colors.pink,
-                  thickness: 0.4,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                ),
-                buildSelfCheckQuItem(
-                  question: '"اضغطى على الحلمه ثم شاهدى"\n هل يوجد اى افرازات؟',
-                  image: "assets/images/selfCheck/self9.png",
-                  onPressed: (){},
-                ),
-                const Divider(
-                  color: Colors.pink,
-                  thickness: 0.4,
-                  indent: 15.0,
-                  endIndent: 15.0,
-                ),
-
-                //SizedBox(height: 100.0,),
-                Spacer(),
-                Center(
-                  child: GestureDetector(
-                    child: Container(
-                      width: 150.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const Center(
-                          child: Text(
-                            "تــم",
-                            style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold, color: Colors.white),
-                          )),
-                    ),
-                    onTap: () {
-                      navigateToAndFinish(context, SelfCheckResultScreen());
-                    },
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(248, 157, 185, 1.0),
+                Color.fromRGBO(250, 250, 250, 1.0)
+              ]),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+             height:MediaQuery.of(context).size.height,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: secondaryColor,
+                borderRadius: BorderRadius.circular(20.0)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all( 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  buildSelfCheckQuItem(
+                    question: "هل يوجد تكتل في منطقة الابطين؟",
+                    image: "assets/images/selfCheck/self7.png",
+                    onPressed: (){},
                   ),
-                ),
+                  const Divider(
+                    color: Colors.pink,
+                    thickness: 0.4,
+                    indent: 15.0,
+                    endIndent: 15.0,
+                  ),
+                  buildSelfCheckQuItem(
+                    question: "هل يوجد تكتل فى الثدى 'حول الحلمة'",
+                    image: "assets/images/selfCheck/self3.png",
+                    onPressed: (){},
+                  ),
+                  const Divider(
+                    color: Colors.pink,
+                    thickness: 0.4,
+                    indent: 15.0,
+                    endIndent: 15.0,
+                  ),
+                  buildSelfCheckQuItem(
+                    question: '"اضغطى على الحلمه ثم شاهدى"\n هل يوجد اى افرازات؟',
+                    image: "assets/images/selfCheck/self9.png",
+                    onPressed: (){},
+                  ),
+                  const Divider(
+                    color: Colors.pink,
+                    thickness: 0.4,
+                    indent: 15.0,
+                    endIndent: 15.0,
+                  ),
 
-              ],
+                  //SizedBox(height: 100.0,),
+                  Spacer(),
+                  Center(
+                    child: GestureDetector(
+                      child: Container(
+                        width: 150.0,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: const Center(
+                            child: Text(
+                              "تــم",
+                              style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.bold, color: Colors.white),
+                            )),
+                      ),
+                      onTap: () {
+                        navigateToAndFinish(context, SelfCheckResultScreen());
+                      },
+                    ),
+                  ),
+
+                ],
+              ),
             ),
           ),
         ),

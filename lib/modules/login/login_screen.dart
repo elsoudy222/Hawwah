@@ -29,22 +29,31 @@ class LoginScreen extends StatelessWidget {
 
         },
         builder: (context,state){
-          return  Scaffold(
-              backgroundColor: HexColor("#FAACC3"),
-              body: Center(
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+          return Scaffold(
+              body: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromRGBO(248, 157, 185, 1.0),
+                          Color.fromRGBO(250, 250, 250, 1.0)
+                        ]),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Form(
                       key: formKey,
                       child: Column(
                         children: [
-                          // const SizedBox(
-                          //   height: 20.0,
-                          // ),
+                          const SizedBox(
+                            height: 30.0,
+                          ),
                           Image.asset(
-
                             "assets/images/logo_white.png",
                             fit: BoxFit.contain,
                             height: 200.0,
@@ -113,9 +122,7 @@ class LoginScreen extends StatelessWidget {
                                      animationType: AnimationType.fromTop,
                                      isCloseButton: false,
                                      isOverlayTapDismiss: false,
-
                                      descTextAlign: TextAlign.start,
-
                                      animationDuration: Duration(milliseconds: 400),
                                      alertBorder: RoundedRectangleBorder(
                                        borderRadius: BorderRadius.circular(15.0),
@@ -124,7 +131,6 @@ class LoginScreen extends StatelessWidget {
                                        ),
                                      ),
                                      descStyle: TextStyle(
-
                                        color: secondaryColor,
                                      ),
                                      titleStyle: TextStyle(
@@ -156,7 +162,7 @@ class LoginScreen extends StatelessWidget {
                                        },
                                        child: Container(
                                          color: Colors.pink,
-                                         child: Text(
+                                         child: const Text(
                                              "اعادة التعيين ",
                                            style: TextStyle(
                                              fontWeight: FontWeight.bold,
@@ -174,7 +180,6 @@ class LoginScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 10.0,
                               ),
-
                               // Login Bottom..
                               defaultButton(
                                 text: 'تسجيل الدخول',
@@ -185,29 +190,7 @@ class LoginScreen extends StatelessWidget {
                                 // width: MediaQuery.of(context).size.width ,
                               ),
                               const SizedBox(
-                                height: 10.0,
-                              ),
-                              Row(
-                                children:  [
-                                   Text(
-                                    "- ليس لديك حساب؟",
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pink[50]),
-                                  ),
-                                  defaultTextButton(
-                                    onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(
-                                          builder: (context)=>SignupScreen()));
-                                    },
-                                    text: "انشاء حساب",
-
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(
-                                height: 10.0,
+                                height: 20.0,
                               ),
                               GestureDetector(
                                 onTap: (){
@@ -239,7 +222,27 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              const SizedBox(
+                                height: 10.0,
+                              ),
+                              Row(
+                                children:  [
+                                  Text(
+                                    "- ليس لديك حساب؟",
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color:  Color.fromRGBO(248, 157, 185, 1.0),),
+                                  ),
+                                  defaultTextButton(
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(
+                                          builder: (context)=>SignupScreen()));
+                                    },
+                                    text: "انشاء حساب",
 
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ],
@@ -249,7 +252,6 @@ class LoginScreen extends StatelessWidget {
                 ),
               ));
         },
-
       ),
     );
   }

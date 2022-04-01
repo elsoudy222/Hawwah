@@ -319,7 +319,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
         body: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Stack(
-
             children: [
               //_background(),
               _body(),
@@ -330,79 +329,88 @@ class _CalenderScreenState extends State<CalenderScreen> {
 
   Widget _body() {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 45,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: days.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _checkItem(index);
-              },
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(248, 157, 185, 1.0),
+                Color.fromRGBO(250, 250, 250, 1.0)
+              ]),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 30,
             ),
-          ),
-          _buttonCalender(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color.fromRGBO(170, 207, 207, 1),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                const Text(
-                  ' اليوم',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Segoe UI',
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  width: 75,
-                ),
-                Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color.fromRGBO(239, 79, 147, 1),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                const Text(
-                  'يوم الفحص',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Segoe UI',
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
+            SizedBox(
+              height: 45,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: days.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _checkItem(index);
+                },
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 3,
-          ),
-          _Squareimage(),
-          const SizedBox(
-            height: 23,
-          ),
-        ],
+            _buttonCalender(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromRGBO(170, 207, 207, 1),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    ' اليوم',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    width: 75,
+                  ),
+                  Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromRGBO(239, 79, 147, 1),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    'يوم الفحص',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 3,
+            ),
+            _Squareimage(),
+            const SizedBox(
+              height: 23,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -715,7 +723,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
       children: [
         Positioned(
           child: Container(
-            height: 550,
+            height: 360,
             width: MediaQuery.of(context).size.width * 0.96,
             margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
@@ -744,7 +752,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 '  متى يجب إجراء \nالفحص الذاتى ؟ ',
                 style: TextStyle(
                     fontSize: 22,
-                    fontFamily: 'Segoe UI',
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(206, 86, 139, 1)),
               ),
@@ -764,7 +771,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 '  يجب اجراء الفحص الذاتي \n بعد الانتهاء من فترة الحيض كل شهر  (في اليوم السابع الي اليوم العاشر من الحيض)',
                 style: TextStyle(
                     fontSize: 22,
-                    fontFamily: 'Segoe UI',
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(206, 86, 139, 1)),
               ),
@@ -775,7 +781,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 'في حالة وجود رضاعة طبيعية يتم اجراء  الفحص بعد فترة الرضاعة عندما يكون  الثدي فارغاً من الحليب',
                 style: TextStyle(
                     fontSize: 22,
-                    fontFamily: 'Segoe UI',
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(206, 86, 139, 1)),
               ),
@@ -786,7 +791,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 'في حالة انقطاع الحيض بشكل مؤقت  او دائم (الحمل او سن اليأس) يتم تحديد يوم حسب الرغبة خلال الشهر علي سبيل المثال  اليوم الأول من كل شهر ',
                 style: TextStyle(
                     fontSize: 22,
-                    fontFamily: 'Segoe UI',
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(206, 86, 139, 1)),
               ),

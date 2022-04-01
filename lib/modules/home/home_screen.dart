@@ -84,240 +84,249 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Stack(
-          children: [
-           // _background(),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // EXPERMENT...
-                  const Text(
-                    "التجــارب .",
-                    style:  TextStyle(
-                        fontSize: 30.0,
-                        color: Colors.pink,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                    height: 250.0,
-                    //margin: EdgeInsets.all(10.0),
-                    child: PageView.builder(
-                      onPageChanged: (index){
-                        setState(() {
-                          _expermentsIndex = index;
-                        });
-                      },
-                      controller: pageController,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) =>
-                          Container(
-                              margin: const EdgeInsets.all(10.0),
-                              child: Experments(context, experments[index])),
-                      itemCount: experments.length,
-
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromRGBO(248, 157, 185, 1.0),
+                  Color.fromRGBO(250, 250, 250, 1.0)
+                ]),
+          ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // EXPERMENT...
+                    const Text(
+                      "التجــارب .",
+                      style:  TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.pink,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ...List.generate(experments.length, (index) => Indicator(
-                         isActive : _expermentsIndex == index ? true : false
-                      ))
+                    Container(
+                      height: 250.0,
+                      //margin: EdgeInsets.all(10.0),
+                      child: PageView.builder(
+                        onPageChanged: (index){
+                          setState(() {
+                            _expermentsIndex = index;
+                          });
+                        },
+                        controller: pageController,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) =>
+                            Container(
+                                margin: const EdgeInsets.all(10.0),
+                                child: Experments(context, experments[index])),
+                        itemCount: experments.length,
 
-                    ],
-                  ),
-
-                  // INFORMATION...
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  const Text(
-                    "معلومـات.",
-                    style: TextStyle(
-                        fontSize: 30.0,
-                        color: Colors.pink,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                    height: 200.0,
-                    child: PageView.builder(
-                      onPageChanged: (index){
-                        setState(() {
-                          _informationsIndex = index;
-                        });
-                      },
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) =>
-                          Container(
-                              margin: const EdgeInsets.all(10.0),
-                              child: Informations(context, information[index])),
-                      itemCount: information.length,
-                      controller: pageController,
+                      ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ...List.generate(information.length, (index) => Indicator(
-                          isActive : _informationsIndex == index ? true : false
-                      ))
-
-                    ],
-                  ),
-
-                  //ADVICES...
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Container(
-                    height: 650.0,
-                    width: double.infinity,
-                    child: Stack(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Positioned(
-                          top: 100.0,
-                          height: 500.0,
-                          width: 370,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("assets/images/home/home_back.png"),
-                              ),
-                              color: secondaryColor,
-                                borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(color: Colors.pink),
-                            ),
+                        ...List.generate(experments.length, (index) => Indicator(
+                           isActive : _expermentsIndex == index ? true : false
+                        ))
 
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children:  [
-                                    Text(
-                                        "- قللى من تناول الكحوليات",
-                                      style: TextStyle(
-                                        fontSize: 25.0,
-                                        color: Colors.pink[900],
-                                        shadows: const[
-                                          Shadow(
-                                              color: Colors.white,
-                                              blurRadius: 1.2,
-                                              offset: Offset(3, 3)),
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      "-الاستمرار فى ممارسة الرياضه",
-                                      style: TextStyle(
-                                        fontSize: 25.0,
-                                        color: Colors.pink[900],
-                                        shadows:const [
-                                          Shadow(
-                                              color: Colors.white,
-                                              blurRadius: 1.2,
-                                              offset: Offset(3, 3)),
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      "- الرضاعة الطبيعية",
-                                      style: TextStyle(
-                                        fontSize: 25.0,
-                                        color: Colors.pink[900],
-                                        shadows:const [
-                                          Shadow(
-                                              color: Colors.white,
-                                              blurRadius: 1.2,
-                                              offset: Offset(3, 3)),
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      "- تناول الأغذيه الصحيه",
-                                      style: TextStyle(
-                                        fontSize: 25.0,
-                                        color: Colors.pink[900],
-                                        shadows: const[
-                                          Shadow(
-                                              color: Colors.white,
-                                              blurRadius: 1.2,
-                                              offset: Offset(3, 3)),
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
-                                      style: TextStyle(
-                                        fontSize: 25.0,
-                                        color: Colors.pink[900],
-                                        shadows: const[
-                                          Shadow(
-                                              color: Colors.white,
-                                              blurRadius: 1.2,
-                                              offset: Offset(3, 3)),
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      "- وللمدخنات: يجب الابتعاد عن التدخين",
-                                      style: TextStyle(
-                                        fontSize: 25.0,
-                                        color: Colors.pink[900],
-                                        shadows: const[
-                                          Shadow(
-                                              color: Colors.white,
-                                              blurRadius: 1.2,
-                                              offset: Offset(3, 3)),
-                                        ],
-                                      ),
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 0.0,
-                          right: 0.0,
-                          height: 200.0,
-                          width: 200,
-                          child: Container(
-                            child: const Center(
-                              child:  Text(
-                                "نصائح",
-                                style: TextStyle(
-                                  fontSize: 25.0,
-                                  color: Colors.pink,
-                                ),
-                              ),
-                            ),
-                            decoration: const BoxDecoration(
-                                image:  DecorationImage(
-                                    image: AssetImage(
-                                      "assets/images/cloud.png",
-                                    )
-                                ),
-
-                            ),
-                          ),
-                        ),
                       ],
                     ),
-                  ),
-                ],
+
+                    // INFORMATION...
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    const Text(
+                      "معلومـات.",
+                      style: TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.pink,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Container(
+                      height: 200.0,
+                      child: PageView.builder(
+                        onPageChanged: (index){
+                          setState(() {
+                            _informationsIndex = index;
+                          });
+                        },
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) =>
+                            Container(
+                                margin: const EdgeInsets.all(10.0),
+                                child: Informations(context, information[index])),
+                        itemCount: information.length,
+                        controller: pageController,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ...List.generate(information.length, (index) => Indicator(
+                            isActive : _informationsIndex == index ? true : false
+                        ))
+
+                      ],
+                    ),
+
+                    //ADVICES...
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Container(
+                      height: 650.0,
+                      width: double.infinity,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 100.0,
+                            height: 500.0,
+                            width: 370,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("assets/images/home/home_back.png"),
+                                ),
+                                color: secondaryColor,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                border: Border.all(color: Colors.pink),
+                              ),
+
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children:  [
+                                      Text(
+                                          "- قللى من تناول الكحوليات",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          color: Colors.pink[900],
+                                          shadows: const[
+                                            Shadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.2,
+                                                offset: Offset(3, 3)),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        "-الاستمرار فى ممارسة الرياضه",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          color: Colors.pink[900],
+                                          shadows:const [
+                                            Shadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.2,
+                                                offset: Offset(3, 3)),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        "- الرضاعة الطبيعية",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          color: Colors.pink[900],
+                                          shadows:const [
+                                            Shadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.2,
+                                                offset: Offset(3, 3)),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        "- تناول الأغذيه الصحيه",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          color: Colors.pink[900],
+                                          shadows: const[
+                                            Shadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.2,
+                                                offset: Offset(3, 3)),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          color: Colors.pink[900],
+                                          shadows: const[
+                                            Shadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.2,
+                                                offset: Offset(3, 3)),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        "- وللمدخنات: يجب الابتعاد عن التدخين",
+                                        style: TextStyle(
+                                          fontSize: 25.0,
+                                          color: Colors.pink[900],
+                                          shadows: const[
+                                            Shadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.2,
+                                                offset: Offset(3, 3)),
+                                          ],
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 0.0,
+                            right: 0.0,
+                            height: 200.0,
+                            width: 200,
+                            child: Container(
+                              child: const Center(
+                                child:  Text(
+                                  "نصائح",
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: Colors.pink,
+                                  ),
+                                ),
+                              ),
+                              decoration: const BoxDecoration(
+                                  image:  DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/cloud.png",
+                                      )
+                                  ),
+
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -392,7 +401,7 @@ Widget Experments(context, Model experments) => Container(
                   //Description
                   Text(
                     "${experments.description}",
-                    style: const TextStyle(fontSize: 15.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 25.0, color: Colors.pink),
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -407,7 +416,7 @@ Widget Experments(context, Model experments) => Container(
                       child:  Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 18.0, color: Colors.pink[900]),
+                        style: TextStyle(fontSize: 20.0, color: Colors.pink[900]),
                       )),
                     ),
                     onTap: () {
@@ -445,7 +454,7 @@ Widget Experments(context, Model experments) => Container(
                                 Text(
                                   "${experments.info}",
                                   style:  TextStyle(
-                                      fontSize: 22.0,
+                                      fontSize: 25.0,
                                       color: Colors.pink[900]),
                                 ),
                               ],
@@ -503,7 +512,7 @@ Widget Informations(context, Model information) => Container(
                   ),
                   Text(
                     "${information.description}",
-                    style: const TextStyle(fontSize: 15.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 25.0, color: Colors.pink),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -518,7 +527,7 @@ Widget Informations(context, Model information) => Container(
                       child:  Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 18.0, color: Colors.pink[900]),
+                        style: TextStyle(fontSize: 20.0, color: Colors.pink[900]),
                       )),
                     ),
                     onTap: () {
@@ -555,7 +564,7 @@ Widget Informations(context, Model information) => Container(
                                 Text(
                                   "${information.info}",
                                   style:  TextStyle(
-                                      fontSize: 22.0,
+                                      fontSize: 25.0,
                                       color: Colors.pink[900]),
                                 ),
                               ],

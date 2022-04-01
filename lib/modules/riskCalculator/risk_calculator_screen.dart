@@ -135,78 +135,243 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Form(
-            key: formKey,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height,
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      color: secondaryColor,
-                      border: Border.all(color: Colors.white, width: 1.5),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          padding: const EdgeInsets.all(10),
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "ما هو سن المرأة؟",
-                                style: TextStyle(
-                                  fontSize: 25.0,
-                                  color: Colors.pink,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5.0,
-                              ),
-                              Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      border: Border.all(color: Colors.pink)),
-                                  child: defaultFormField(
-                                      controller: ageController,
-                                      keyboardType: TextInputType.number,
-                                      prefix: Icons.accessibility,
-                                      hintText: 'العمر من 35 الي 85',
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color.fromRGBO(248, 157, 185, 1.0),
+                    Color.fromRGBO(250, 250, 250, 1.0)
+                  ]),
+            ),
+            child: Form(
+              key: formKey,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height,
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        color: secondaryColor,
+                        border: Border.all(color: Colors.white, width: 1.5),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: secondaryColor,
+                                borderRadius: BorderRadius.circular(20)),
+                            padding: const EdgeInsets.all(10),
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "ما هو سن المرأة؟",
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: Colors.pink,
                                   ),
-                              )
-                            ],
+                                ),
+                                const SizedBox(
+                                  height: 5.0,
+                                ),
+                                Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30.0),
+                                        border: Border.all(color: Colors.pink)),
+                                    child: defaultFormField(
+                                        controller: ageController,
+                                        keyboardType: TextInputType.number,
+                                        prefix: Icons.accessibility,
+                                        hintText: 'العمر من 35 الي 85',
+                                    ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: SizedBox(
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                color: secondaryColor,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    Q2,
+                                    style: const TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Center(
+                                          child: Wrap(
+                                            alignment: WrapAlignment.center,
+                                            spacing: 15,
+                                            children: answer2.map((answers) {
+                                              bool isSelected = selectAnswerQ2 ==
+                                                  answers['label'];
+                                              final forgroundColor = isSelected
+                                                  ? Colors.white
+                                                  : Colors.pink;
+                                              final backgroundColor = isSelected
+                                                  ? primaryColor
+                                                  : secondaryColor;
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    selectAnswerQ2 =
+                                                        answers['label'];
+                                                    selectAnswerValueQ2 =
+                                                        answers['value'];
+                                                    isSelect = false;
+                                                  });
+                                                  print(selectAnswerValueQ2);
+                                                  print(selectAnswerQ2);
+                                                },
+                                                child: Chip(
+                                                  shape: const StadiumBorder(
+                                                      side: BorderSide(
+                                                          color: Colors.pink)),
+                                                  label: Text(
+                                                    answers['label'],
+                                                    style: TextStyle(
+                                                      color: forgroundColor,
+                                                    ),
+                                                  ),
+                                                  backgroundColor: backgroundColor,
+                                                ),
+                                              );
+                                            }).toList(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                                color: secondaryColor,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    Q3,
+                                    style: const TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Center(
+                                          child: Wrap(
+                                            alignment: WrapAlignment.center,
+                                            spacing: 15,
+                                            children: answer3.map((answers) {
+                                              bool isSelected = selectAnswerQ3 ==
+                                                  answers['label'];
+                                              final forgroundColor = isSelected
+                                                  ? Colors.white
+                                                  : Colors.pink;
+                                              final backgroundColor = isSelected
+                                                  ? primaryColor
+                                                  : secondaryColor;
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    selectAnswerQ3 =
+                                                        answers['label'];
+                                                    selectAnswerValueQ3 =
+                                                        answers['value'];
+                                                    isSelect = false;
+                                                  });
+                                                  print(selectAnswerValueQ3);
+                                                  print(selectAnswerQ3);
+                                                },
+                                                child: Chip(
+                                                  shape: const StadiumBorder(
+                                                      side: BorderSide(
+                                                          color: Colors.pink)),
+                                                  label: Text(
+                                                    answers['label'],
+                                                    style: TextStyle(
+                                                      color: forgroundColor,
+                                                    ),
+                                                  ),
+                                                  backgroundColor: backgroundColor,
+                                                ),
+                                              );
+                                            }).toList(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          SizedBox(
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  Q2,
+                                  Q4,
                                   style: const TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.pink,
@@ -223,9 +388,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                         child: Wrap(
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
-                                          children: answer2.map((answers) {
-                                            bool isSelected = selectAnswerQ2 ==
-                                                answers['label'];
+                                          children: answer4.map((answers) {
+                                            bool isSelected =
+                                                selectAnswerQ4 == answers['label'];
                                             final forgroundColor = isSelected
                                                 ? Colors.white
                                                 : Colors.pink;
@@ -235,14 +400,13 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ2 =
-                                                      answers['label'];
-                                                  selectAnswerValueQ2 =
+                                                  selectAnswerQ4 = answers['label'];
+                                                  selectAnswerValueQ4 =
                                                       answers['value'];
                                                   isSelect = false;
                                                 });
-                                                print(selectAnswerValueQ2);
-                                                print(selectAnswerQ2);
+                                                print(selectAnswerValueQ4);
+                                                print(selectAnswerQ4);
                                               },
                                               child: Chip(
                                                 shape: const StadiumBorder(
@@ -266,27 +430,24 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                               ],
                             ),
                           ),
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: SizedBox(
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          SizedBox(
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  Q3,
+                                  Q5,
                                   style: const TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.pink,
@@ -303,9 +464,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                         child: Wrap(
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
-                                          children: answer3.map((answers) {
-                                            bool isSelected = selectAnswerQ3 ==
-                                                answers['label'];
+                                          children: answer5.map((answers) {
+                                            bool isSelected =
+                                                selectAnswerQ5 == answers['label'];
                                             final forgroundColor = isSelected
                                                 ? Colors.white
                                                 : Colors.pink;
@@ -315,14 +476,13 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ3 =
-                                                      answers['label'];
-                                                  selectAnswerValueQ3 =
+                                                  selectAnswerQ5 = answers['label'];
+                                                  selectAnswerValueQ5 =
                                                       answers['value'];
                                                   isSelect = false;
                                                 });
-                                                print(selectAnswerValueQ3);
-                                                print(selectAnswerQ3);
+                                                print(selectAnswerValueQ5);
+                                                print(selectAnswerQ5);
                                               },
                                               child: Chip(
                                                 shape: const StadiumBorder(
@@ -346,494 +506,345 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                               ],
                             ),
                           ),
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                Q4,
-                                style: const TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Center(
-                                      child: Wrap(
-                                        alignment: WrapAlignment.center,
-                                        spacing: 15,
-                                        children: answer4.map((answers) {
-                                          bool isSelected =
-                                              selectAnswerQ4 == answers['label'];
-                                          final forgroundColor = isSelected
-                                              ? Colors.white
-                                              : Colors.pink;
-                                          final backgroundColor = isSelected
-                                              ? primaryColor
-                                              : secondaryColor;
-                                          return GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                selectAnswerQ4 = answers['label'];
-                                                selectAnswerValueQ4 =
-                                                    answers['value'];
-                                                isSelect = false;
-                                              });
-                                              print(selectAnswerValueQ4);
-                                              print(selectAnswerQ4);
-                                            },
-                                            child: Chip(
-                                              shape: const StadiumBorder(
-                                                  side: BorderSide(
-                                                      color: Colors.pink)),
-                                              label: Text(
-                                                answers['label'],
-                                                style: TextStyle(
-                                                  color: forgroundColor,
-                                                ),
-                                              ),
-                                              backgroundColor: backgroundColor,
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          const SizedBox(
+                            height: 20.0,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                Q5,
-                                style: const TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Center(
-                                      child: Wrap(
-                                        alignment: WrapAlignment.center,
-                                        spacing: 15,
-                                        children: answer5.map((answers) {
-                                          bool isSelected =
-                                              selectAnswerQ5 == answers['label'];
-                                          final forgroundColor = isSelected
-                                              ? Colors.white
-                                              : Colors.pink;
-                                          final backgroundColor = isSelected
-                                              ? primaryColor
-                                              : secondaryColor;
-                                          return GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                selectAnswerQ5 = answers['label'];
-                                                selectAnswerValueQ5 =
-                                                    answers['value'];
-                                                isSelect = false;
-                                              });
-                                              print(selectAnswerValueQ5);
-                                              print(selectAnswerQ5);
-                                            },
-                                            child: Chip(
-                                              shape: const StadiumBorder(
-                                                  side: BorderSide(
-                                                      color: Colors.pink)),
-                                              label: Text(
-                                                answers['label'],
-                                                style: TextStyle(
-                                                  color: forgroundColor,
-                                                ),
-                                              ),
-                                              backgroundColor: backgroundColor,
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                Q6,
-                                style: const TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Center(
-                                      child: Wrap(
-                                        alignment: WrapAlignment.center,
-                                        spacing: 15,
-                                        children: answer6.map((answers) {
-                                          bool isSelected =
-                                              selectAnswerQ6 == answers['label'];
-                                          final forgroundColor = isSelected
-                                              ? Colors.white
-                                              : Colors.pink;
-                                          final backgroundColor = isSelected
-                                              ? primaryColor
-                                              : secondaryColor;
-                                          return GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                selectAnswerQ6 = answers['label'];
-                                                selectAnswerValueQ6 =
-                                                    answers['value'];
-                                                isSelect = false;
-                                              });
-                                              print(selectAnswerValueQ6);
-                                              print(selectAnswerQ6);
-                                            },
-                                            child: Chip(
-                                              shape: const StadiumBorder(
-                                                  side: BorderSide(
-                                                      color: Colors.pink)),
-                                              label: Text(
-                                                answers['label'],
-                                                style: TextStyle(
-                                                  color: forgroundColor,
-                                                ),
-                                              ),
-                                              backgroundColor: backgroundColor,
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          const SizedBox(
+                            height: 20.0,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                Q7,
-                                style: const TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Center(
-                                      child: Wrap(
-                                        alignment: WrapAlignment.center,
-                                        spacing: 15,
-                                        children: answer7.map((answers) {
-                                          bool isSelected =
-                                              selectAnswerQ7 == answers['label'];
-                                          final forgroundColor = isSelected
-                                              ? Colors.white
-                                              : Colors.pink;
-                                          final backgroundColor = isSelected
-                                              ? primaryColor
-                                              : secondaryColor;
-                                          return GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                selectAnswerQ7 = answers['label'];
-                                                selectAnswerValueQ7 =
-                                                    answers['value'];
-                                                isSelect = false;
-                                              });
-                                              print(selectAnswerValueQ7);
-                                              print(selectAnswerQ7);
-                                            },
-                                            child: Chip(
-                                              shape: const StadiumBorder(
-                                                  side: BorderSide(
-                                                      color: Colors.pink)),
-                                              label: Text(
-                                                answers['label'],
-                                                style: TextStyle(
-                                                  color: forgroundColor,
-                                                ),
-                                              ),
-                                              backgroundColor: backgroundColor,
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ],
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  Q6,
+                                  style: const TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.pink,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                Q8,
-                                style: const TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.pink,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Center(
-                                      child: Wrap(
-                                        alignment: WrapAlignment.center,
-                                        spacing: 15,
-                                        children: answer8.map((answers) {
-                                          bool isSelected =
-                                              selectAnswerQ8 == answers['label'];
-                                          final forgroundColor = isSelected
-                                              ? Colors.white
-                                              : Colors.pink;
-                                          final backgroundColor = isSelected
-                                              ? primaryColor
-                                              : secondaryColor;
-                                          return GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                selectAnswerQ8 = answers['label'];
-                                                selectAnswerValueQ8 =
-                                                    answers['value'];
-                                                isSelect = false;
-                                              });
-                                              print(selectAnswerValueQ8);
-                                              print(selectAnswerQ8);
-                                            },
-                                            child: Chip(
-                                              shape: const StadiumBorder(
-                                                  side: BorderSide(
-                                                      color: Colors.pink)),
-                                              label: Text(
-                                                answers['label'],
-                                                style: TextStyle(
-                                                  color: forgroundColor,
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Center(
+                                        child: Wrap(
+                                          alignment: WrapAlignment.center,
+                                          spacing: 15,
+                                          children: answer6.map((answers) {
+                                            bool isSelected =
+                                                selectAnswerQ6 == answers['label'];
+                                            final forgroundColor = isSelected
+                                                ? Colors.white
+                                                : Colors.pink;
+                                            final backgroundColor = isSelected
+                                                ? primaryColor
+                                                : secondaryColor;
+                                            return GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  selectAnswerQ6 = answers['label'];
+                                                  selectAnswerValueQ6 =
+                                                      answers['value'];
+                                                  isSelect = false;
+                                                });
+                                                print(selectAnswerValueQ6);
+                                                print(selectAnswerQ6);
+                                              },
+                                              child: Chip(
+                                                shape: const StadiumBorder(
+                                                    side: BorderSide(
+                                                        color: Colors.pink)),
+                                                label: Text(
+                                                  answers['label'],
+                                                  style: TextStyle(
+                                                    color: forgroundColor,
+                                                  ),
                                                 ),
+                                                backgroundColor: backgroundColor,
                                               ),
-                                              backgroundColor: backgroundColor,
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    SizedBox(
-                                      width: 90,
-                                      child: DropdownButtonFormField2(
-                                        decoration: InputDecoration(
-                                          isDense: true,
-                                          filled: true,
-                                          fillColor: isSelect
-                                              ? primaryColor
-                                              : secondaryColor,
-                                          contentPadding: EdgeInsets.zero,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                              color: Colors.pink,
-                                            ),
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                              color: Colors.pink,
-                                            ),
-                                          ),
+                                            );
+                                          }).toList(),
                                         ),
-                                        isExpanded: true,
-                                        hint: Text(
-                                          'اخري',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  Q7,
+                                  style: const TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.pink,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Center(
+                                        child: Wrap(
+                                          alignment: WrapAlignment.center,
+                                          spacing: 15,
+                                          children: answer7.map((answers) {
+                                            bool isSelected =
+                                                selectAnswerQ7 == answers['label'];
+                                            final forgroundColor = isSelected
+                                                ? Colors.white
+                                                : Colors.pink;
+                                            final backgroundColor = isSelected
+                                                ? primaryColor
+                                                : secondaryColor;
+                                            return GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  selectAnswerQ7 = answers['label'];
+                                                  selectAnswerValueQ7 =
+                                                      answers['value'];
+                                                  isSelect = false;
+                                                });
+                                                print(selectAnswerValueQ7);
+                                                print(selectAnswerQ7);
+                                              },
+                                              child: Chip(
+                                                shape: const StadiumBorder(
+                                                    side: BorderSide(
+                                                        color: Colors.pink)),
+                                                label: Text(
+                                                  answers['label'],
+                                                  style: TextStyle(
+                                                    color: forgroundColor,
+                                                  ),
+                                                ),
+                                                backgroundColor: backgroundColor,
+                                              ),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  Q8,
+                                  style: const TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.pink,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Center(
+                                        child: Wrap(
+                                          alignment: WrapAlignment.center,
+                                          spacing: 15,
+                                          children: answer8.map((answers) {
+                                            bool isSelected =
+                                                selectAnswerQ8 == answers['label'];
+                                            final forgroundColor = isSelected
+                                                ? Colors.white
+                                                : Colors.pink;
+                                            final backgroundColor = isSelected
+                                                ? primaryColor
+                                                : secondaryColor;
+                                            return GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  selectAnswerQ8 = answers['label'];
+                                                  selectAnswerValueQ8 =
+                                                      answers['value'];
+                                                  isSelect = false;
+                                                });
+                                                print(selectAnswerValueQ8);
+                                                print(selectAnswerQ8);
+                                              },
+                                              child: Chip(
+                                                shape: const StadiumBorder(
+                                                    side: BorderSide(
+                                                        color: Colors.pink)),
+                                                label: Text(
+                                                  answers['label'],
+                                                  style: TextStyle(
+                                                    color: forgroundColor,
+                                                  ),
+                                                ),
+                                                backgroundColor: backgroundColor,
+                                              ),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      SizedBox(
+                                        width: 90,
+                                        child: DropdownButtonFormField2(
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            filled: true,
+                                            fillColor: isSelect
+                                                ? primaryColor
+                                                : secondaryColor,
+                                            contentPadding: EdgeInsets.zero,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              borderSide: BorderSide(
+                                                color: Colors.pink,
+                                              ),
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              borderSide: BorderSide(
+                                                color: Colors.pink,
+                                              ),
+                                            ),
+                                          ),
+                                          isExpanded: true,
+                                          hint: Text(
+                                            'اخري',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: isSelect
+                                                  ? Colors.white
+                                                  : Colors.pink,
+                                            ),
+                                          ),
                                           style: TextStyle(
-                                            fontSize: 14,
+                                              fontSize: 14,
+                                              color: isSelect
+                                                  ? Colors.white
+                                                  : Colors.pink),
+                                          icon: Icon(
+                                            Icons.arrow_drop_down,
                                             color: isSelect
                                                 ? Colors.white
                                                 : Colors.pink,
                                           ),
-                                        ),
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: isSelect
-                                                ? Colors.white
-                                                : Colors.pink),
-                                        icon: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: isSelect
-                                              ? Colors.white
-                                              : Colors.pink,
-                                        ),
-                                        buttonHeight: 35,
-                                        dropdownWidth: 100,
-                                        buttonPadding: const EdgeInsets.only(
-                                            left: 8, right: 10),
-                                        dropdownDecoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: primaryColor),
-                                        items: items
-                                            .map((item) => DropdownMenuItem<int>(
-                                                  value: item['value'],
-                                                  child: Text(
-                                                    item['label'],
-                                                    style: const TextStyle(
-                                                      fontSize: 14,
+                                          buttonHeight: 35,
+                                          dropdownWidth: 100,
+                                          buttonPadding: const EdgeInsets.only(
+                                              left: 8, right: 10),
+                                          dropdownDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: primaryColor),
+                                          items: items
+                                              .map((item) => DropdownMenuItem<int>(
+                                                    value: item['value'],
+                                                    child: Text(
+                                                      item['label'],
+                                                      style: const TextStyle(
+                                                        fontSize: 14,
+                                                      ),
                                                     ),
-                                                  ),
-                                                ))
-                                            .toList(),
-                                        onTap: () {
-                                          setState(() {
-                                            isSelect = true;
-                                          });
-                                        },
-                                        onChanged: (value) {
-                                          selectAnswerValueQ8 = value as int?;
-                                          print("${selectAnswerValueQ8}");
-                                        },
+                                                  ))
+                                              .toList(),
+                                          onTap: () {
+                                            setState(() {
+                                              isSelect = true;
+                                            });
+                                          },
+                                          onChanged: (value) {
+                                            selectAnswerValueQ8 = value as int?;
+                                            print("${selectAnswerValueQ8}");
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                          height: 1.5,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        (state is! LoadingRiskDataState)
-                            ? SizedBox(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: defaultButton(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0,
-                                  text: 'نســبة الإصـابة',
-                                  onPressed: () {
-                                    onPressed();
-                                  },
-                                  radius: 30.0,
-                                ),
-                              )
-                            : const Center(child: CircularProgressIndicator()),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    ),
-                  )),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                            height: 1.5,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          (state is! LoadingRiskDataState)
+                              ? SizedBox(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: defaultButton(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
+                                    text: 'نســبة الإصـابة',
+                                    onPressed: () {
+                                      onPressed();
+                                    },
+                                    radius: 30.0,
+                                  ),
+                                )
+                              : const Center(child: CircularProgressIndicator()),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    )),
+              ),
             ),
           ),
         );

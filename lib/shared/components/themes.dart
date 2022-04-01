@@ -12,11 +12,12 @@ final ThemeData lightMode = ThemeData(
       ),
       titleTextStyle: TextStyle(
         color: Colors.pink ,
-        fontSize: 30.0
+        fontSize: 30.0,
+        fontFamily: 'Barada',
       )
     ),
-    scaffoldBackgroundColor:  primaryColor,
-    // fontFamily: 'MyFlutterApp',
+    // scaffoldBackgroundColor:  primaryColor,
+    fontFamily: 'Barada',
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor:secondaryColor,
       elevation: 30.0,

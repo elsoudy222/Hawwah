@@ -22,3 +22,5 @@ class SuccessRiskDataState extends HomeStates {
 }
 
 class ErrorRiskDataState extends HomeStates {}
+
+

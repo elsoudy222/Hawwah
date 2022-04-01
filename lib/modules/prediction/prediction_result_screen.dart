@@ -23,7 +23,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
       builder: (context, state) {
         return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: primaryColor,
               elevation: 0,
               title: Text(
                 'التحليل',
@@ -41,25 +41,36 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                 ),
               ),
             ),
-            body: Center(
-              child: Container(
-                  height: 300,
-                  width: 300,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/cloud.png'),
-                          fit: BoxFit.fill)),
-                  child: Center(
-                    child: Text(
-                      widget.text,
-                      style: const TextStyle(
-                        fontFamily: 'Segoe UI',
-                        fontSize: 35,
-                        color: Color.fromRGBO(206, 86, 139, 1.0),
-                        fontWeight: FontWeight.bold,
+            body: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color.fromRGBO(248, 157, 185, 1.0),
+                      Color.fromRGBO(250, 250, 250, 1.0)
+                    ]),
+              ),
+              child: Center(
+                child: Container(
+                    height: 300,
+                    width: 300,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/cloud.png'),
+                            fit: BoxFit.fill)),
+                    child: Center(
+                      child: Text(
+                        widget.text,
+                        style: const TextStyle(
+                          fontFamily: 'Segoe UI',
+                          fontSize: 35,
+                          color: Color.fromRGBO(206, 86, 139, 1.0),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  )),
+                    )),
+              ),
             ));
       },
     );
