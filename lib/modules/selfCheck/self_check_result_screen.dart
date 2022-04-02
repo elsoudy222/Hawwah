@@ -10,7 +10,6 @@ class SelfCheckResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         elevation: 0.0,
         backgroundColor: primaryColor,
         centerTitle: true,
@@ -23,50 +22,61 @@ class SelfCheckResultScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Stack(
-        children:  [
-          const Center(
-            child:  Image(
-              height: 500,
-                width: 500.0,
-                image: AssetImage(
-                    "assets/images/selfCheckResult.png",
-                ),),
-          ),
-         const Center(
-              child:  Text(
-                  "اذا استمرت هذه الأعراض \n  لمده اسبوعين يجب التوجه\n الى اقرب طبيب متخصص",
-                style: TextStyle(
-                  color: Colors.pink,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-          ),
-          Positioned(
-            bottom: 40.0,
-            right: 100,
-            child: GestureDetector(
-            child: Container(
-              width: 200.0,
-              height: 50,
-              decoration: BoxDecoration(
-                color: secondaryColor,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: const Center(
-                  child: Text(
-                    "تــم",
-                    style: TextStyle(fontSize: 30.0, color: Colors.pink),
-                  )),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(248, 157, 185, 1.0),
+                Color.fromRGBO(250, 250, 250, 1.0)
+              ]),
+        ),
+        child: Stack(
+          children:  [
+            const Center(
+              child:  Image(
+                height: 500,
+                  width: 500.0,
+                  image: AssetImage(
+                      "assets/images/selfCheckResult.png",
+                  ),),
             ),
-            onTap: () {
-              navigateToAndFinish(context, HomeLayout());
-            },
-          ),)
+           const Center(
+                child:  Text(
+                    "اذا استمرت هذه الأعراض \n  لمده اسبوعين يجب التوجه\n الى اقرب طبيب متخصص",
+                  style: TextStyle(
+                    color: Colors.pink,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+            ),
+            Positioned(
+              bottom: 40.0,
+              right: 100,
+              child: GestureDetector(
+              child: Container(
+                width: 200.0,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: const Center(
+                    child: Text(
+                      "تــم",
+                      style: TextStyle(fontSize: 30.0, color: Colors.pink),
+                    )),
+              ),
+              onTap: () {
+                navigateToAndFinish(context, HomeLayout());
+              },
+            ),)
 
 
-        ],
+          ],
+        ),
       ),
     );
   }
