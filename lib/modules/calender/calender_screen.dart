@@ -290,6 +290,7 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:hawwah/modules/calender/model.dart';
+import 'package:hawwah/shared/components/colors.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({Key? key}) : super(key: key);
@@ -728,7 +729,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
             margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.pink),
+                border: Border.all(color: thirdColor),
                 color: Color.fromRGBO(253, 220, 230, 1)),
             child: Opacity(
               opacity: 0.3,

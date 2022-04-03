@@ -61,7 +61,7 @@ class IntroSelfCheckScreen2 extends StatelessWidget {
       speed: 200,
       navigateRoute: SelfCheckScreen2(),
       imageSrc: "assets/images/selfCheck/second_step2.png",
-      imageSize: 500,
+      imageSize: 300,
       text: "الاختــبار الثانى اثناء الاستحمام او الاستلقاء",
       textStyle: const TextStyle(
           color: Colors.white,

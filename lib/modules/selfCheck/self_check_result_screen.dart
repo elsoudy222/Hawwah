@@ -13,13 +13,10 @@ class SelfCheckResultScreen extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: primaryColor,
         centerTitle: true,
-        title: const Text(
-            "نتيجة الاختبار",
+        title: Text(
+          "نتيجة الاختبار",
           style: TextStyle(
-              color: Colors.pink,
-              fontSize: 35.0,
-              fontWeight: FontWeight.bold
-          ),
+              color: thirdColor, fontSize: 35.0, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -33,48 +30,47 @@ class SelfCheckResultScreen extends StatelessWidget {
               ]),
         ),
         child: Stack(
-          children:  [
+          children: [
             const Center(
-              child:  Image(
+              child: Image(
                 height: 500,
-                  width: 500.0,
-                  image: AssetImage(
-                      "assets/images/selfCheckResult.png",
-                  ),),
-            ),
-           const Center(
-                child:  Text(
-                    "اذا استمرت هذه الأعراض \n  لمده اسبوعين يجب التوجه\n الى اقرب طبيب متخصص",
-                  style: TextStyle(
-                    color: Colors.pink,
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold
-                  ),
+                width: 500.0,
+                image: AssetImage(
+                  "assets/images/selfCheckResult.png",
                 ),
+              ),
+            ),
+            Center(
+              child: Text(
+                "اذا استمرت هذه الأعراض \n  لمده اسبوعين يجب التوجه\n الى اقرب طبيب متخصص",
+                style: TextStyle(
+                    color: thirdColor,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             Positioned(
               bottom: 40.0,
               right: 100,
               child: GestureDetector(
-              child: Container(
-                width: 200.0,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: secondaryColor,
-                  borderRadius: BorderRadius.circular(15.0),
+                child: Container(
+                  width: 200.0,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: secondaryColor,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Center(
+                      child: Text(
+                    "تــم",
+                    style: TextStyle(fontSize: 30.0, color: thirdColor),
+                  )),
                 ),
-                child: const Center(
-                    child: Text(
-                      "تــم",
-                      style: TextStyle(fontSize: 30.0, color: Colors.pink),
-                    )),
+                onTap: () {
+                  navigateToAndFinish(context, HomeLayout());
+                },
               ),
-              onTap: () {
-                navigateToAndFinish(context, HomeLayout());
-              },
-            ),)
-
-
+            )
           ],
         ),
       ),

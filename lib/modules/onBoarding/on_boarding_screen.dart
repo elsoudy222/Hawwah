@@ -1,15 +1,13 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 import 'package:hawwah/shared/network/local/cache_helper.dart';
-import '../../layout/home_layout.dart';
-import 'model.dart';
 import "package:smooth_page_indicator/smooth_page_indicator.dart";
+
+import 'model.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   @override
@@ -20,34 +18,36 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<Model> pages = [
     Model(
       image: 'assets/images/onboarding/onboarding1.png',
-      title: 'مرحبا بكم',
-      body: 'هدفنا هو التوعية والحفاظ على صحة المرأة فى المقام الأول',
+      title: '',
+      body: '',
     ),
     Model(
       image: 'assets/images/onboarding/onboarding2.png',
       title: 'الكشف المبكر ',
-      body: 'اجراء الفحوصات الطبيه مبكرا قادرة على انقاذ حياتك واحتواء المرض ان وجد ',
+      body:
+          'اجراء الفحوصات الطبيه مبكرا قادرة على انقاذ حياتك واحتواء المرض ان وجد ',
     ),
     Model(
       image: 'assets/images/onboarding/onboarding3.png',
       title: 'انتى مش لوحدك',
-      body:
-      'انتى اهم فرد فى المجتمع صحتك تهمنا كلنا معاكى ',
+      body: 'انتى اهم فرد فى المجتمع صحتك تهمنا كلنا معاكى ',
     ),
     Model(
       image: 'assets/images/onboarding/onboarding4.png',
       title: 'الفحص الذاتى ',
       body:
-      'من الخطوات المهمه اللى ممكن تعمليها فى البيت للتأكد من عدم وجود تكتلات او أورام',
+          'من الخطوات المهمه اللى ممكن تعمليها فى البيت للتأكد من عدم وجود تكتلات او أورام',
     ),
     Model(
-        image: "assets/images/onboarding/onboarding5.png",
-        title: "انتـى فد التحدى",
-        body: 'متيأسيش لانك اقوى من اى مرض انتى قد التحدى ',),
+      image: "assets/images/onboarding/onboarding5.png",
+      title: "انتـى فد التحدى",
+      body: 'متيأسيش لانك اقوى من اى مرض انتى قد التحدى ',
+    ),
     Model(
-        image: "assets/images/onboarding/onboarding6.png",
-        title: "التوعيه مهمه",
-        body: 'لازم الكل يعرف اهميه التوعيه لأنها ممكن تنقذ حياة شخص اخر',),
+      image: "assets/images/onboarding/onboarding6.png",
+      title: "التوعيه مهمه",
+      body: 'لازم الكل يعرف اهميه التوعيه لأنها ممكن تنقذ حياة شخص اخر',
+    ),
   ];
 
   var pageController = PageController();
@@ -77,16 +77,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         elevation: 0.0,
         actions: [
           TextButton(
-              onPressed: (){
-               submit();
+              onPressed: () {
+                submit();
               },
               child: const Text(
                 "تخــطى",
                 style: TextStyle(
                     color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25
-                ),))
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              ))
         ],
       ),
       body: Container(
@@ -126,37 +126,62 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SizedBox(
                   height: 40.0,
                 ),
+                SmoothPageIndicator(
+                  controller: pageController,
+                  count: pages.length,
+                  effect: ExpandingDotsEffect(
+                    dotColor: secondaryColor,
+                    dotHeight: 10,
+                    expansionFactor: 2,
+                    dotWidth: 10,
+                    activeDotColor: thirdColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 40.0,
+                ),
                 Row(
                   children: [
-                    SmoothPageIndicator(
-                      controller: pageController,
-                      count: pages.length,
-                      effect: ExpandingDotsEffect(
-                          dotColor: secondaryColor,
-                          dotHeight: 10,
-                          expansionFactor:4,
-                          dotWidth: 10,
-                        activeDotColor: Colors.pink,
-                      ),
-
-                    ),
                     Spacer(),
-                    FloatingActionButton(
-                      backgroundColor: Colors.pink[700],
-                      onPressed: () {
-                        if(isLast) {
-                         submit();
+                    GestureDetector(
+                      onTap: () {
+                        if (isLast) {
+                          submit();
                         } else {
                           pageController.nextPage(
                               duration: Duration(milliseconds: 750),
                               curve: Curves.fastLinearToSlowEaseIn);
                         }
-
                       },
-                      child: Icon(
-                        Icons.arrow_forward_ios_outlined,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 5,
+                            color:Colors.white,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black87.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset:
+                                  Offset(0, 1), // changes position of shadow
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: CircleAvatar(
+                            backgroundColor: secondaryColor,
+                            radius: 30,
+                            child: const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: Colors.white,
+                              size: 40,
+                            )
+                            ),
                       ),
-                    )
+                    ),
                   ],
                 )
               ],
@@ -169,7 +194,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              child: Image.asset(
+            child: Image.asset(
               '${pages.image}',
             ),
           ),
@@ -181,7 +206,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             style: TextStyle(
               fontSize: 30,
            fontWeight: FontWeight.bold,
-           color: Colors.pink[700]
+           color: thirdColor
            //   fontFamily: "MyFlutterApp",
             ),
           ),
@@ -192,7 +217,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             "${pages.body}",
             style: TextStyle(
               fontSize: 20,
-                color: Colors.pink
+                color: thirdColor
              // fontFamily: "MyFlutterApp",
             ),
           )

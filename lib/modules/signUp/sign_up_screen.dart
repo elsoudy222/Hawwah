@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/signUp/cubit/signup_cubit.dart';
 import 'package:hawwah/modules/signUp/cubit/signup_states.dart';
+import 'package:hawwah/shared/components/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../shared/components/components.dart';
 
@@ -189,11 +190,11 @@ class SignupScreen extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    const Text(
+                                     Text(
                                       "-  لديك حساب بالفعل؟",
                                       style: TextStyle(
                                           fontSize: 20.0,
-                                          color: Colors.pinkAccent),
+                                          color: Color.fromRGBO(248, 157, 185, 1.0),),
                                     ),
                                     defaultTextButton(
                                       onPressed: () {
@@ -232,12 +233,12 @@ class SignupScreen extends StatelessWidget {
                                         const SizedBox(
                                           width: 30,
                                         ),
-                                        const Text(
+                                        Text(
                                           "الدخول باستخدام جوجل",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20.0,
-                                              color: Colors.pink),
+                                              color: thirdColor),
                                         )
                                       ],
                                     ),

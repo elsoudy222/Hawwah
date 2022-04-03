@@ -45,8 +45,8 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
              Center(
               child: Text(
                 '${widget.result*100} %',
-                style: const TextStyle(
-                    color: Colors.pink,
+                style:  TextStyle(
+                    color: thirdColor,
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold
                 ),
@@ -63,10 +63,10 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
                     color: secondaryColor,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  child: const Center(
+                  child: Center(
                       child: Text(
                         "تــم",
-                        style: TextStyle(fontSize: 30.0, color: Colors.pink),
+                        style: TextStyle(fontSize: 30.0, color: thirdColor),
                       )),
                 ),
                 onTap: () {

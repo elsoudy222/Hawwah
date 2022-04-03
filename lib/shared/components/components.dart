@@ -3,10 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:hexcolor/hexcolor.dart';
-
-
-
 
 void navigateToAndFinish(context, widget) {
   Navigator.pushAndRemoveUntil(context,
@@ -17,10 +13,6 @@ void navigateTo(context, widget) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
 
-
-
-
-
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType keyboardType,
@@ -29,7 +21,7 @@ Widget defaultFormField({
   VoidCallback? onTap,
   bool obscureText = false,
   FormFieldValidator<String>? validate,
-  String ?label,
+  String? label,
   String? hintText,
   required IconData prefix,
   IconData? suffix,
@@ -39,7 +31,7 @@ Widget defaultFormField({
   Color? prefixColor,
 }) =>
     TextFormField(
-      cursorColor: Colors.pink,
+      cursorColor: thirdColor,
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
@@ -48,18 +40,16 @@ Widget defaultFormField({
       onChanged: onChange,
       onTap: onTap,
       validator: validate,
-
       decoration: InputDecoration(
-
+        filled: true,
+        fillColor: secondaryColor,
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
-            borderSide: BorderSide(color:secondaryColor,width:2 )
-        ),
+            borderSide: BorderSide(color: secondaryColor, width: 2)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
-            borderSide: BorderSide(color:secondaryColor,width: 2)
-        ),
-        labelText: label ,
+            borderSide: BorderSide(color: secondaryColor, width: 2)),
+        labelText: label,
         hintText: hintText,
         hintStyle: TextStyle(color: hintColor),
         prefixIcon: Icon(
@@ -68,23 +58,19 @@ Widget defaultFormField({
         ),
         suffixIcon: suffix != null
             ? IconButton(
-          onPressed: suffixPressed,
-          icon: Icon(
-            suffix,
-          ),
-        )
+                onPressed: suffixPressed,
+                icon: Icon(
+                  suffix,
+                ),
+              )
             : null,
-
       ),
     );
-
-
 
 Widget defaultTextButton({
   final double fontSize = 20.0,
   required Function onPressed,
   required String text,
-
 }) =>
     TextButton(
       onPressed: () {
@@ -94,39 +80,52 @@ Widget defaultTextButton({
         text,
         style: TextStyle(
           fontSize: fontSize,
+          color: thirdColor,
         ),
       ),
     );
 
-
-
-Widget defaultButton(
-    {
-      double width = double.infinity,
-      double radius = 0.0,
-      double? fontSize,
-      FontWeight fontWeight = FontWeight.normal,
-      required Function onPressed,
-      required String text,
-      bool isUpperCase = true,
-    }) => Container(
-  width: width,
-  height: 50,
-  decoration: BoxDecoration(
-      color: Colors.pink,
-      borderRadius: BorderRadius.circular(radius)),
-  child: MaterialButton(
-    focusColor: Colors.pink,
-    onPressed: () {
-      onPressed();
-    },
-    child: Text(
-      isUpperCase ? text.toUpperCase() : text,
-      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: fontSize),
-    ),
-  ),
-);
-
+Widget defaultButton({
+  double width = double.infinity,
+  double radius = 0.0,
+  double? fontSize,
+  FontWeight fontWeight = FontWeight.normal,
+  required Function onPressed,
+  required String text,
+  bool isUpperCase = true,
+}) =>
+    Container(
+      width: width,
+      height: 50,
+      decoration: BoxDecoration(
+          color: primaryColor,
+          border: Border.all(
+            width: 3,
+            color: Colors.pink.shade50,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black87.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 1), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(radius)),
+      child: MaterialButton(
+        focusColor: primaryColor,
+        onPressed: () {
+          onPressed();
+        },
+        child: Text(
+          isUpperCase ? text.toUpperCase() : text,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: fontSize),
+        ),
+      ),
+    );
 
 void showToast({
   required String text,

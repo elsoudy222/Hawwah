@@ -16,17 +16,28 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    return SplashScreenView(
-      backgroundColor: HexColor("#FAACC3"),
-      duration: 6000,
-      speed: 200,
-      navigateRoute: widget.widget,
-      imageSrc: "assets/images/logo.png",
-      imageSize: 300,
-      text: "حَوَّاء ",
-      textStyle: const TextStyle(
-          color: Colors.pink,
-          fontSize: 50.0
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromRGBO(248, 157, 185, 1.0),
+              Color.fromRGBO(250, 250, 250, 1.0)
+            ]),
+      ),
+      child: SplashScreenView(
+        backgroundColor: HexColor("#FAACC3"),
+        duration: 6000,
+        speed: 200,
+        navigateRoute: widget.widget,
+        imageSrc: "assets/images/logo.png",
+        imageSize: 500,
+        // text: "حَوَّاء ",
+        // textStyle: const TextStyle(
+        //     color: Colors.pink,
+        //     fontSize: 50.0
+        // ),
       ),
     );
   }

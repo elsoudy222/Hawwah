@@ -105,11 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // EXPERMENT...
-                    const Text(
+                 Text(
                       "التجــارب .",
                       style:  TextStyle(
                           fontSize: 30.0,
-                          color: Colors.pink,
+                          color: thirdColor,
                           fontWeight: FontWeight.bold),
                     ),
                     Container(
@@ -145,11 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const Text(
+                    Text(
                       "معلومـات.",
                       style: TextStyle(
                           fontSize: 30.0,
-                          color: Colors.pink,
+                          color: thirdColor,
                           fontWeight: FontWeight.bold),
                     ),
                     Container(
@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 color: secondaryColor,
                                   borderRadius: BorderRadius.circular(15.0),
-                                border: Border.all(color: Colors.pink),
+                                border: Border.all(color: thirdColor),
                               ),
 
                               child: Padding(
@@ -213,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           "- قللى من تناول الكحوليات",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Colors.pink[900],
+                                          color: thirdColor,
                                           shadows: const[
                                             Shadow(
                                                 color: Colors.white,
@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "-الاستمرار فى ممارسة الرياضه",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Colors.pink[900],
+                                          color: thirdColor,
                                           shadows:const [
                                             Shadow(
                                                 color: Colors.white,
@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "- الرضاعة الطبيعية",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Colors.pink[900],
+                                          color: thirdColor,
                                           shadows:const [
                                             Shadow(
                                                 color: Colors.white,
@@ -252,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "- تناول الأغذيه الصحيه",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Colors.pink[900],
+                                          color: thirdColor,
                                           shadows: const[
                                             Shadow(
                                                 color: Colors.white,
@@ -265,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "- الحد من العلاج الهرمونى بعد انقطاع الحيض",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Colors.pink[900],
+                                          color: thirdColor,
                                           shadows: const[
                                             Shadow(
                                                 color: Colors.white,
@@ -278,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         "- وللمدخنات: يجب الابتعاد عن التدخين",
                                         style: TextStyle(
                                           fontSize: 25.0,
-                                          color: Colors.pink[900],
+                                          color: thirdColor,
                                           shadows: const[
                                             Shadow(
                                                 color: Colors.white,
@@ -300,12 +300,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 200.0,
                             width: 200,
                             child: Container(
-                              child: const Center(
+                              child:  Center(
                                 child:  Text(
                                   "نصائح",
                                   style: TextStyle(
                                     fontSize: 25.0,
-                                    color: Colors.pink,
+                                    color: thirdColor,
                                   ),
                                 ),
                               ),
@@ -367,7 +367,7 @@ class Indicator extends StatelessWidget {
         width: isActive!? 20.0 :8.0,
         height: 8.0,
         decoration: BoxDecoration(
-          color:isActive!? Colors.pink : secondaryColor,
+          color:isActive!? thirdColor : secondaryColor,
           borderRadius: BorderRadius.circular(8.0),
         ),
       ),
@@ -393,15 +393,15 @@ Widget Experments(context, Model experments) => Container(
                   // Title..
                   Text(
                     "${experments.title}",
-                    style: const TextStyle(
-                        fontSize: 20.0,
-                        color: Color(0xFFE91E63),
+                    style:  TextStyle(
+                        fontSize: 25.0,
+                        color: thirdColor,
                         fontWeight: FontWeight.bold),
                   ),
                   //Description
                   Text(
                     "${experments.description}",
-                    style: const TextStyle(fontSize: 25.0, color: Colors.pink),
+                    style:  TextStyle(fontSize: 25.0, color: thirdColor),
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -413,10 +413,10 @@ Widget Experments(context, Model experments) => Container(
                         //color: primaryColor,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child:  Center(
+                      child:  const Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 20.0, color: Colors.pink[900]),
+                        style: TextStyle(fontSize: 20.0, color: Color(-10394479)),
                       )),
                     ),
                     onTap: () {
@@ -436,17 +436,14 @@ Widget Experments(context, Model experments) => Container(
                           builder: (_, controller) => Container(
                             decoration: BoxDecoration(
                               color: primaryColor,
-                              image:  DecorationImage(
-
-                                  image: AssetImage(
-                                    "assets/images/logo.png",
-                                  )
-                              ),
-
+                              // image:  DecorationImage(
+                              //     image: AssetImage(
+                              //       "assets/images/logo.png",
+                              //     )
+                              // ),
                               borderRadius: BorderRadius.vertical(
                                   top: const Radius.circular(25.0)),
                             ),
-
                             padding: const EdgeInsets.all(16.0),
                             child: ListView(
                               controller: controller,
@@ -455,7 +452,7 @@ Widget Experments(context, Model experments) => Container(
                                   "${experments.info}",
                                   style:  TextStyle(
                                       fontSize: 25.0,
-                                      color: Colors.pink[900]),
+                                      color: thirdColor),
                                 ),
                               ],
                             ),
@@ -505,14 +502,14 @@ Widget Informations(context, Model information) => Container(
                 children: [
                   Text(
                     "${information.title}",
-                    style: const TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.pink,
+                    style:  TextStyle(
+                        fontSize: 25.0,
+                        color: thirdColor,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "${information.description}",
-                    style: const TextStyle(fontSize: 25.0, color: Colors.pink),
+                    style:  TextStyle(fontSize: 25.0, color: thirdColor),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -524,10 +521,10 @@ Widget Informations(context, Model information) => Container(
                        // color: primaryColor,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child:  Center(
+                      child:  const Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 20.0, color: Colors.pink[900]),
+                        style: TextStyle(fontSize: 20.0, color: Color(-10394479)),
                       )),
                     ),
                     onTap: () {
@@ -548,9 +545,10 @@ Widget Informations(context, Model information) => Container(
                             decoration: BoxDecoration(
                               color: primaryColor,
                               image:  DecorationImage(
-
+                                opacity: .2,
+                                  fit: BoxFit.cover,
                                   image: AssetImage(
-                                    "assets/images/logo.png",
+                                    "${information.image}",
                                   )
                               ),
 
@@ -565,7 +563,7 @@ Widget Informations(context, Model information) => Container(
                                   "${information.info}",
                                   style:  TextStyle(
                                       fontSize: 25.0,
-                                      color: Colors.pink[900]),
+                                      color: thirdColor),
                                 ),
                               ],
                             ),

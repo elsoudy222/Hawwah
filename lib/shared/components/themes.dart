@@ -8,10 +8,10 @@ final ThemeData lightMode = ThemeData(
       backgroundColor: secondaryColor,
       elevation: 3.0,
       iconTheme: IconThemeData(
-        color: Colors.pink,
+        color: thirdColor,
       ),
       titleTextStyle: TextStyle(
-        color: Colors.pink ,
+        color: thirdColor ,
         fontSize: 30.0,
         fontFamily: 'Barada',
       )

@@ -63,7 +63,6 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                       child: Text(
                         widget.text,
                         style: const TextStyle(
-                          fontFamily: 'Segoe UI',
                           fontSize: 35,
                           color: Color.fromRGBO(206, 86, 139, 1.0),
                           fontWeight: FontWeight.bold,

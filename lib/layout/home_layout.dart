@@ -109,11 +109,11 @@ class drawerHeader extends StatelessWidget {
               ),
             ),
           ),
-          const Text(
+          Text(
             "LADY NAME",
             style:  TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.pink,
+              color: thirdColor,
               fontSize: 25.0
 
             ),
@@ -148,7 +148,7 @@ Widget drawerBody(context){
           thickness: 0.4,
           height: 1.5,
         ),
-        menuItem(icon: "assets/images/logo.png", text: 'المسـاعده', onTap: () {  }),
+        menuItem(icon: "assets/images/help.png", text: 'المسـاعده', onTap: () {  }),
         const Divider(
           thickness: 0.4,
           height: 1.5,
@@ -177,10 +177,9 @@ Widget menuItem({
             SizedBox(width: 10.0,),
             Expanded(flex:3,child: Text(
                 text,
-              style: const TextStyle(
-                  color: Colors.pink,
+              style:  TextStyle(
+                  color: thirdColor,
                   fontSize: 25.0
-
               ),
             )),
           ],
