@@ -70,7 +70,7 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
                       )),
                 ),
                 onTap: () {
-                  navigateToAndFinish(context, const HomeLayout());
+                  navigateToAndFinish(context,  HomeLayout());
                 },
               ),
             )

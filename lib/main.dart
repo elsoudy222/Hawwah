@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hawwah/layout/cubit/home_cubit.dart';
+import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/onBoarding/on_boarding_screen.dart';
 import 'package:hawwah/modules/splash/splash_screen.dart';
@@ -18,6 +19,7 @@ void main() async {
   // don't remove this code
   // don't remove this code
   // don't remove this code
+
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
@@ -34,16 +36,16 @@ void main() async {
     );
   }
   runApp(MyApp(
-    startWidget: widget,
+   startWidget: widget,
   ));
 }
 
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
 
-  MyApp({
+  const MyApp({Key? key,
     this.startWidget,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('ar', 'AE'),
             ],
-            home: startWidget!,
+            home: HomeLayout(),
           );
         },
       ),

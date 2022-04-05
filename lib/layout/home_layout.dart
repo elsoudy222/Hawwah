@@ -8,7 +8,8 @@ import '../modules/profile/profile_screen.dart';
 import '../modules/report/report_screen.dart';
 import 'cubit/home_cubit.dart';
 class HomeLayout extends StatelessWidget {
-   const HomeLayout({Key? key}) : super(key: key);
+    HomeLayout({Key? key}) : super(key: key);
+  // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
 
   @override
@@ -24,8 +25,18 @@ class HomeLayout extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: const Text('حَوَّاء '),
-              backgroundColor: secondaryColor,
+              backgroundColor: secondaryColor ,
               elevation: 0,
+              leading: Builder(
+                  builder:(context)=> IconButton(
+                      onPressed: (){
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: Image(
+                        image: AssetImage("assets/images/drawer.png",),
+
+                      ),
+                  ), ),
             ),
             body: cubit.screens[cubit.currentIndex],
             // bottomNavigationBar: StylishBottomBar(
@@ -39,6 +50,8 @@ class HomeLayout extends StatelessWidget {
             //   barAnimation: BarAnimation.blink,
             //
             // ),
+
+
             bottomNavigationBar: BottomNavigationBar(
               elevation: 0,
               backgroundColor: secondaryColor,
@@ -48,28 +61,31 @@ class HomeLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
             ),
-            drawer: Drawer(
-              backgroundColor: secondaryColor,
-              child: SingleChildScrollView(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color.fromRGBO(248, 157, 185, 1.0),
-                          Color.fromRGBO(250, 250, 250, 1.0)
-                        ]),
-                  ),
-                  child: Column(
-                    children: [
-                      const drawerHeader(),
-                      const Divider(
-                        thickness: 0.4,
-                        height: 1.5,
-                      ),
-                      drawerBody(context),
-                    ],
+            drawer: Container(
+              color: Colors.black,
+              child: Drawer(
+                backgroundColor: secondaryColor,
+                child: SingleChildScrollView(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromRGBO(248, 157, 185, 1.0),
+                            Color.fromRGBO(250, 250, 250, 1.0)
+                          ]),
+                    ),
+                    child: Column(
+                      children: [
+                        const drawerHeader(),
+                        const Divider(
+                          thickness: 0.4,
+                          height: 1.5,
+                        ),
+                        drawerBody(context),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -87,7 +103,7 @@ class drawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: primaryColor,
+
       width: double.infinity,
       height: 250,
       padding: const EdgeInsets.only(top: 30.0),
@@ -100,10 +116,13 @@ class drawerHeader extends StatelessWidget {
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 10),
-              height: 90.0,
-              decoration: const BoxDecoration(
+              height: 100.0,
+              decoration:  BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: thirdColor),
                 shape: BoxShape.circle,
                 image: DecorationImage(
+
                   image: AssetImage("assets/icons/profile_pic.png"),
                 )
               ),

@@ -8,7 +8,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://riskcalculator-app.herokuapp.com/',
+        baseUrl: 'http://127.0.0.1:8000/auth/',
         receiveDataWhenStatusError: true,
       ),
     );

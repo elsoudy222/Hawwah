@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/selfCheck/self_check_result_screen.dart';
 import 'package:hawwah/modules/selfCheck/self_check_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class FirstSteps extends StatefulWidget {
   FirstSteps({Key? key}) : super(key: key);
@@ -100,9 +102,55 @@ class _FirstStepsState extends State<FirstSteps> {
                       question:
                           "هل يوجد افرازات (دم) أو مائله الى اللون الأحمر",
                       image: "assets/images/selfCheck/self5.png",
-                      onPressed: () {},
+                      onPressed: () {
+                        return Alert(
+                          style: AlertStyle(
+                            backgroundColor: primaryColor,
+                            animationType: AnimationType.fromTop,
+                            isCloseButton: false,
+                            isOverlayTapDismiss: true,
+                            descTextAlign: TextAlign.center,
+                            animationDuration:
+                            Duration(milliseconds: 400),
+                            alertBorder: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              side: BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            descStyle: TextStyle(
+                              color: secondaryColor,
+                              fontSize: 50.0,
+                            ),
+                            titleStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30.0,
+                              color: thirdColor,
+                            ),
+                            alertAlignment: Alignment.center,
+                          ),
+                          context: context,
+                          desc: "يجــب أن تذهبى الى الطبيب فى الحال!",
+                          buttons: [
+                            DialogButton(
+                              onPressed: () {
+                                navigateToAndFinish(context, HomeLayout());
+                              },
+                              child: const Text(
+                                "حسنا ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              color: thirdColor,
+                            ),
+                          ],
+                        ).show();
+                      },
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.white,
                       thickness: 0.4,
                       indent: 15.0,
@@ -113,7 +161,7 @@ class _FirstStepsState extends State<FirstSteps> {
                       image: "assets/images/selfCheck/self6.png",
                       onPressed: () {},
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
                     Center(

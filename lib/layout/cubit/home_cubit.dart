@@ -6,7 +6,6 @@ import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
 import 'package:hawwah/modules/riskCalculator/risk_calculator_screen.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
-import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
 
@@ -50,37 +49,68 @@ class HomeCubit extends Cubit<HomeStates> {
 
   List<BottomNavigationBarItem> bottomNavItems = const [
     BottomNavigationBarItem(
+      activeIcon: Image(
+        image: AssetImage("assets/icons/searching.png"),
+        height: 30.0,
+        color: Colors.pink,
+      ),
+
       icon: Image(
         image: AssetImage("assets/icons/searching.png"),
         height: 30.0,
+        color: Colors.black87,
       ),
       label: "Prediction",
     ),
     BottomNavigationBarItem(
+      activeIcon: Image(
+        image: AssetImage("assets/icons/calendar.png"),
+        height: 30.0,
+        color: Colors.pink,
+      ),
       icon: Image(
         image: AssetImage("assets/icons/calendar.png"),
         height: 30.0,
+        color: Colors.black87,
       ),
       label: "Calender",
     ),
     BottomNavigationBarItem(
+      activeIcon: Image(
+        image: AssetImage("assets/icons/home.png"),
+        height: 30.0,
+        color: Colors.pink,
+      ),
       icon: Image(
         image: AssetImage("assets/icons/home.png"),
         height: 30.0,
+        color: Colors.black87,
       ),
       label: "Home",
     ),
     BottomNavigationBarItem(
+      activeIcon: Image(
+        image: AssetImage("assets/icons/checklist.png"),
+        height: 30.0,
+        color: Colors.pink,
+      ),
       icon: Image(
         image: AssetImage("assets/icons/checklist.png"),
         height: 30.0,
+        color: Colors.black87,
       ),
       label: "Risk",
     ),
     BottomNavigationBarItem(
+      activeIcon: Image(
+        image: AssetImage("assets/icons/breast.png"),
+        height: 30.0,
+        color: Colors.pink,
+      ),
       icon: Image(
         image: AssetImage("assets/icons/breast.png"),
         height: 30.0,
+        color: Colors.black87,
       ),
       label: "SelfCheck",
     ),
