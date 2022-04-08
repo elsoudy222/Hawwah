@@ -1,16 +1,20 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
-import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+
 import '../modules/profile/profile_screen.dart';
 import '../modules/report/report_screen.dart';
 import 'cubit/home_cubit.dart';
-class HomeLayout extends StatelessWidget {
-    HomeLayout({Key? key}) : super(key: key);
-  // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
+class HomeLayout extends StatelessWidget {
+  HomeLayout({Key? key}) : super(key: key);
+
+  // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +29,20 @@ class HomeLayout extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: const Text('حَوَّاء '),
-              backgroundColor: secondaryColor ,
+              backgroundColor: secondaryColor,
               elevation: 0,
               leading: Builder(
-                  builder:(context)=> IconButton(
-                      onPressed: (){
-                        Scaffold.of(context).openDrawer();
-                      },
-                      icon: Image(
-                        image: AssetImage("assets/images/drawer.png",),
-
-                      ),
-                  ), ),
+                builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: Image(
+                    image: AssetImage(
+                      "assets/images/drawer.png",
+                    ),
+                  ),
+                ),
+              ),
             ),
             body: cubit.screens[cubit.currentIndex],
             // bottomNavigationBar: StylishBottomBar(
@@ -50,16 +56,56 @@ class HomeLayout extends StatelessWidget {
             //   barAnimation: BarAnimation.blink,
             //
             // ),
-
-
-            bottomNavigationBar: BottomNavigationBar(
-              elevation: 0,
-              backgroundColor: secondaryColor,
-              items: cubit.bottomNavItems,
-              currentIndex: cubit.currentIndex,
-              onTap: (index) {
-                cubit.changeBottomNavBar(index);
-              },
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0, // if the kyeboard is open then hide, else show
+              child: GestureDetector(
+                onTap: () {
+                 cubit.changeBottomNavBar(2);
+                },
+                child: Container(
+                  width: 52.0,
+                  height: 47.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset('assets/icons/home.png',
+                     color: cubit.currentIndex ==2 ?thirdColor :Colors.black87,
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.elliptical(26.0, 23.5)),
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 2.0,
+                      color: const Color(0xFFFDDCE6),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.16),
+                        offset: Offset(0, 3.0),
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            bottomNavigationBar: BottomAppBar(
+              // color: Colors.green,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: CircularNotchedRectangle(),
+              // notchMargin: 10,
+              // elevation: 10,
+              child: BottomNavigationBar(
+                elevation: 0,
+                // type: BottomNavigationBarType.fixed,
+                backgroundColor: secondaryColor,
+                items: cubit.bottomNavItems,
+                currentIndex: cubit.currentIndex,
+                onTap: (index) {
+                  cubit.changeBottomNavBar(index);
+                },
+              ),
             ),
             drawer: Container(
               color: Colors.black,
@@ -103,109 +149,117 @@ class drawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       width: double.infinity,
       height: 250,
       padding: const EdgeInsets.only(top: 30.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center ,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               navigateTo(context, ProfileScreen());
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 10),
               height: 100.0,
-              decoration:  BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: thirdColor),
-                shape: BoxShape.circle,
-                image: DecorationImage(
-
-                  image: AssetImage("assets/icons/profile_pic.png"),
-                )
-              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: thirdColor),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage("assets/icons/profile_pic.png"),
+                  )),
             ),
           ),
           Text(
             "LADY NAME",
-            style:  TextStyle(
-              fontWeight: FontWeight.bold,
-              color: thirdColor,
-              fontSize: 25.0
-
-            ),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
           ),
           const Text(
             "info@gmail.com",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 17
-
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 17),
           ),
         ],
       ),
-
     );
   }
 }
-Widget drawerBody(context){
+
+Widget drawerBody(context) {
   return Container(
     height: MediaQuery.of(context).size.height - 200,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        menuItem(icon: "assets/icons/report.png", text: 'التــقرير', onTap: () { navigateTo(context, ReportScreen()); }),
+        menuItem(
+            icon: "assets/icons/report.png",
+            text: 'التــقرير',
+            onTap: () {
+              navigateTo(context, ReportScreen());
+            }),
         const Divider(
           thickness: 0.4,
           height: 1.5,
         ),
-        menuItem(icon: "assets/icons/search.png", text: 'البحـث', onTap: () { navigateTo(context, SearchScreen()); }),
+        menuItem(
+            icon: "assets/icons/search.png",
+            text: 'البحـث',
+            onTap: () {
+              navigateTo(context, SearchScreen());
+            }),
         const Divider(
           thickness: 0.4,
           height: 1.5,
         ),
-        menuItem(icon: "assets/images/help.png", text: 'المسـاعده', onTap: () {  }),
+        menuItem(
+            icon: "assets/images/help.png", text: 'المسـاعده', onTap: () {}),
         const Divider(
           thickness: 0.4,
           height: 1.5,
         ),
-        menuItem(icon: "assets/icons/sign-out.png", text: 'تـسجيل الخروج', onTap: () {  }),
+        menuItem(
+            icon: "assets/icons/sign-out.png",
+            text: 'تـسجيل الخروج',
+            onTap: () {}),
       ],
     ),
   );
 }
+
 Widget menuItem({
   required String icon,
   required String text,
   required VoidCallback onTap,
-}){
+}) {
   return Material(
     color: secondaryColor,
     child: InkWell(
-      onTap: (){
+      onTap: () {
         onTap();
       },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
-          children:  [
-            Expanded(flex:1,child: Image.asset(icon,height: 40.0,)),
-            SizedBox(width: 10.0,),
-            Expanded(flex:3,child: Text(
-                text,
-              style:  TextStyle(
-                  color: thirdColor,
-                  fontSize: 25.0
-              ),
-            )),
+          children: [
+            Expanded(
+                flex: 1,
+                child: Image.asset(
+                  icon,
+                  height: 40.0,
+                )),
+            SizedBox(
+              width: 10.0,
+            ),
+            Expanded(
+                flex: 3,
+                child: Text(
+                  text,
+                  style: TextStyle(color: thirdColor, fontSize: 25.0),
+                )),
           ],
         ),
       ),
     ),
   );
 }
-
-

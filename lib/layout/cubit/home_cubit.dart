@@ -5,6 +5,15 @@ import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
 import 'package:hawwah/modules/riskCalculator/risk_calculator_screen.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
@@ -18,101 +27,92 @@ class HomeCubit extends Cubit<HomeStates> {
 
   int currentIndex = 2;
   List<Widget> activeIcons = [
-    const Image(
+     Image(
       image: AssetImage("assets/icons/searching.png"),
       height: 30.0,
-      color: Colors.pink,
+      color: thirdColor,
     ),
-    const Image(
+     Image(
       image: AssetImage("assets/icons/calendar.png"),
       height: 30.0,
-      color: Colors.pink,
+      color: thirdColor,
     ),
-    const Image(
+     Image(
       image: AssetImage("assets/icons/home.png"),
       height: 30.0,
-      color: Colors.pink,
+      color: thirdColor,
     ),
-    const Image(
+     Image(
       image: AssetImage("assets/icons/checklist.png"),
       height: 30.0,
-      color: Colors.pink,
+      color: thirdColor,
     ),
-    const Image(
+     Image(
       image: AssetImage("assets/icons/breast.png"),
       height: 30.0,
-      color: Colors.pink,
+      color: thirdColor,
     ),
   ];
 
-
-
-  List<BottomNavigationBarItem> bottomNavItems = const [
+  List<BottomNavigationBarItem> bottomNavItems =  [
     BottomNavigationBarItem(
       activeIcon: Image(
         image: AssetImage("assets/icons/searching.png"),
         height: 30.0,
-        color: Colors.pink,
+        color: thirdColor,
       ),
-
       icon: Image(
         image: AssetImage("assets/icons/searching.png"),
         height: 30.0,
         color: Colors.black87,
       ),
-      label: "Prediction",
+      label: "",
     ),
     BottomNavigationBarItem(
       activeIcon: Image(
         image: AssetImage("assets/icons/calendar.png"),
         height: 30.0,
-        color: Colors.pink,
+        color: thirdColor,
       ),
       icon: Image(
         image: AssetImage("assets/icons/calendar.png"),
         height: 30.0,
         color: Colors.black87,
       ),
-      label: "Calender",
+      label: "",
     ),
     BottomNavigationBarItem(
-      activeIcon: Image(
-        image: AssetImage("assets/icons/home.png"),
-        height: 30.0,
-        color: Colors.pink,
+      icon: Icon(
+        Icons.circle,
+        color: Colors.transparent,
       ),
-      icon: Image(
-        image: AssetImage("assets/icons/home.png"),
-        height: 30.0,
-        color: Colors.black87,
-      ),
-      label: "Home",
+      label: "",
     ),
     BottomNavigationBarItem(
       activeIcon: Image(
         image: AssetImage("assets/icons/checklist.png"),
         height: 30.0,
-        color: Colors.pink,
+        color: thirdColor,
       ),
       icon: Image(
         image: AssetImage("assets/icons/checklist.png"),
         height: 30.0,
         color: Colors.black87,
       ),
-      label: "Risk",
+      label: "",
     ),
     BottomNavigationBarItem(
       activeIcon: Image(
         image: AssetImage("assets/icons/breast.png"),
         height: 30.0,
-        color: Colors.pink,
+        color: thirdColor,
       ),
       icon: Image(
         image: AssetImage("assets/icons/breast.png"),
         height: 30.0,
         color: Colors.black87,
       ),
-      label: "SelfCheck",
+      label: "",
     ),
   ];
 
@@ -169,7 +169,8 @@ class HomeCubit extends Cubit<HomeStates> {
     });
   }
 
-  RiskModel ?riskModel;
+  RiskModel? riskModel;
+
   void sendRiskData({
     required int age,
     required int menarch_age,
@@ -184,17 +185,17 @@ class HomeCubit extends Cubit<HomeStates> {
     DioHelper.postData(
       url: '/api/v1.0/gail',
       data: {
-        "age":age,
-        "menarch_age":menarch_age,
-        "live_birth_age":live_birth_age,
-        "ever_had_biopsy":ever_had_biopsy,
-        "num_biopsy":num_biopsy,
-        "first_deg_relatives":first_deg_relatives,
-        "ihyp":ihyp,
-        "race":race
+        "age": age,
+        "menarch_age": menarch_age,
+        "live_birth_age": live_birth_age,
+        "ever_had_biopsy": ever_had_biopsy,
+        "num_biopsy": num_biopsy,
+        "first_deg_relatives": first_deg_relatives,
+        "ihyp": ihyp,
+        "race": race
       },
     ).then((value) {
-      riskModel=RiskModel.fromJson(value.data);
+      riskModel = RiskModel.fromJson(value.data);
       print(value);
       emit(SuccessRiskDataState(riskModel!));
     }).catchError((error) {
@@ -202,5 +203,4 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(ErrorRiskDataState());
     });
   }
-
 }
