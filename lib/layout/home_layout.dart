@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
@@ -56,24 +55,29 @@ class HomeLayout extends StatelessWidget {
             //   barAnimation: BarAnimation.blink,
             //
             // ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
             floatingActionButton: Visibility(
-              visible: MediaQuery.of(context).viewInsets.bottom == 0.0, // if the kyeboard is open then hide, else show
+              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+              // if the kyeboard is open then hide, else show
               child: GestureDetector(
                 onTap: () {
-                 cubit.changeBottomNavBar(2);
+                  cubit.changeBottomNavBar(2);
                 },
                 child: Container(
                   width: 52.0,
                   height: 47.0,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/icons/home.png',
-                     color: cubit.currentIndex ==2 ?thirdColor :Colors.black87,
+                    child: Image.asset(
+                      'assets/icons/home.png',
+                      color:
+                          cubit.currentIndex == 2 ? thirdColor : Colors.black87,
                     ),
                   ),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.elliptical(26.0, 23.5)),
+                    borderRadius:
+                        BorderRadius.all(Radius.elliptical(26.0, 23.5)),
                     color: Colors.white,
                     border: Border.all(
                       width: 2.0,
@@ -111,27 +115,48 @@ class HomeLayout extends StatelessWidget {
               color: Colors.black,
               child: Drawer(
                 backgroundColor: secondaryColor,
-                child: SingleChildScrollView(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Color.fromRGBO(248, 157, 185, 1.0),
-                            Color.fromRGBO(250, 250, 250, 1.0)
-                          ]),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border:  Border.all(
+                        color: Colors.white,
+                        width: 2
                     ),
-                    child: Column(
-                      children: [
-                        const drawerHeader(),
-                        const Divider(
-                          thickness: 0.4,
-                          height: 1.5,
+                    gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromRGBO(248, 157, 185, 1.0),
+                          Color.fromRGBO(250, 250, 250, 1.0)
+                        ]),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height *.06,
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.topEnd,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Image.asset(
+                            "assets/icons/menu_white.png",
+                            height: 40.0,
+                          ),
                         ),
-                        drawerBody(context),
-                      ],
-                    ),
+                      ),
+                      const drawerHeader(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Divider(
+                        thickness: 1,
+                        height: 1,
+                        color: Colors.white,
+                      ),
+                      drawerBody(context),
+                    ],
                   ),
                 ),
               ),
@@ -148,82 +173,76 @@ class drawerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 250,
-      padding: const EdgeInsets.only(top: 30.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {
-              navigateTo(context, ProfileScreen());
-            },
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              height: 100.0,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: thirdColor),
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage("assets/icons/profile_pic.png"),
-                  )),
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            navigateTo(context, ProfileScreen());
+          },
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            height: 100.0,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: thirdColor),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage("assets/icons/profile_pic.png",),
+                )),
           ),
-          Text(
-            "LADY NAME",
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
-          ),
-          const Text(
-            "info@gmail.com",
-            style: TextStyle(color: Colors.white, fontSize: 17),
-          ),
-        ],
-      ),
+        ),
+        Text(
+          "الاسم",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
+        ),
+        const Text(
+          "info@gmail.com",
+          style: TextStyle(color: Colors.white, fontSize: 17),
+        ),
+      ],
     );
   }
 }
 
 Widget drawerBody(context) {
-  return Container(
-    height: MediaQuery.of(context).size.height - 200,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        menuItem(
-            icon: "assets/icons/report.png",
-            text: 'التــقرير',
-            onTap: () {
-              navigateTo(context, ReportScreen());
-            }),
-        const Divider(
-          thickness: 0.4,
-          height: 1.5,
-        ),
-        menuItem(
-            icon: "assets/icons/search.png",
-            text: 'البحـث',
-            onTap: () {
-              navigateTo(context, SearchScreen());
-            }),
-        const Divider(
-          thickness: 0.4,
-          height: 1.5,
-        ),
-        menuItem(
-            icon: "assets/images/help.png", text: 'المسـاعده', onTap: () {}),
-        const Divider(
-          thickness: 0.4,
-          height: 1.5,
-        ),
-        menuItem(
-            icon: "assets/icons/sign-out.png",
-            text: 'تـسجيل الخروج',
-            onTap: () {}),
-      ],
-    ),
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      menuItem(
+          icon: "assets/icons/report.png",
+          text: 'التــقرير',
+          onTap: () {
+            navigateTo(context, ReportScreen());
+          }),
+      const Divider(
+        thickness: 1,
+        height: 1,
+        color: Colors.white,
+      ),
+      menuItem(
+          icon: "assets/icons/search.png",
+          text: 'البحـث',
+          onTap: () {
+            navigateTo(context, SearchScreen());
+          }),
+      const Divider(
+        thickness: 1,
+        height: 1,
+        color: Colors.white,
+      ),
+      menuItem(icon: "assets/images/help.png", text: 'المسـاعده', onTap: () {}),
+      const Divider(
+        thickness: 1,
+        height: 1,
+        color: Colors.white,
+      ),
+      menuItem(
+          icon: "assets/icons/sign-out.png",
+          text: 'تـسجيل الخروج',
+          onTap: () {}),
+    ],
   );
 }
 
@@ -232,33 +251,30 @@ Widget menuItem({
   required String text,
   required VoidCallback onTap,
 }) {
-  return Material(
-    color: secondaryColor,
-    child: InkWell(
-      onTap: () {
-        onTap();
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          children: [
-            Expanded(
-                flex: 1,
-                child: Image.asset(
-                  icon,
-                  height: 40.0,
-                )),
-            SizedBox(
-              width: 10.0,
-            ),
-            Expanded(
-                flex: 3,
-                child: Text(
-                  text,
-                  style: TextStyle(color: thirdColor, fontSize: 25.0),
-                )),
-          ],
-        ),
+  return InkWell(
+    onTap: () {
+      onTap();
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Row(
+        children: [
+          Expanded(
+              flex: 1,
+              child: Image.asset(
+                icon,
+                height: 40.0,
+              )),
+          SizedBox(
+            width: 10.0,
+          ),
+          Expanded(
+              flex: 3,
+              child: Text(
+                text,
+                style: TextStyle(color: Colors.white, fontSize: 25.0),
+              )),
+        ],
       ),
     ),
   );

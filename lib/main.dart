@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -35,10 +36,24 @@ void main() async {
       widget: OnBoardingScreen(),
     );
   }
+
+  // runApp(
+  //   DevicePreview(
+  //     enabled: true,
+  //     tools: [
+  //       ...DevicePreview.defaultTools,
+  //     ],
+  //     builder: (context) => MyApp(
+  //       startWidget: widget,
+  //     ),
+  //   ),
+  // );
+
   runApp(MyApp(
    startWidget: widget,
   ));
 }
+
 
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
@@ -58,6 +73,9 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
+            useInheritedMediaQuery: true,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
             theme: lightMode,
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
