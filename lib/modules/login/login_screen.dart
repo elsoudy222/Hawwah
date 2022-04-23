@@ -32,12 +32,7 @@ class LoginScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color.fromRGBO(248, 157, 185, 1.0),
-                      Color.fromRGBO(250, 250, 250, 1.0)
-                    ]),
+                    begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color.fromRGBO(248, 157, 185, 1.0), Color.fromRGBO(250, 250, 250, 1.0)]),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -59,10 +54,7 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Text(
                             "تســجيل الدخول",
-                            style: TextStyle(
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                                color: thirdColor),
+                            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: thirdColor),
                           ),
                           const SizedBox(
                             height: 20.0,
@@ -109,70 +101,65 @@ class LoginScreen extends StatelessWidget {
                               suffix: LoginCubit.get(context).suffix,
                               obscureText: LoginCubit.get(context).isPassword,
                               suffixPressed: () {
-                                LoginCubit.get(context)
-                                    .changePasswordVisibility();
+                                LoginCubit.get(context).changePasswordVisibility();
                               }),
                           defaultTextButton(
                             onPressed: () {
                               return Alert(
-                                  style: AlertStyle(
-                                    backgroundColor: primaryColor,
-                                    animationType: AnimationType.fromTop,
-                                    isCloseButton: false,
-                                    isOverlayTapDismiss: false,
-                                    descTextAlign: TextAlign.start,
-                                    animationDuration:
-                                        Duration(milliseconds: 400),
-                                    alertBorder: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      side: BorderSide(
-                                        color: Colors.grey,
-                                      ),
+                                style: AlertStyle(
+                                  backgroundColor: primaryColor,
+                                  animationType: AnimationType.fromTop,
+                                  isCloseButton: false,
+                                  isOverlayTapDismiss: false,
+                                  descTextAlign: TextAlign.start,
+                                  animationDuration: Duration(milliseconds: 400),
+                                  alertBorder: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    side: BorderSide(
+                                      color: Colors.grey,
                                     ),
-                                    descStyle: TextStyle(
-                                      color: secondaryColor,
-                                    ),
-                                    titleStyle: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25.0,
-                                      color: thirdColor,
-                                    ),
-                                    alertAlignment: Alignment.center,
                                   ),
-                                  context: context,
-                                  title: "تغير كلمه المرور",
-                                  desc:
-                                      "قم بادخال البريد الالكترونى المرتبط بحسابك وسنرسل اليك رابط تعيين كلمه المرور",
-                                  content: defaultFormField(
-                                    controller: emailController,
-                                    keyboardType: TextInputType.emailAddress,
-                                    hintText:
-                                        "ادخل البريد الالكترونى الخاص بك ",
-                                    prefix: Icons.email_outlined,
-                                    validate: (String? value) {
-                                      if (value!.isEmpty ||
-                                          !value.contains("@")) {
-                                        return 'البريد الالكترونى غسر صحيح';
-                                      }
-                                      return "";
+                                  descStyle: TextStyle(
+                                    color: secondaryColor,
+                                  ),
+                                  titleStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
+                                    color: thirdColor,
+                                  ),
+                                  alertAlignment: Alignment.center,
+                                ),
+                                context: context,
+                                title: "تغير كلمه المرور",
+                                desc: "قم بادخال البريد الالكترونى المرتبط بحسابك وسنرسل اليك رابط تعيين كلمه المرور",
+                                content: defaultFormField(
+                                  controller: emailController,
+                                  keyboardType: TextInputType.emailAddress,
+                                  hintText: "ادخل البريد الالكترونى الخاص بك ",
+                                  prefix: Icons.email_outlined,
+                                  validate: (String? value) {
+                                    if (value!.isEmpty || !value.contains("@")) {
+                                      return 'البريد الالكترونى غسر صحيح';
+                                    }
+                                    return "";
+                                  },
+                                ),
+                                buttons: [
+                                  DialogButton(
+                                    onPressed: () {
+                                      navigateTo(context, ChangePassword());
                                     },
-                                  ),
-                                  buttons: [
-                                    DialogButton(
-                                      onPressed: () {
-                                        navigateTo(context, ChangePassword());
-                                      },
-                                      child: const Text(
-                                        "اعادة التعيين ",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 25.0,
-                                          color: Colors.white,
-                                        ),
+                                    child: const Text(
+                                      "اعادة التعيين ",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25.0,
+                                        color: Colors.white,
                                       ),
-                                      color: thirdColor,
                                     ),
-                                  ],
+                                    color: thirdColor,
+                                  ),
+                                ],
                               ).show();
                             },
                             text: "نسيت كلمه المرور؟",
@@ -202,8 +189,8 @@ class LoginScreen extends StatelessWidget {
                               child: const Text(
                                 'تسجيل الدخول',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
@@ -241,8 +228,7 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     "تسجيل الدخول باستخدام جوجل",
-                                    style: TextStyle(
-                                        fontSize: 20.0, color: thirdColor),
+                                    style: TextStyle(fontSize: 20.0, color: thirdColor),
                                   )
                                 ],
                               ),
@@ -253,7 +239,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text(
+                              const Text(
                                 "- ليس لديك حساب؟",
                                 style: TextStyle(
                                   fontSize: 20.0,
@@ -262,11 +248,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                               defaultTextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              SignupScreen()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
                                 },
                                 text: "انشاء حساب",
                               ),
