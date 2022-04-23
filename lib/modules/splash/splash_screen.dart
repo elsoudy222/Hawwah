@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:location/location.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -14,6 +17,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  initState() {
+    super.initState();
+    _getLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,5 +49,19 @@ class _SplashScreenState extends State<SplashScreen> {
         // ),
       ),
     );
+  }
+  final Location location = Location();
+  Future<void> _getLocation() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      final LocationData _locationResult = await location.getLocation();
+      preferences.setString("lat", _locationResult.latitude.toString());
+      preferences.setString("lng", _locationResult.longitude.toString());
+      print(preferences.getString("lat"));
+      print(preferences.getString("lng"));
+    }
+    on PlatformException catch (err) {
+      print("------ get current location ------");
+    }
   }
 }

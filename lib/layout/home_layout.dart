@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modules/profile/profile_screen.dart';
 import '../modules/report/report_screen.dart';
@@ -224,8 +225,12 @@ Widget drawerBody(context) {
       menuItem(
           icon: "assets/icons/search.png",
           text: 'البحـث',
-          onTap: () {
-            navigateTo(context, SearchScreen());
+          onTap: () async {
+            SharedPreferences preferences = await SharedPreferences.getInstance();
+            navigateTo(context, SearchScreen(
+              myLat: double.parse(preferences.getString("lat").toString()),
+              myLng: double.parse(preferences.getString("lng").toString()),
+            ));
           }),
       const Divider(
         thickness: 1,
