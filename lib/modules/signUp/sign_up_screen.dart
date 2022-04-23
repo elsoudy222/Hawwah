@@ -1,21 +1,36 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/signUp/cubit/signup_cubit.dart';
 import 'package:hawwah/modules/signUp/cubit/signup_states.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/components/components.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   SignupScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   var formKey = GlobalKey<FormState>();
+
   var firstNameController = TextEditingController();
+
   var lastNameController = TextEditingController();
+
   var ageController = TextEditingController();
+
   var phoneController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
 
   @override
@@ -88,18 +103,58 @@ class SignupScreen extends StatelessWidget {
                             const SizedBox(
                               height: 20.0,
                             ),
-                            defaultFormField(
-                              controller: ageController,
-                              keyboardType: TextInputType.number,
-                              label: "العمر",
-                              hintText: "ادخل العمر الخاص بك ",
-                              prefix: Icons.accessibility,
-                              validate: (String? value) {
-                                if (value!.isEmpty) {
-                                  return 'برجاء ادخال العمر';
-                                }
-                                return null;
+
+                            InkWell(
+                              onTap: (){
+                                showIOSDatePicker(context: context);
                               },
+                              child:
+                                  Container(
+                                    height: 70,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: secondaryColor,
+                                    ),
+
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                           Padding(
+                                             padding: const EdgeInsets.symmetric(horizontal:10),
+                                             child: Icon(CupertinoIcons.calendar_today,color: primaryColor,),
+                                           ),
+                                           Padding(
+                                             padding: const EdgeInsets.symmetric(horizontal: 5),
+                                             child: Text(myDate==null? "تاريخ الميلاد" : myDate!,
+                                              style: TextStyle(
+                                                color: primaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                          ),
+                                           ),
+                                        ],
+                                      ),
+                                    ),
+
+                                  ),
+
+                              // defaultFormField(
+                              //   controller: ageController,
+                              //   keyboardType: TextInputType.number,
+                              //   label: "العمر",
+                              //   hintText: "ادخل العمر الخاص بك ",
+                              //   prefix: Icons.accessibility,
+                              //   validate: (String? value) {
+                              //     if (value!.isEmpty) {
+                              //       return 'برجاء ادخال العمر';
+                              //     }
+                              //     return null;
+                              //   },
+                              // ),
                             ),
                             const SizedBox(
                               height: 20.0,
@@ -239,6 +294,48 @@ class SignupScreen extends StatelessWidget {
           ));
         },
       ),
+    );
+  }
+
+  String? myDate;
+
+  final f = DateFormat('yyyy-MM-dd');
+
+  showIOSDatePicker({BuildContext? context}) {
+    return showCupertinoModalPopup(
+      context: context!,
+      builder: (c) {
+        return Container(
+          height: 360,
+          decoration: const BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(30), topLeft: Radius.circular(30)), color: Colors.white),
+          child: Column(
+            children: [
+              Container(
+                height: 300,
+                child: CupertinoDatePicker(
+                  maximumDate: DateTime.now(),
+                  mode: CupertinoDatePickerMode.date,
+                  initialDateTime: DateTime(2000, 1, 1),
+                  minimumDate: DateTime(1960, 1, 1),
+                  minimumYear: 1955,
+                  onDateTimeChanged: (DateTime newDateTime) {
+                    setState(() {
+                      myDate = f.format(newDateTime);
+                    });
+                  },
+                ),
+              ),
+              defaultButton(
+                radius: 30,
+                width: MediaQuery.of(context).size.width*.7,
+                onPressed: ()=> Navigator.pop(context),
+                text: "تأكيد",
+                fontSize: 24,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
