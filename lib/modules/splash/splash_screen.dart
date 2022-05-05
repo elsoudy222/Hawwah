@@ -15,14 +15,7 @@ class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
 class _SplashScreenState extends State<SplashScreen> {
-
-  initState() {
-    super.initState();
-    _getLocation();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,26 +35,9 @@ class _SplashScreenState extends State<SplashScreen> {
         navigateRoute: widget.widget,
         imageSrc: "assets/images/logo.png",
         imageSize: 500,
-        // text: "حَوَّاء ",
-        // textStyle: const TextStyle(
-        //     color: Colors.pink,
-        //     fontSize: 50.0
-        // ),
+
       ),
     );
   }
-  final Location location = Location();
-  Future<void> _getLocation() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    try {
-      final LocationData _locationResult = await location.getLocation();
-      preferences.setString("lat", _locationResult.latitude.toString());
-      preferences.setString("lng", _locationResult.longitude.toString());
-      print(preferences.getString("lat"));
-      print(preferences.getString("lng"));
-    }
-    on PlatformException catch (err) {
-      print("------ get current location ------");
-    }
-  }
+
 }

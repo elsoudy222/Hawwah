@@ -5,24 +5,24 @@ import 'package:hexcolor/hexcolor.dart';
 
 final ThemeData lightMode = ThemeData(
   primarySwatch: Colors.pink,
-    appBarTheme: AppBarTheme(
+  appBarTheme: AppBarTheme(
       backgroundColor: secondaryColor,
       elevation: 3.0,
       iconTheme: IconThemeData(
         color: thirdColor,
       ),
       titleTextStyle: TextStyle(
-        color: thirdColor ,
+        color: thirdColor,
         fontSize: 30.0,
-        fontFamily: GoogleFonts.arefRuqaa().fontFamily,
-      )
-    ),
-    // scaffoldBackgroundColor:  primaryColor,
-    fontFamily: GoogleFonts.arefRuqaa().fontFamily,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor:secondaryColor,
-      elevation: 30.0,
-      type: BottomNavigationBarType.fixed,
-    ),
-
+        fontFamily: GoogleFonts.amiri().fontFamily,
+      // fontFamily: "Barada",
+      )),
+  // scaffoldBackgroundColor:  primaryColor,
+  fontFamily: GoogleFonts.amiri().fontFamily,
+ //fontFamily: "Barada",
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: secondaryColor,
+    elevation: 30.0,
+    type: BottomNavigationBarType.fixed,
+  ),
 );

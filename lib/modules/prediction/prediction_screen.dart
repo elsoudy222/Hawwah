@@ -61,7 +61,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
           ),
           child: SafeArea(
             child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
+             // physics: const AlwaysScrollableScrollPhysics(),
               child: Center(
                 child: Stack(
                   children: [

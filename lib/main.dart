@@ -12,6 +12,8 @@ import 'package:hawwah/shared/components/themes.dart';
 import 'package:hawwah/shared/network/local/cache_helper.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
+import 'modules/signUp/sign_up_screen.dart';
+
 void main() async {
   // don't remove this code
   // don't remove this code
@@ -85,7 +87,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('ar', 'AE'),
             ],
-            home: startWidget,
+            home: SplashScreen(widget: startWidget!),
           );
         },
       ),

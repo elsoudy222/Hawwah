@@ -41,13 +41,24 @@ class _ChangePasswordState extends State<ChangePassword> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 40.0,),
-                          const Text(
-                            "انشــاء رقم سرى جديد",
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(206, 86, 139, 1),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "انشــاء رقم سرى جديد",
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromRGBO(206, 86, 139, 1),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
+                                  icon: const Icon(Icons.arrow_forward_ios,color: Color.fromRGBO(206, 86, 139, 1),),
+                              )
+                            ],
                           ),
                           const SizedBox(height: 15.0,),
                           const Text(

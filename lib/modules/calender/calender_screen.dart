@@ -406,7 +406,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
             const SizedBox(
               height: 3,
             ),
-            _Squareimage(),
+            _squareImage(),
             const SizedBox(
               height: 23,
             ),
@@ -719,86 +719,184 @@ class _CalenderScreenState extends State<CalenderScreen> {
     );
   }
 
-  _Squareimage() {
-    return Stack(
-      children: [
-        Positioned(
-          child: Container(
-            height: 360,
-            width: MediaQuery.of(context).size.width * 0.96,
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+
+  _squareImage(){
+    return Container(
+      height: MediaQuery.of(context).size.height ,
+      width: double.infinity,
+      child: Stack(
+        children: [
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height * 0.2),
+            width: 370,
+            child: Container(
+              margin: EdgeInsets.only(right: 10),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  opacity: 0.3,
+                  image: AssetImage("assets/images/calender/calender_background.png"),
+                ),
+                color: secondaryColor,
+                borderRadius: BorderRadius.circular(15.0),
                 border: Border.all(color: thirdColor),
-                color: Color.fromRGBO(253, 220, 230, 1)),
-            child: Opacity(
-              opacity: 0.3,
-              child: Image.asset('assets/images/calender/calender_background.png'),
+              ),
+
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
+                child: Column(
+                  children: const [
+
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text(
+                        '  يجب اجراء الفحص الذاتي \n بعد الانتهاء من فترة الحيض كل شهر  (في اليوم السابع الي اليوم العاشر من الحيض)',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(206, 86, 139, 1)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text(
+                        'في حالة وجود رضاعة طبيعية يتم اجراء  الفحص بعد فترة الرضاعة عندما يكون  الثدي فارغاً من الحليب',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(206, 86, 139, 1)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text(
+                        'في حالة انقطاع الحيض بشكل مؤقت  او دائم (الحمل او سن اليأس) يتم تحديد يوم حسب الرغبة خلال الشهر علي سبيل المثال  اليوم الأول من كل شهر ',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(206, 86, 139, 1)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
-          top: 160,
-        ),
-        Positioned(
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            height: 300,
-            width: 300,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/cloud.png'),
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                '  متى يجب إجراء \nالفحص الذاتى ؟ ',
-                style: TextStyle(
-                    fontSize: 22,
+          Positioned(
+            top: 0.0,
+            right: 0.0,
+            height: MediaQuery.of(context).size.height * 0.3,
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Container(
+              child:  Center(
+                child:  Text(
+                  '  متى يجب إجراء \nالفحص الذاتى ؟ ',
+                  style: TextStyle(
+                    fontSize: 30.0,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(206, 86, 139, 1)),
+                    color: thirdColor,
+                  ),
+                ),
+              ),
+              decoration: const BoxDecoration(
+                image:  DecorationImage(
+                    image: AssetImage(
+                      "assets/images/cloud.png",
+                    )
+                ),
+
               ),
             ),
           ),
-          top: -10,
-          left: 93,
-        ),
-        Column(
-          children: const [
-            SizedBox(
-              height: 260,
-            ),
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: Text(
-                '  يجب اجراء الفحص الذاتي \n بعد الانتهاء من فترة الحيض كل شهر  (في اليوم السابع الي اليوم العاشر من الحيض)',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(206, 86, 139, 1)),
+        ],
+      ),
+    );
+  }
+
+  _Squareimage0() {
+    return Container(
+      height: MediaQuery.of(context).size.height *0.9,
+      width: MediaQuery.of(context).size.width * 0.96,
+      child: Stack(
+        children: [
+          Positioned(
+            child: Container(
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(color: thirdColor),
+                  color: Color.fromRGBO(253, 220, 230, 1),
+
+                image: DecorationImage(
+                  opacity: 0.3,
+                  image: AssetImage("assets/images/calender/calender_background.png"),
+                ),),
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 260,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Text(
+                      '  يجب اجراء الفحص الذاتي \n بعد الانتهاء من فترة الحيض كل شهر  (في اليوم السابع الي اليوم العاشر من الحيض)',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(206, 86, 139, 1)),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Text(
+                      'في حالة وجود رضاعة طبيعية يتم اجراء  الفحص بعد فترة الرضاعة عندما يكون  الثدي فارغاً من الحليب',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(206, 86, 139, 1)),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Text(
+                      'في حالة انقطاع الحيض بشكل مؤقت  او دائم (الحمل او سن اليأس) يتم تحديد يوم حسب الرغبة خلال الشهر علي سبيل المثال  اليوم الأول من كل شهر ',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(206, 86, 139, 1)),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: Text(
-                'في حالة وجود رضاعة طبيعية يتم اجراء  الفحص بعد فترة الرضاعة عندما يكون  الثدي فارغاً من الحليب',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(206, 86, 139, 1)),
+            top: 0.0,
+          ),
+          Positioned(
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              height: 300,
+              width: 300,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/cloud.png'),
+                ),
+              ),
+              child: const Center(
+                child: Text(
+                  '  متى يجب إجراء \nالفحص الذاتى ؟ ',
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(206, 86, 139, 1)),
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: Text(
-                'في حالة انقطاع الحيض بشكل مؤقت  او دائم (الحمل او سن اليأس) يتم تحديد يوم حسب الرغبة خلال الشهر علي سبيل المثال  اليوم الأول من كل شهر ',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(206, 86, 139, 1)),
-              ),
-            ),
-          ],
-        )
-      ],
+            top: -10,
+            left: 93,
+          ),
+
+        ],
+      ),
     );
   }
 }

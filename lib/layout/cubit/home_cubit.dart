@@ -6,14 +6,6 @@ import 'package:hawwah/modules/home/home_screen.dart';
 import 'package:hawwah/modules/prediction/prediction_screen.dart';
 import 'package:hawwah/modules/riskCalculator/risk_calculator_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
@@ -28,27 +20,27 @@ class HomeCubit extends Cubit<HomeStates> {
   int currentIndex = 2;
   List<Widget> activeIcons = [
      Image(
-      image: AssetImage("assets/icons/searching.png"),
+      image: const AssetImage("assets/icons/searching.png"),
       height: 30.0,
       color: thirdColor,
     ),
      Image(
-      image: AssetImage("assets/icons/calendar.png"),
+      image: const AssetImage("assets/icons/calendar.png"),
       height: 30.0,
       color: thirdColor,
     ),
      Image(
-      image: AssetImage("assets/icons/home.png"),
+      image: const AssetImage("assets/icons/home.png"),
       height: 30.0,
       color: thirdColor,
     ),
      Image(
-      image: AssetImage("assets/icons/checklist.png"),
+      image: const AssetImage("assets/icons/checklist.png"),
       height: 30.0,
       color: thirdColor,
     ),
      Image(
-      image: AssetImage("assets/icons/breast.png"),
+      image: const AssetImage("assets/icons/breast.png"),
       height: 30.0,
       color: thirdColor,
     ),
@@ -57,11 +49,11 @@ class HomeCubit extends Cubit<HomeStates> {
   List<BottomNavigationBarItem> bottomNavItems =  [
     BottomNavigationBarItem(
       activeIcon: Image(
-        image: AssetImage("assets/icons/searching.png"),
+        image: const AssetImage("assets/icons/searching.png"),
         height: 30.0,
         color: thirdColor,
       ),
-      icon: Image(
+      icon: const Image(
         image: AssetImage("assets/icons/searching.png"),
         height: 30.0,
         color: Colors.black87,
@@ -70,18 +62,18 @@ class HomeCubit extends Cubit<HomeStates> {
     ),
     BottomNavigationBarItem(
       activeIcon: Image(
-        image: AssetImage("assets/icons/calendar.png"),
+        image: const AssetImage("assets/icons/calendar.png"),
         height: 30.0,
         color: thirdColor,
       ),
-      icon: Image(
-        image: AssetImage("assets/icons/calendar.png"),
+      icon: const Image(
+        image:  AssetImage("assets/icons/calendar.png"),
         height: 30.0,
         color: Colors.black87,
       ),
       label: "",
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(
         Icons.circle,
         color: Colors.transparent,
@@ -90,12 +82,12 @@ class HomeCubit extends Cubit<HomeStates> {
     ),
     BottomNavigationBarItem(
       activeIcon: Image(
-        image: AssetImage("assets/icons/checklist.png"),
+        image: const AssetImage("assets/icons/checklist.png"),
         height: 30.0,
         color: thirdColor,
       ),
-      icon: Image(
-        image: AssetImage("assets/icons/checklist.png"),
+      icon: const Image(
+        image:  AssetImage("assets/icons/checklist.png"),
         height: 30.0,
         color: Colors.black87,
       ),
@@ -103,12 +95,12 @@ class HomeCubit extends Cubit<HomeStates> {
     ),
     BottomNavigationBarItem(
       activeIcon: Image(
-        image: AssetImage("assets/icons/breast.png"),
+        image: const AssetImage("assets/icons/breast.png"),
         height: 30.0,
         color: thirdColor,
       ),
-      icon: Image(
-        image: AssetImage("assets/icons/breast.png"),
+      icon: const Image(
+        image:  AssetImage("assets/icons/breast.png"),
         height: 30.0,
         color: Colors.black87,
       ),

@@ -45,17 +45,6 @@ class HomeLayout extends StatelessWidget {
               ),
             ),
             body: cubit.screens[cubit.currentIndex],
-            // bottomNavigationBar: StylishBottomBar(
-            //     items: cubit.navBarItems,
-            //   onTap: (index){
-            //     cubit.changeBottomNavBar(index!);
-            //   },
-            //   currentIndex: cubit.currentIndex,
-            //   backgroundColor: secondaryColor,
-            //   iconStyle: IconStyle.animated,
-            //   barAnimation: BarAnimation.blink,
-            //
-            // ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: Visibility(
@@ -225,11 +214,9 @@ Widget drawerBody(context) {
       menuItem(
           icon: "assets/icons/search.png",
           text: 'البحـث',
-          onTap: () async {
-            SharedPreferences preferences = await SharedPreferences.getInstance();
+          onTap: ()  {
+
             navigateTo(context, SearchScreen(
-              myLat: double.parse(preferences.getString("lat").toString()),
-              myLng: double.parse(preferences.getString("lng").toString()),
             ));
           }),
       const Divider(

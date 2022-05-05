@@ -1,4 +1,6 @@
-import 'package:hawwah/models/login_model.dart';
+import 'package:hawwah/models/register_model.dart';
+
+import '../../../models/login_model.dart';
 
 abstract class LoginStates {}
 

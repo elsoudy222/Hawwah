@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //Bassma
     Model(
       image: "assets/images/home/bassma.png",
-      title: "باسمة يوسف(36 عاما)",
+      title: "باسمة يوسف",
       description:
           "كتشفت باسمة إصابتها بسرطان الثدي في الرابع عشر من أبريل هذا العامفي إحدى المرّات، لاحظت باسمة تورمّا في منطقة الثدي ونخزا وتغيّرا في لون الجلد، وعندما هرعت إلى المستشفيات كانت نتيجة الفحص",
       info:
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                     Container(
-                      height: 250.0,
+                      height: MediaQuery.of(context).size.height * 0.3,
                       //margin: EdgeInsets.all(10.0),
                       child: PageView.builder(
                         onPageChanged: (index){
@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                     Container(
-                      height: 200.0,
+                      height: MediaQuery.of(context).size.height * 0.3,
                       child: PageView.builder(
                         onPageChanged: (index){
                           setState(() {
@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10.0,
                     ),
                     Container(
-                      height: 650.0,
+                      height: MediaQuery.of(context).size.height * 0.8,
                       width: double.infinity,
                       child: Stack(
                         children: [
@@ -209,6 +209,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children:  [
+                                      const SizedBox(
+                                        height: 10.0,
+                                      ),
                                       Text(
                                           "- قللى من تناول الكحوليات",
                                         style: TextStyle(
@@ -297,14 +300,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           Positioned(
                             top: 0.0,
                             right: 0.0,
-                            height: 200.0,
-                            width: 200,
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            width: MediaQuery.of(context).size.width * 0.5,
                             child: Container(
                               child:  Center(
                                 child:  Text(
                                   "نصائح",
                                   style: TextStyle(
-                                    fontSize: 25.0,
+                                    fontSize: 35.0,
+                                    fontWeight: FontWeight.bold,
                                     color: thirdColor,
                                   ),
                                 ),
@@ -401,8 +405,8 @@ Widget Experments(context, Model experments) => Container(
                   //Description
                   Text(
                     "${experments.description}",
-                    style:  TextStyle(fontSize: 25.0, color: thirdColor),
-                    maxLines: 5,
+                    style:  TextStyle(fontSize: 22.0, color: thirdColor),
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const Spacer(),
@@ -416,7 +420,7 @@ Widget Experments(context, Model experments) => Container(
                       child:  const Center(
                           child: Text(
                         "قراءة المزيد...",
-                        style: TextStyle(fontSize: 20.0, color: Color(-10394479)),
+                        style: TextStyle(fontSize: 18.0, color: Color(-10394479)),
                       )),
                     ),
                     onTap: () {
@@ -503,13 +507,13 @@ Widget Informations(context, Model information) => Container(
                   Text(
                     "${information.title}",
                     style:  TextStyle(
-                        fontSize: 25.0,
+                        fontSize: 22.0,
                         color: thirdColor,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "${information.description}",
-                    style:  TextStyle(fontSize: 25.0, color: thirdColor),
+                    style:  TextStyle(fontSize: 22.0, color: thirdColor),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -578,7 +582,7 @@ Widget Informations(context, Model information) => Container(
           ),
           // Image :
           Container(
-            height: 200.0,
+            height:  MediaQuery.of(context).size.height * 0.32,
             width: 145.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),

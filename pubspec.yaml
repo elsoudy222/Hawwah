@@ -21,7 +21,7 @@ dependencies:
   font_awesome_flutter:
 
   splash_screen_view:
-
+  intl:
   bloc:
   flutter_bloc: ^7.0.1
   pretty_dio_logger: ^1.2.0-beta-1
@@ -49,6 +49,9 @@ dependencies:
   location: ^4.3.0
 
   device_preview: ^1.0.0
+
+  fancy_bottom_navigation: ^0.3.2
+
 
 dev_dependencies:
   flutter_test:
@@ -82,11 +85,11 @@ flutter:
     - assets/images/calender/
     - assets/images/onboarding/
   #   - images/a_dot_ham.jpeg
-#  fonts:
-#    - family: Barada
-#      fonts:
-#        - asset: assets/fonts/29 B Arabic Style.ttf
-#          weight: 700
+  fonts:
+    - family: Barada
+      fonts:
+        - asset: assets/fonts/29 B Arabic Style.ttf
+          weight: 700
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

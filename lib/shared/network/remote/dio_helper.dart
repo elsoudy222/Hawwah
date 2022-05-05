@@ -3,12 +3,12 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static late Dio dio;
 
-  // https://predictionapidjango.herokuapp.com
+  //https://predictionapidjango.herokuapp.com
 
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://127.0.0.1:8000/auth/',
+        baseUrl: 'https://hawabc.herokuapp.com',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -41,7 +41,7 @@ class DioHelper {
   }) async {
     dio.options.headers = {
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${token}',
+    //  'Authorization': 'Bearer ${token}',
       'Accept-Language': lang,
     };
     return await dio.post(

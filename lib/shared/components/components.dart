@@ -26,8 +26,7 @@ Widget defaultFormField({
   required IconData prefix,
   IconData? suffix,
   VoidCallback? suffixPressed,
-  bool isClickable = true,
-  Color? hintColor,
+  Color?  hintColor,
   Color? prefixColor,
 }) =>
     TextFormField(
@@ -35,7 +34,6 @@ Widget defaultFormField({
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      enabled: isClickable,
       onFieldSubmitted: onSubmit,
       onChanged: onChange,
       onTap: onTap,
@@ -161,3 +159,6 @@ Color chooseToastColor(ToastStates state) {
 
   return color;
 }
+
+
+String token = "";
