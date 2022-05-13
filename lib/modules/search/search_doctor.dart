@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/components.dart';
 
 class SearchDoctor extends StatefulWidget {
   final double? myLat,myLng;
@@ -32,22 +30,22 @@ class _SearchDoctorState extends State<SearchDoctor> {
           body: Stack(
         children: [
           // Map Setting
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: GoogleMap(
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
                 target: LatLng(widget.myLat!, widget.myLng!),
-                zoom: 12,
+                zoom: 10,
               ),
-              myLocationEnabled: false,
+              myLocationEnabled: true,
               tiltGesturesEnabled: true,
-              compassEnabled: true,
-              scrollGesturesEnabled: true,
+              //compassEnabled: true,
+
+             // scrollGesturesEnabled: true,
               zoomGesturesEnabled: true,
-              // polylines: Set<Polyline>.of(polylines.values),
-              markers: myMarkers,
+              markers:myMarkers,
               onMapCreated: (GoogleMapController controller) {
                 setState(() {
                   _controller.complete(controller);
@@ -95,10 +93,11 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
   Set<Marker> myMarkers = {};
 
-  addMarkers() async {
-    myMarkers.add( Marker(
-      markerId: MarkerId("Said"),
-      position: LatLng(37.4219506, -122.0839954),
+  Future<void> addMarkers() async {
+    myMarkers.add( const Marker(
+      markerId:  MarkerId("Said"),
+      position:  LatLng(30.0541558938057, 31.346532475689095),
+
     ));
     myMarkers.add(const Marker(
       markerId: MarkerId("user"),

@@ -1,31 +1,39 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hawwah/models/place_details.dart';
+import 'package:hawwah/models/place_directions_model.dart';
+import 'package:hawwah/modules/search/repository/maps_repo.dart';
 import 'package:meta/meta.dart';
+
+import '../../../models/places_suggestion.dart';
 
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchStates> {
-  SearchCubit() : super(SearchInitialState());
+  final MapsRepo mapsRepo;
+  SearchCubit(this.mapsRepo) : super(SearchInitialState());
 
-  static SearchCubit get(context)=> BlocProvider.of(context);
+ // static SearchCubit get(context)=> BlocProvider.of(context);
 
 
 
+   void emitPlacesSuggestion(String place,String sessionToken) {
+     mapsRepo.fetchSuggestions(place,sessionToken).then((suggestions){
+     emit(PlacesLoadedState(suggestions));
+   });
+  }
 
-  void search(String text){
-    emit(SearchLoadingState());
-    // DioHelper.post(
-    //   url: SEARCH,
-    //   token: token,
-    //   data:
-    //   {
-    //     'text': text,
-     //},
-     //).then((value) {
-    //   model = SearchModel.fromJson(value.data);
-    //  emit(SearchSuccessState());
-   // }).catchError((error){
-     // emit(SearchErrorState());
-   // });
+  void emitPlacesDetailsLocation(String placeId,String sessionToken) {
+    mapsRepo.getPlaceLocation(placeId,sessionToken).then((place){
+      emit(PlacesDetailsLoadedState(place));
+    });
+  }
+
+
+  void emitPlacesDirections( LatLng? origin, LatLng? destination,) {
+    mapsRepo.getPlaceDirections(origin, destination).then((directions){
+      emit(PlacesDirectionsLoadedState(directions));
+    });
   }
 }

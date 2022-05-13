@@ -12,6 +12,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../shared/components/components.dart';
+import '../../shared/components/constants.dart';
 import '../../shared/network/local/cache_helper.dart';
 import '../changePassword/change_password_screen.dart';
 
@@ -20,6 +21,7 @@ class LoginScreen extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
+  var reseatEmailController = TextEditingController();
   var passwordController = TextEditingController();
 
   @override
@@ -29,19 +31,25 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if(state is LoginSuccessState){
-            print(state.loginModel.tokens!.access);
-            CacheHelper.saveData(
-                key: "access",
-                value:state.loginModel.tokens!.access
-            ).then((value) {
-              token = state.loginModel.tokens!.access!;
-              navigateToAndFinish(context, HomeLayout());
-            });
-          }else{
-            showToast(
-                text: "Login Failed",
-                state: ToastStates.ERROR,
-            );
+            if(state.loginModel.status == true){
+              print(state.loginModel.messege);
+              print(state.loginModel.userData!.tokens!.access);
+              CacheHelper.saveData(
+                  key: "token",
+                  value:state.loginModel.userData!.tokens!.access
+              ).then((value) {
+                token = state.loginModel.userData!.tokens!.access!;
+                navigateToAndFinish(context, HomeLayout());
+              });
+
+
+            }else{
+              print(state.loginModel.messege);
+              showToast(
+                  text: "${state.loginModel.messege}",
+                  state: ToastStates.ERROR
+              );
+            }
           }
         },
         builder: (context, state) {
@@ -206,7 +214,7 @@ class LoginScreen extends StatelessWidget {
                                         }
                                         return null;
                                       },
-                                      controller: emailController,
+                                      controller: reseatEmailController,
                                       cursorColor: thirdColor,
                                       decoration: InputDecoration(
                                         hintText: "ادخل البريد الالكترونى الخاص بك ",
@@ -352,50 +360,5 @@ class LoginScreen extends StatelessWidget {
         },
       ),
     );
-  }
-
-  Future<bool?> login({
-    String? email,
-    String? password,
-    String? username,
-    String? phone,
-    String? first_name,
-    String? last_name,
-    String? birthdate,
-  }) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final url = Uri.https("10.0.2.2:8000", "/auth/login");
-    try {
-      print(url);
-      print(email);
-      print(password);
-      final response = await http.post(
-        url,
-        headers: {
-          "Accept": "application/json",
-          "x-localization": "${preferences.getString("lang")}"
-        },
-        body: {
-          "email": "$email",
-          "password": password,
-        },
-      ).timeout(const Duration(seconds: 7), onTimeout: () {
-        throw 'no internet';
-      });
-      print(response.body);
-      final responseData = json.decode(response.body);
-      print(responseData);
-      if (response.statusCode == 200) {
-        Fluttertoast.showToast(msg: responseData["data"]["message"]);
-        return true;
-      } else {
-        Fluttertoast.showToast(msg: responseData["data"]["message"]);
-        return false;
-      }
-    } catch (e, t) {
-      Fluttertoast.showToast(msg: "خطأ فى الاتصال بالسيرفر");
-      print("fail $e ,$t");
-      return false;
-    }
   }
 }

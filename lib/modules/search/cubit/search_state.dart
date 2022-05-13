@@ -4,9 +4,21 @@ part of 'search_cubit.dart';
 abstract class SearchStates {}
 
 class SearchInitialState extends SearchStates {}
-class SearchLoadingState extends SearchStates {}
 
-class SearchSuccessState extends SearchStates {}
+class PlacesLoadedState extends SearchStates {
+  final List<PlaceSuggestion> places;
+  PlacesLoadedState(this.places);
+}
 
-class SearchErrorState extends SearchStates {}
+class PlacesDetailsLoadedState extends SearchStates {
+  final Place place;
+  PlacesDetailsLoadedState(this.place);
+}
+
+class PlacesDirectionsLoadedState extends SearchStates {
+  final PlaceDirections placeDirections;
+  PlacesDirectionsLoadedState(this.placeDirections);
+}
+
+
 
