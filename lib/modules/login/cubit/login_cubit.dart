@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hawwah/models/login_model.dart';
 import 'package:hawwah/models/register_model.dart';
+import 'package:hawwah/shared/network/end_points.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -26,22 +27,29 @@ class LoginCubit extends Cubit<LoginStates>{
 }){
     emit(LoginLoadingState());
     DioHelper.postData(
-        url: "/auth/login/",
+        url: LOGIN,
         data: {
           "email":email,
         "password":password,
         },).then((value){
           print(value.data);
           loginModel = LoginModel.fromJson(value.data);
-          print(loginModel!.tokens!.access);
+          print(loginModel!.userData!.tokens!.access);
           emit(LoginSuccessState(loginModel!));
     }).catchError((error){
           print(error);
           emit(LoginErrorState(error.toString()));
-        }).whenComplete((){
-          emit(LoginInitialState());
         });
         }
+
+
+
+
+
+
+
+
+
 
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;

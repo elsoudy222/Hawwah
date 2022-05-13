@@ -84,18 +84,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromRGBO(248, 157, 185, 1.0),
-                  Color.fromRGBO(250, 250, 250, 1.0)
-                ]),
-          ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(248, 157, 185, 1.0),
+                Color.fromRGBO(250, 250, 250, 1.0)
+              ]),
+        ),
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Stack(
             children: [
               Padding(
