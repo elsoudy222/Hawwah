@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/shared/components/colors.dart';
+
+import '../../layout/cubit/home_cubit.dart';
 
 class ReportScreen extends StatefulWidget {
   @override
@@ -10,6 +15,11 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
 
+    return BlocConsumer<HomeCubit, HomeStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Scaffold(
       body: Container(
           width: double.infinity,
@@ -55,9 +65,8 @@ class _ReportScreenState extends State<ReportScreen> {
                   const EdgeInsets.only(top: 35),
                   child: Column(
                     children: [
-                      SizedBox( height: 22, ),
                       const SizedBox(
-                        height: 20,
+                        height: 42,
                       ),
                       Container(
                         height: 40,
@@ -119,12 +128,16 @@ class _ReportScreenState extends State<ReportScreen> {
                           )
                         ],
                       ),
+                      HomeCubit.get(context).reportModel!= null?
                       Expanded(
                         child: ListView.separated(
-                          itemCount: 6,
+                          itemCount: HomeCubit.get(context).reportModel!.questions!.length,
                           itemBuilder: (context, index) {
                             return ItemReport(
                               isSelacted: sel,
+                              date: HomeCubit.get(context).reportModel!.questions![index].date,
+                              answer: HomeCubit.get(context).reportModel!.questions![index].selfCheck!.question,
+                              Q: HomeCubit.get(context).reportModel!.questions![index].answer,
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {
@@ -133,7 +146,7 @@ class _ReportScreenState extends State<ReportScreen> {
                             );
                           },
                         ),
-                      )
+                      ):const Center(child:  Text('لا يوجد بيانات',style: TextStyle(color: Colors.white,fontSize: 35),))
                     ],
                   ),
                 ),
@@ -141,6 +154,8 @@ class _ReportScreenState extends State<ReportScreen> {
             ),
           )),
     );
+  },
+);
   }
 }
 
@@ -149,9 +164,15 @@ class _ReportScreenState extends State<ReportScreen> {
 
 class ItemReport extends StatefulWidget {
   bool ?isSelacted;
+  String ?date;
+  String ?answer;
+  bool ?Q;
   ItemReport({
     Key ?key,
-    @required this.isSelacted,
+    required this.isSelacted,
+    required this.date,
+    required this.answer,
+    required this.Q,
   }) : super(key: key);
 
   @override
@@ -200,18 +221,42 @@ class _ItemReportState extends State<ItemReport> {
               collapsedBackgroundColor:
               const Color.fromRGBO(249, 237, 241, 1),
               backgroundColor: const Color.fromRGBO(249, 237, 241, 1),
-              title: const Text(
-                '',
+              title:  Text(
+                '${widget.date}',
                 style: TextStyle(
                     fontSize: 21,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: primaryColor),
               ),
               children: [
-                Container(
-                  padding: const EdgeInsets.all(18.0),
-                  height: 150,
-                )
+                Text(
+                  '${widget.answer}',
+                  style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                      color: primaryColor),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    widget.Q! ?
+                    Text(
+                      'نعم',
+                      style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold,
+                          color: primaryColor),
+                    ):
+                    Text(
+                      'لا',
+                      style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold,
+                          color: primaryColor),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
               ],
             ),
           ),
@@ -248,18 +293,42 @@ class _ItemReportState extends State<ItemReport> {
         collapsedBackgroundColor:
         const Color.fromRGBO(249, 237, 241, 1),
         backgroundColor: const Color.fromRGBO(249, 237, 241, 1),
-        title: const Text(
-          '',
+        title:  Text(
+          '${widget.date}',
           style: TextStyle(
               fontSize: 21,
               fontWeight: FontWeight.bold,
-              color: Colors.white),
+              color: primaryColor),
         ),
         children: [
-          Container(
-            padding: const EdgeInsets.all(18.0),
-            height: 150,
-          )
+          Text(
+            '${widget.answer}',
+            style: TextStyle(
+                fontSize: 21,
+                fontWeight: FontWeight.bold,
+                color: primaryColor),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              widget.Q! ?
+              Text(
+                'نعم',
+                style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                    color: primaryColor),
+              ):
+              Text(
+                'لا',
+                style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                    color: primaryColor),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
         ],
       ),
     );

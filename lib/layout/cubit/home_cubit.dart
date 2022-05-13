@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/models/calender_model.dart';
 import 'package:hawwah/models/prediction_model.dart';
+import 'package:hawwah/models/report_model.dart';
 import 'package:hawwah/models/risk_model.dart';
 import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
@@ -11,7 +12,7 @@ import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
-import '../../shared/components/components.dart';
+import '../../shared/components/constants.dart';
 
 part 'home_states.dart';
 
@@ -153,7 +154,7 @@ PredictionModel ?predictionModel;
   }
 
   RiskModel? riskModel;
- // String toke='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyNDUzNTk3LCJpYXQiOjE2NTI0NDE1OTcsImp0aSI6IjFmYzZkNjdmYjBjNjQ5NWY5NDcwMmYyOGViYmNjZWEwIiwidXNlcl9pZCI6MTF9.6HUPr22dIIztJuvRjKDjdcGA6G4eYbi-NNNPElr7hUU';
+  //String toke='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyNDY2MTA3LCJpYXQiOjE2NTI0NTQxMDcsImp0aSI6IjNiZGE4MTRlNjNjNjQzY2RhMTQ0YWZkNzI1YThkOTQyIiwidXNlcl9pZCI6MTF9.nIzWGVUqJlGxlH1ncAdnKE_RXpqw_g-mAU0R5xDx7-M';
   void sendRiskData({
     required int age,
     required int menarch_age,
@@ -225,4 +226,22 @@ PredictionModel ?predictionModel;
       emit(ErrorCalenderDataState());
     });
   }
+  ReportModel ?reportModel;
+  void getReportData() {
+    emit(LoadingReportDataState());
+    DioHelper.getData(
+      url: '/exam/report/',
+      token: token,
+    ).then((value) {
+      print(value);
+      reportModel =ReportModel.fromJson(value.data);
+      print(reportModel!.questions![0].date);
+      emit(SuccessReportDataState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorReportDataState());
+    });
+  }
+
+
 }

@@ -205,6 +205,7 @@ Widget drawerBody(context) {
           icon: "assets/icons/report.png",
           text: 'التــقرير',
           onTap: () {
+            // HomeCubit.get(context).getReportData();
             navigateTo(context, ReportScreen());
           }),
       const Divider(

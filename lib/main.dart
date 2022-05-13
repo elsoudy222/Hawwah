@@ -50,7 +50,7 @@ void main() async {
   //     ),
   //   ),
   // );
-
+  
   runApp(MyApp(
    startWidget: widget,
   ));
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(),
+      create: (context) => HomeCubit()..getReportData(),
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
           // TODO: implement listener

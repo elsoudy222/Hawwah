@@ -28,3 +28,9 @@ class LoadingCalenderDataState extends HomeStates {}
 class SuccessCalenderDataState extends HomeStates {}
 
 class ErrorCalenderDataState extends HomeStates {}
+
+class LoadingReportDataState extends HomeStates {}
+
+class SuccessReportDataState extends HomeStates {}
+
+class ErrorReportDataState extends HomeStates {}
