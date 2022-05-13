@@ -266,11 +266,12 @@ class LoginScreen extends StatelessWidget {
                                 fontSize: 20.0,
                                 text: 'تسجيل الدخول',
                                 onPressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    LoginCubit.get(context).userLogin(
-                                        email: emailController.text,
-                                        password: passwordController.text);
-                                  }
+                                  navigateToAndFinish(context, HomeLayout());
+                                  // if (formKey.currentState!.validate()) {
+                                  //   LoginCubit.get(context).userLogin(
+                                  //       email: emailController.text,
+                                  //       password: passwordController.text);
+                                  // }
                                 },
                                 radius: 30.0,
                                 // width: MediaQuery.of(context).size.width ,

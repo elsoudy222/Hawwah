@@ -23,4 +23,8 @@ class SuccessRiskDataState extends HomeStates {
 
 class ErrorRiskDataState extends HomeStates {}
 
+class LoadingCalenderDataState extends HomeStates {}
 
+class SuccessCalenderDataState extends HomeStates {}
+
+class ErrorCalenderDataState extends HomeStates {}

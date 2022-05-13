@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/models/calender_model.dart';
+import 'package:hawwah/models/prediction_model.dart';
 import 'package:hawwah/models/risk_model.dart';
 import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
@@ -9,6 +11,7 @@ import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
 import '../../modules/selfCheck/self_check_screen.dart';
+import '../../shared/components/components.dart';
 
 part 'home_states.dart';
 
@@ -19,27 +22,27 @@ class HomeCubit extends Cubit<HomeStates> {
 
   int currentIndex = 2;
   List<Widget> activeIcons = [
-     Image(
+    Image(
       image: const AssetImage("assets/icons/searching.png"),
       height: 30.0,
       color: thirdColor,
     ),
-     Image(
+    Image(
       image: const AssetImage("assets/icons/calendar.png"),
       height: 30.0,
       color: thirdColor,
     ),
-     Image(
+    Image(
       image: const AssetImage("assets/icons/home.png"),
       height: 30.0,
       color: thirdColor,
     ),
-     Image(
+    Image(
       image: const AssetImage("assets/icons/checklist.png"),
       height: 30.0,
       color: thirdColor,
     ),
-     Image(
+    Image(
       image: const AssetImage("assets/icons/breast.png"),
       height: 30.0,
       color: thirdColor,
@@ -121,39 +124,27 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(ChangeBottomNavBarState());
   }
 
-  var prediction;
-
+PredictionModel ?predictionModel;
   void sendPredictionData({
-    required String texture_mean,
+    required String perimeter_mean,
     required String area_mean,
-    required String concavity_mean,
-    required String texture_se,
     required String area_se,
-    required String concavity_se,
-    required String symmetry_se,
-    required String smoothness_worst,
-    required String concavity_worst,
-    required String symmetry_worst,
-    required String fractal_dimension_worst,
+    required String perimeter_worst,
+    required String area_worst,
   }) {
     emit(LoadingPredictionDataState());
     DioHelper.postData(
-      url: '/api/',
+      url: '/predict/',
+      token: token,
       data: {
-        "texture mean": texture_mean,
+        "perimeter_mean": perimeter_mean,
         "area_mean": area_mean,
-        "concavity_mean": concavity_mean,
-        "texture_se": texture_se,
         "area_se": area_se,
-        "concavity_se": concavity_se,
-        "symmetry_se": symmetry_se,
-        "smoothness_worst": smoothness_worst,
-        "concavity_worst": concavity_worst,
-        "symmetry_worst": symmetry_worst,
-        "fractal_dimension_worst": fractal_dimension_worst,
+        "perimeter_worst": perimeter_worst,
+        "area_worst": area_worst
       },
     ).then((value) {
-      prediction = value.data;
+      predictionModel = PredictionModel.fromJson(value.data) ;
       emit(SuccessPredictionDataState());
     }).catchError((error) {
       print(error.toString());
@@ -162,7 +153,7 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
   RiskModel? riskModel;
-
+ // String toke='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyNDUzNTk3LCJpYXQiOjE2NTI0NDE1OTcsImp0aSI6IjFmYzZkNjdmYjBjNjQ5NWY5NDcwMmYyOGViYmNjZWEwIiwidXNlcl9pZCI6MTF9.6HUPr22dIIztJuvRjKDjdcGA6G4eYbi-NNNPElr7hUU';
   void sendRiskData({
     required int age,
     required int menarch_age,
@@ -175,7 +166,8 @@ class HomeCubit extends Cubit<HomeStates> {
   }) {
     emit(LoadingRiskDataState());
     DioHelper.postData(
-      url: '/api/v1.0/gail',
+      url: '/risk_calculator/',
+      token: token,
       data: {
         "age": age,
         "menarch_age": menarch_age,
@@ -193,6 +185,44 @@ class HomeCubit extends Cubit<HomeStates> {
     }).catchError((error) {
       print(error.toString());
       emit(ErrorRiskDataState());
+    });
+  }
+
+  CalenderModel ?calenderModel;
+  void sendCalenderData({
+    required String data,
+  }) {
+    emit(LoadingCalenderDataState());
+    DioHelper.postData(
+      url: '/exam/calender/',
+      token: token,
+      data: {
+        "period": data,
+        "self_check": "0"
+      },
+    ).then((value) {
+      print(value);
+      calenderModel =CalenderModel.fromJson(value.data);
+      print(calenderModel!.date!.dates![0].isCheck);
+      emit(SuccessCalenderDataState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorCalenderDataState());
+    });
+  }
+  void getCalenderData() {
+    emit(LoadingCalenderDataState());
+    DioHelper.getData(
+      url: '/exam/calender/?page=35081069',
+      token: token,
+    ).then((value) {
+      print(value);
+      calenderModel =CalenderModel.fromJson(value.data);
+      print(calenderModel!.date!.dates![0].isCheck);
+      emit(SuccessCalenderDataState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorCalenderDataState());
     });
   }
 }

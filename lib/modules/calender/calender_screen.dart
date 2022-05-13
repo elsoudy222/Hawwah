@@ -289,8 +289,11 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/layout/cubit/home_cubit.dart';
 import 'package:hawwah/modules/calender/model.dart';
 import 'package:hawwah/shared/components/colors.dart';
+import 'package:hawwah/shared/components/components.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({Key? key}) : super(key: key);
@@ -301,6 +304,8 @@ class CalenderScreen extends StatefulWidget {
 
 class _CalenderScreenState extends State<CalenderScreen> {
   var dayController = TextEditingController();
+  var monthController = TextEditingController();
+  var yearController = TextEditingController();
 
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -316,8 +321,22 @@ class _CalenderScreenState extends State<CalenderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {
+        if (state is SuccessCalenderDataState) {
+          print('hhhhhhhhhhhhhhh');
+          showToast(text: 'تم حفظ البيانات بنجاح', state: ToastStates.SUCCESS);
+        }
+        if (state is ErrorCalenderDataState) {
+          print('mmmmmmm');
+          showToast(
+              text: 'فشل في حفظ البيانات تاكد من البيانات المدخله',
+              state: ToastStates.ERROR);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+            body: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Stack(
             children: [
@@ -326,6 +345,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
             ],
           ),
         ));
+      },
+    );
   }
 
   Widget _body() {
@@ -352,7 +373,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: days.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return _checkItem(index);
+                  return _checkItem(days[index].color,days[index].title);
                 },
               ),
             ),
@@ -416,8 +437,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
     );
   }
 
-
-  Widget _checkItem(index) {
+  Widget _checkItem(Color? color,String ?title) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
@@ -425,11 +445,11 @@ class _CalenderScreenState extends State<CalenderScreen> {
         width: 35,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: days[index].color,
+          color: color ,
         ),
         child: Center(
           child: Text(
-            '${days[index].title}',
+            '${title}',
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
@@ -510,43 +530,50 @@ class _CalenderScreenState extends State<CalenderScreen> {
                                 setState(() {
                                   days[i].color = Colors.white;
                                   if (i + 1 >= days.length) {
-                                    days[days.length-days.length].color = Colors.white;
+                                    days[days.length - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 1].color = Colors.white;
                                   }
                                   if (i + 2 >= days.length) {
-                                    print((i+2)-days.length);
-                                    days[(i+2)-days.length].color = Colors.white;
+                                    print((i + 2) - days.length);
+                                    days[(i + 2) - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 2].color = Colors.white;
                                   }
                                   if (i + 3 >= days.length) {
-                                    print((i+3)-days.length);
-                                    days[(i+3)-days.length].color = Colors.white;
+                                    print((i + 3) - days.length);
+                                    days[(i + 3) - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 3].color = Colors.white;
                                   }
                                   if (i + 4 >= days.length) {
-                                    print((i+4)-days.length);
-                                    days[(i+4)-days.length].color = Colors.white;
+                                    print((i + 4) - days.length);
+                                    days[(i + 4) - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 4].color = Colors.white;
                                   }
                                   if (i + 5 >= days.length) {
-                                    print((i+5)-days.length);
-                                    days[(i+5)-days.length].color = Colors.white;
+                                    print((i + 5) - days.length);
+                                    days[(i + 5) - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 5].color = Colors.white;
                                   }
                                   if (i + 6 >= days.length) {
-                                    print((i+6)-days.length);
-                                    days[(i+6)-days.length].color = Colors.white;
+                                    print((i + 6) - days.length);
+                                    days[(i + 6) - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 6].color = Colors.white;
                                   }
                                   if (i + 7 >= days.length) {
-                                    print((i+7)-days.length);
-                                    days[(i+7)-days.length].color = Colors.white;
+                                    print((i + 7) - days.length);
+                                    days[(i + 7) - days.length].color =
+                                        Colors.white;
                                   } else {
                                     days[i + 7].color = Colors.white;
                                   }
@@ -583,41 +610,202 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 const SizedBox(
                   height: 20,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .2,
+                      child: TextFormField(
+                        controller: dayController,
+                        keyboardType: TextInputType.number,
+                        maxLength: 2,
+                        cursorColor: Colors.white,
+                        style: const TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          value = dayController.text;
+                        },
+                        // onFieldSubmitted: (value) {
+                        //   int i = 0;
+                        //   setState(() {
+                        //     for (i; i < days.length; i++) {
+                        //       if (value.toString() == days[i].title) {
+                        //         days[i].isChecked = true;
+                        //         days[i].color = Color.fromRGBO(170, 207, 207, 1);
+                        //         if (i + 7 >= days.length) {
+                        //           days[days.length - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         } else {
+                        //           days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         }
+                        //         if (i + 8 >= days.length) {
+                        //           print((i + 8) - days.length);
+                        //           days[(i + 8) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         } else {
+                        //           days[i + 8].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         }
+                        //         if (i + 9 >= days.length) {
+                        //           print((i + 9) - days.length);
+                        //           days[(i + 9) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         } else {
+                        //           days[i + 9].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         }
+                        //         if (i + 10 >= days.length) {
+                        //           print((i + 10) - days.length);
+                        //           days[(i + 10) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         } else {
+                        //           days[i + 10].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         }
+                        //         // if (i + 5 >= days.length) {
+                        //         //   print((i+5)-days.length);
+                        //         //   days[(i+5)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         // } else {
+                        //         //   days[i + 5].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         // }
+                        //         // if (i + 6 >= days.length) {
+                        //         //   print((i+6)-days.length);
+                        //         //   days[(i+6)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         // } else {
+                        //         //   days[i + 6].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         // }
+                        //         // if (i + 7 >= days.length) {
+                        //         //   print((i+7)-days.length);
+                        //         //   days[(i+7)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         // } else {
+                        //         //   days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
+                        //         // }
+                        //       }
+                        //     }
+                        //   });
+                        // },
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(26, 14, 4, 14),
+                          filled: true,
+                          hintText: 'اليوم',
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(248, 157, 185, 1.0),
+                                width: 0.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(248, 157, 185, 1.0),
+                                width: 0.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .2,
+                      child: TextFormField(
+                        controller: monthController,
+                        keyboardType: TextInputType.number,
+                        maxLength: 2,
+                        cursorColor: Colors.white,
+                        style: const TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          value = monthController.text;
+                          // print(monthController.text);
+                        },
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(26, 14, 4, 14),
+                          filled: true,
+                          hintText: 'الشهر',
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(248, 157, 185, 1.0),
+                                width: 0.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(248, 157, 185, 1.0),
+                                width: 0.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .2,
+                      child: TextFormField(
+                        controller: yearController,
+                        keyboardType: TextInputType.number,
+                        maxLength: 4,
+                        cursorColor: Colors.white,
+                        style: const TextStyle(color: Colors.white),
+                        onChanged: (value) {
+                          value = yearController.text;
+                        },
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(26, 14, 4, 14),
+                          filled: true,
+                          hintText: 'السنه',
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(248, 157, 185, 1.0),
+                                width: 0.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(248, 157, 185, 1.0),
+                                width: 0.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * .2,
-                  child: TextFormField(
-                    controller: dayController,
-                    keyboardType: TextInputType.number,
-                    maxLength: 2,
-                    cursorColor: Colors.white,
-                    style: const TextStyle(color: Colors.white),
-                    onFieldSubmitted: (value) {
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: defaultButton(
+                    onPressed: () {
                       int i = 0;
                       setState(() {
                         for (i; i < days.length; i++) {
-                          if (value.toString() == days[i].title) {
+                          if (dayController.text == days[i].title) {
                             days[i].isChecked = true;
-                            days[i].color = Color.fromRGBO(170, 207, 207, 1);
+
                             if (i + 7 >= days.length) {
-                              days[days.length-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[days.length - days.length].color = Color.fromRGBO(239, 79, 147, 1);
                             } else {
                               days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
                             }
                             if (i + 8 >= days.length) {
-                              print((i+8)-days.length);
-                              days[(i+8)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              print((i + 8) - days.length);
+                              days[(i + 8) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
                             } else {
                               days[i + 8].color = Color.fromRGBO(239, 79, 147, 1);
                             }
                             if (i + 9 >= days.length) {
-                              print((i+9)-days.length);
-                              days[(i+9)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              print((i + 9) - days.length);
+                              days[(i + 9) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
                             } else {
                               days[i + 9].color = Color.fromRGBO(239, 79, 147, 1);
                             }
                             if (i + 10 >= days.length) {
-                              print((i+10)-days.length);
-                              days[(i+10)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              print((i + 10) - days.length);
+                              days[(i + 10) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
                             } else {
                               days[i + 10].color = Color.fromRGBO(239, 79, 147, 1);
                             }
@@ -642,24 +830,24 @@ class _CalenderScreenState extends State<CalenderScreen> {
                           }
                         }
                       });
+                      if (yearController.text != '' &&
+                          monthController.text != '' &&
+                          dayController.text != '') {
+                        HomeCubit.get(context).sendCalenderData(
+                            data:
+                                '${yearController.text}-${monthController.text}-${dayController.text}');
+                      } else {
+                        showToast(
+                            text: 'من فضلك ادخل البيانات المطلوبه',
+                            state: ToastStates.ERROR);
+                      }
+                      print(
+                          '${yearController.text}-${monthController.text}-${dayController.text}');
                     },
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.fromLTRB(26, 14, 4, 14),
-                      filled: true,
-                      fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                            color: Color.fromRGBO(248, 157, 185, 1.0),
-                            width: 0.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                            color: Color.fromRGBO(248, 157, 185, 1.0),
-                            width: 0.0),
-                      ),
-                    ),
+                    text: 'تاكيد',
+                    radius: 30.0,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
                   ),
                 ),
                 const SizedBox(
@@ -669,7 +857,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
             ),
           ),
           contentPadding: EdgeInsets.all(0),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         );
       },
     );
@@ -696,7 +885,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
           const Text(
             'حَوَّاء ',
             style:
-            TextStyle(fontSize: 35, color: Color.fromRGBO(206, 86, 139, 1)),
+                TextStyle(fontSize: 35, color: Color.fromRGBO(206, 86, 139, 1)),
           ),
         ],
       ),
@@ -719,34 +908,34 @@ class _CalenderScreenState extends State<CalenderScreen> {
     );
   }
 
-
-  _squareImage(){
+  _squareImage() {
     return Container(
-      height: MediaQuery.of(context).size.height ,
+      height: MediaQuery.of(context).size.height,
       width: double.infinity,
       child: Stack(
         children: [
           Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
-            height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height * 0.2),
+            height: MediaQuery.of(context).size.height -
+                (MediaQuery.of(context).size.height * 0.2),
             width: 370,
             child: Container(
               margin: EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   opacity: 0.3,
-                  image: AssetImage("assets/images/calender/calender_background.png"),
+                  image: AssetImage(
+                      "assets/images/calender/calender_background.png"),
                 ),
                 color: secondaryColor,
                 borderRadius: BorderRadius.circular(15.0),
                 border: Border.all(color: thirdColor),
               ),
-
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0, vertical: 50.0),
                 child: Column(
                   children: const [
-
                     Padding(
                       padding: EdgeInsets.all(15),
                       child: Text(
@@ -788,8 +977,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
             height: MediaQuery.of(context).size.height * 0.3,
             width: MediaQuery.of(context).size.width * 0.7,
             child: Container(
-              child:  Center(
-                child:  Text(
+              child: Center(
+                child: Text(
                   '  متى يجب إجراء \nالفحص الذاتى ؟ ',
                   style: TextStyle(
                     fontSize: 30.0,
@@ -799,12 +988,10 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 ),
               ),
               decoration: const BoxDecoration(
-                image:  DecorationImage(
+                image: DecorationImage(
                     image: AssetImage(
-                      "assets/images/cloud.png",
-                    )
-                ),
-
+                  "assets/images/cloud.png",
+                )),
               ),
             ),
           ),
@@ -815,7 +1002,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
 
   _Squareimage0() {
     return Container(
-      height: MediaQuery.of(context).size.height *0.9,
+      height: MediaQuery.of(context).size.height * 0.9,
       width: MediaQuery.of(context).size.width * 0.96,
       child: Stack(
         children: [
@@ -823,14 +1010,15 @@ class _CalenderScreenState extends State<CalenderScreen> {
             child: Container(
               margin: EdgeInsets.all(5),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: thirdColor),
-                  color: Color.fromRGBO(253, 220, 230, 1),
-
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(color: thirdColor),
+                color: Color.fromRGBO(253, 220, 230, 1),
                 image: DecorationImage(
                   opacity: 0.3,
-                  image: AssetImage("assets/images/calender/calender_background.png"),
-                ),),
+                  image: AssetImage(
+                      "assets/images/calender/calender_background.png"),
+                ),
+              ),
               child: Column(
                 children: const [
                   SizedBox(
@@ -894,7 +1082,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
             top: -10,
             left: 93,
           ),
-
         ],
       ),
     );

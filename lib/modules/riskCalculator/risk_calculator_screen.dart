@@ -129,7 +129,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
           navigateTo(
               context,
               RiskResultScreen(
-                  result: HomeCubit.get(context).riskModel!.results!.lifetimeAbs));
+                  result: HomeCubit.get(context).riskModel!.data!.results!.lifetimeAbs));
         }
         // TODO: implement listener
       },

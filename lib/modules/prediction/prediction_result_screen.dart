@@ -53,8 +53,8 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
               ),
               child: Center(
                 child: Container(
-                    height: 300,
-                    width: 300,
+                    height: 350,
+                    width: 350,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage('assets/images/cloud.png'),
@@ -63,7 +63,7 @@ class _PredictionResultScreenState extends State<PredictionResultScreen> {
                       child: Text(
                         widget.text,
                         style: const TextStyle(
-                          fontSize: 35,
+                          fontSize: 30,
                           color: Color.fromRGBO(206, 86, 139, 1.0),
                           fontWeight: FontWeight.bold,
                         ),

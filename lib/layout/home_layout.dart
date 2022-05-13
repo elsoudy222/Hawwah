@@ -101,12 +101,13 @@ class HomeLayout extends StatelessWidget {
                 },
               ),
             ),
-            drawer: Container(
-              color: Colors.black,
+            drawer: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: Drawer(
                 backgroundColor: secondaryColor,
                 child: Container(
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
                     border:  Border.all(
                         color: Colors.white,
                         width: 2
