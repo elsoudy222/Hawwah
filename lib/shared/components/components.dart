@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hawwah/shared/components/colors.dart';
 
+import '../../modules/login/login_screen.dart';
+import '../network/local/cache_helper.dart';
+
 void navigateToAndFinish(context, widget) {
   Navigator.pushAndRemoveUntil(context,
       MaterialPageRoute(builder: (context) => widget), (route) => false);
@@ -12,6 +15,12 @@ void navigateToAndFinish(context, widget) {
 void navigateTo(context, widget) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
+
+void signOut(context) => CacheHelper.removeData(key: 'token').then((value) {
+  if (value) {
+    navigateToAndFinish(context, LoginScreen());
+  }
+});
 
 Widget defaultFormField({
   required TextEditingController controller,

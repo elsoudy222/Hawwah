@@ -1,16 +1,10 @@
-import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hawwah/models/login_model.dart';
-import 'package:hawwah/models/register_model.dart';
-import 'package:hawwah/shared/network/end_points.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-
+import '../../../models/auth/forget_pssword_model.dart';
+import '../../../models/auth/login_model.dart';
 import 'login_states.dart';
 
 class LoginCubit extends Cubit<LoginStates>{
@@ -27,29 +21,40 @@ class LoginCubit extends Cubit<LoginStates>{
 }){
     emit(LoginLoadingState());
     DioHelper.postData(
-        url: LOGIN,
+        url: "/auth/login/",
         data: {
           "email":email,
         "password":password,
         },).then((value){
-          print(value.data);
           loginModel = LoginModel.fromJson(value.data);
-          print(loginModel!.userData!.tokens!.access);
-          emit(LoginSuccessState(loginModel!));
+          print(value.data);
+          emit(LoginSuccessState(loginModel));
     }).catchError((error){
-          print(error);
+          print(error.toString());
           emit(LoginErrorState(error.toString()));
         });
         }
 
 
-
-
-
-
-
-
-
+  ForgetModel? forgetModel;
+  void forgetPassword({
+    required String email,
+  }){
+    emit(ForgetLoadingState());
+    DioHelper.postData(
+      url: "/auth/sending/",
+      data: {
+        "email":email,
+      },).then((value){
+      print(value.data);
+      forgetModel = ForgetModel.fromJson(value.data);
+      emit(ForgetSuccessState(forgetModel!));
+    }).catchError((error){
+      print(error);
+      print('error henaaaa ${error.toString()}');
+      emit(ForgetErrorState(error.toString(),forgetModel));
+    });
+  }
 
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
@@ -61,3 +66,4 @@ class LoginCubit extends Cubit<LoginStates>{
   }
 
 }
+

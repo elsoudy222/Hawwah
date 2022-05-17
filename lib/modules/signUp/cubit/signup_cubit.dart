@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hawwah/models/register_model.dart';
 
+import '../../../models/auth/register_model.dart';
 import '../../../shared/network/end_points.dart';
 import '../../../shared/network/remote/dio_helper.dart';
 import 'signup_states.dart';
@@ -12,14 +12,14 @@ class SignupCubit extends Cubit<SignupStates>{
 
   static SignupCubit get(context)=> BlocProvider.of(context);
 
- RegisterModel? registerModel;
+  RegisterModel? registerModel;
 
    void userRegister({
 
     required String email,
     required String password,
-    required String firstName,
-     required String lastName,
+    required String first_name,
+     required String last_name,
     required String phone,
      required String birthdate,
   }){
@@ -30,18 +30,17 @@ class SignupCubit extends Cubit<SignupStates>{
            'email':email,
            'password':password,
            'phone':phone,
-           "firstName":firstName,
-           "lastName":lastName,
+           "first_name":first_name,
+           "last_name":last_name,
            'birthdate':birthdate,
          },
 
      ).then((value){
        print(value.data);
        registerModel = RegisterModel.fromJson(value.data);
-        print(registerModel!.data!.message);
        emit(SignupSuccessState(registerModel!));
      }).catchError((error){
-       print(error.toString());
+       print('errrrrrrror ${error.toString()}');
        emit(SignupErrorState(error.toString()));
      });
 

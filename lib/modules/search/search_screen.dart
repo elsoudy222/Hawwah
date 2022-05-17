@@ -14,10 +14,8 @@ import 'package:hawwah/modules/search/search_lab.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:location/location.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../shared/network/remote/dio_helper.dart';
+import '../../shared/network/remote/search_helper.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({
@@ -31,7 +29,6 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   initState() {
-    // _getLocation();
     super.initState();
   }
 
@@ -65,19 +62,6 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         child: Stack(
           children: [
-            // Container(
-            //   width: double.infinity,
-            //   height: double.infinity,
-            //   decoration: const BoxDecoration(
-            //     gradient: LinearGradient(
-            //         begin: Alignment.topCenter,
-            //         end: Alignment.bottomCenter,
-            //         colors: [
-            //           Color.fromRGBO(236, 156, 184, 90.0),
-            //           Color.fromRGBO(250, 250, 250,1.0),
-            //         ]),
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
@@ -91,7 +75,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           height: 204,
                           width: 312,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
@@ -104,35 +88,13 @@ class _SearchScreenState extends State<SearchScreen> {
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: HexColor('FAACC3'),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(35),
                             ),
                             child: Center(
                               child: Row(
-                                mainAxisSize: MainAxisSize.max,
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    child: IconButton(
-                                        icon: Image.asset(
-                                          'assets/images/logo.png',
-                                          fit: BoxFit.cover,
-                                          width: 100,
-                                          height: 100,
-                                        ),
-                                        onPressed: () {
-                                          navigateToAndFinish(
-                                            context,
-                                            BlocProvider(
-                                              create: (context) => SearchCubit(MapsRepo(SearchHelper())),
-                                              child: MapsScreen(),
-                                            ),
-                                          );
-                                        }),
-                                  ),
+
                                   Container(
                                     height: 100,
                                     width: 100,
@@ -143,22 +105,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                           width: 100,
                                           height: 100,
                                         ),
-                                        onPressed: () async {
-                                          SharedPreferences preferences =
-                                          await SharedPreferences
-                                              .getInstance();
-                                          preferences.setString(
-                                              'type', 'laboratory');
+                                        onPressed: () {
                                           navigateToAndFinish(
-                                              context,
-                                              SearchLab(
-                                                myLat: double.parse(preferences
-                                                    .getString("lat")
-                                                    .toString()),
-                                                myLng: double.parse(preferences
-                                                    .getString("lng")
-                                                    .toString()),
-                                              ));
+                                            context,
+                                            BlocProvider(
+                                              create: (context) => SearchCubit(MapsRepo(SearchHelper())),
+                                              child: SearchLab(),
+                                            ),
+                                          );
                                         }),
                                   ),
                                   SizedBox(
@@ -174,22 +128,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                           width: 100,
                                           height: 100,
                                         ),
-                                        onPressed: () async {
-                                          SharedPreferences preferences =
-                                          await SharedPreferences
-                                              .getInstance();
-                                          preferences.setString(
-                                              'type', 'doctor');
+                                        onPressed: ()  {
                                           navigateToAndFinish(
-                                              context,
-                                              SearchDoctor(
-                                                myLat: double.parse(preferences
-                                                    .getString("lat")
-                                                    .toString()),
-                                                myLng: double.parse(preferences
-                                                    .getString("lng")
-                                                    .toString()),
-                                              ));
+                                            context,
+                                            BlocProvider(
+                                              create: (context) => SearchCubit(MapsRepo(SearchHelper())),
+                                              child: SearchDoctor(),
+                                            ),
+                                          );
                                         }),
                                   ),
                                 ],
@@ -209,18 +155,18 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  final Location location = Location();
-
-  Future<void> _getLocation() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    try {
-      final LocationData _locationResult = await location.getLocation();
-      preferences.setString("lat", _locationResult.latitude.toString());
-      preferences.setString("lng", _locationResult.longitude.toString());
-      print(preferences.getString("lat"));
-      print(preferences.getString("lng"));
-    } on PlatformException catch (err) {
-      print("------ get current location ------");
-    }
-  }
+  // final Location location = Location();
+  //
+  // Future<void> _getLocation() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   try {
+  //     final LocationData _locationResult = await location.getLocation();
+  //     preferences.setString("lat", _locationResult.latitude.toString());
+  //     preferences.setString("lng", _locationResult.longitude.toString());
+  //     print(preferences.getString("lat"));
+  //     print(preferences.getString("lng"));
+  //   } on PlatformException catch (err) {
+  //     print("------ get current location ------");
+  //   }
+  // }
 }

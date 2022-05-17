@@ -1,20 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hawwah/models/place_details.dart';
-import 'package:hawwah/models/place_directions_model.dart';
+import 'package:hawwah/models/search/place_details.dart';
+import 'package:hawwah/models/search/place_directions_model.dart';
 import 'package:hawwah/modules/search/repository/maps_repo.dart';
 import 'package:meta/meta.dart';
 
-import '../../../models/places_suggestion.dart';
+import '../../../models/search/places_suggestion.dart';
 
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchStates> {
   final MapsRepo mapsRepo;
-  SearchCubit(this.mapsRepo) : super(SearchInitialState());
+  SearchCubit(
+       this.mapsRepo
+      ) : super(SearchInitialState());
 
- // static SearchCubit get(context)=> BlocProvider.of(context);
+ static SearchCubit get(context)=> BlocProvider.of(context);
 
 
 

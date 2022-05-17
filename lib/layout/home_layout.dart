@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/modules/search/repository/maps_repo.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
@@ -9,12 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modules/profile/profile_screen.dart';
 import '../modules/report/report_screen.dart';
+import '../modules/search/cubit/search_cubit.dart';
+import '../shared/network/remote/search_helper.dart';
 import 'cubit/home_cubit.dart';
 
 class HomeLayout extends StatelessWidget {
   HomeLayout({Key? key}) : super(key: key);
 
-  // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class HomeLayout extends StatelessWidget {
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
-                  icon: Image(
+                  icon: const Image(
                     image: AssetImage(
                       "assets/images/drawer.png",
                     ),
@@ -67,7 +69,7 @@ class HomeLayout extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.all(Radius.elliptical(26.0, 23.5)),
+                        const BorderRadius.all(Radius.elliptical(26.0, 23.5)),
                     color: Colors.white,
                     border: Border.all(
                       width: 2.0,
@@ -76,7 +78,7 @@ class HomeLayout extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.16),
-                        offset: Offset(0, 3.0),
+                        offset: const Offset(0, 3.0),
                         blurRadius: 6.0,
                       ),
                     ],
@@ -87,7 +89,7 @@ class HomeLayout extends StatelessWidget {
             bottomNavigationBar: BottomAppBar(
               // color: Colors.green,
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: CircularNotchedRectangle(),
+              shape: const CircularNotchedRectangle(),
               // notchMargin: 10,
               // elevation: 10,
               child: BottomNavigationBar(
@@ -169,7 +171,7 @@ class drawerHeader extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            navigateTo(context, ProfileScreen());
+            navigateTo(context,  ProfileScreen());
           },
           child: Container(
             margin: const EdgeInsets.only(bottom: 10),
@@ -178,8 +180,8 @@ class drawerHeader extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(color: thirdColor),
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage("assets/icons/profile_pic.png",),
+                image: const DecorationImage(
+                  image: const AssetImage("assets/icons/profile_pic.png",),
                 )),
           ),
         ),
@@ -217,9 +219,10 @@ Widget drawerBody(context) {
           icon: "assets/icons/search.png",
           text: 'البحـث',
           onTap: ()  {
-
-            navigateTo(context, SearchScreen(
-            ));
+            navigateTo(context, BlocProvider(
+              create: (context) => SearchCubit(MapsRepo(SearchHelper())),
+              child: const SearchScreen(),
+            ),);
           }),
       const Divider(
         thickness: 1,
@@ -235,7 +238,9 @@ Widget drawerBody(context) {
       menuItem(
           icon: "assets/icons/sign-out.png",
           text: 'تـسجيل الخروج',
-          onTap: () {}),
+          onTap: () {
+            signOut(context);
+          }),
     ],
   );
 }
@@ -259,14 +264,14 @@ Widget menuItem({
                 icon,
                 height: 40.0,
               )),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
           Expanded(
               flex: 3,
               child: Text(
                 text,
-                style: TextStyle(color: Colors.white, fontSize: 25.0),
+                style: const TextStyle(color: Colors.white, fontSize: 25.0),
               )),
         ],
       ),

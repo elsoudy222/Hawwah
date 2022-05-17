@@ -1,8 +1,8 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hawwah/models/place_details.dart';
-import 'package:hawwah/models/place_directions_model.dart';
-import 'package:hawwah/models/places_suggestion.dart';
-import 'package:hawwah/shared/network/remote/dio_helper.dart';
+import 'package:hawwah/models/search/place_details.dart';
+import 'package:hawwah/models/search/place_directions_model.dart';
+import 'package:hawwah/models/search/places_suggestion.dart';
+import 'package:hawwah/shared/network/remote/search_helper.dart';
 
 class MapsRepo {
   final SearchHelper searchHelper;
@@ -38,7 +38,7 @@ class MapsRepo {
       LatLng? destination,
       ) async {
     final directions =
-    await searchHelper.getPlaceDirections(origin, destination);
+    await searchHelper.getPlaceDirections(origin!, destination!);
 
     return PlaceDirections.fromJson(directions);
   }

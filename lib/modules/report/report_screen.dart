@@ -128,7 +128,7 @@ class _ReportScreenState extends State<ReportScreen> {
                           )
                         ],
                       ),
-                      HomeCubit.get(context).reportModel!= null?
+                     HomeCubit.get(context).reportModel!= null?
                       Expanded(
                         child: ListView.separated(
                           itemCount: HomeCubit.get(context).reportModel!.questions!.length,

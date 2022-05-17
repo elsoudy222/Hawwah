@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/models/calender_model.dart';
 import 'package:hawwah/models/prediction_model.dart';
-import 'package:hawwah/models/report_model.dart';
 import 'package:hawwah/models/risk_model.dart';
 import 'package:hawwah/modules/calender/calender_screen.dart';
 import 'package:hawwah/modules/home/home_screen.dart';
@@ -11,6 +10,10 @@ import 'package:hawwah/modules/riskCalculator/risk_calculator_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 
+import '../../models/auth/change_password_model.dart';
+import '../../models/auth/profile_model.dart';
+import '../../models/report_model.dart';
+import '../../models/self_heck_model.dart';
 import '../../modules/selfCheck/self_check_screen.dart';
 import '../../shared/components/constants.dart';
 
@@ -211,6 +214,7 @@ PredictionModel ?predictionModel;
       emit(ErrorCalenderDataState());
     });
   }
+
   void getCalenderData() {
     emit(LoadingCalenderDataState());
     DioHelper.getData(
@@ -226,6 +230,8 @@ PredictionModel ?predictionModel;
       emit(ErrorCalenderDataState());
     });
   }
+
+
   ReportModel ?reportModel;
   void getReportData() {
     emit(LoadingReportDataState());
@@ -240,6 +246,108 @@ PredictionModel ?predictionModel;
     }).catchError((error) {
       print(error.toString());
       emit(ErrorReportDataState());
+    });
+  }
+
+
+
+  SelfCheckModel? selfCheckModel;
+  void getQuestion() {
+    emit(LoadingSelfDataState());
+    DioHelper.getData(
+        url: '/exam/questians/',token: ' ${token}')
+        .then((value) {
+      selfCheckModel = SelfCheckModel.fromJson(value.data);
+      print(value.data);
+      emit(SuccessSelfDataState());
+    }).catchError((error) {
+      emit(ErrorSelfDataState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  void postAnswer({int? Id ,String? ans}){
+    emit(LoadingAnswerState());
+    DioHelper.postData(url:'/exam/questians/',token: ' ${token}',
+      data: {
+        'self_check':Id,
+        'answer':ans
+      },).then((value){
+      selfCheckModel = SelfCheckModel.fromJson(value.data);
+      print(value.data);
+      emit(SuccessAnswerState());
+    }).catchError((error){
+      print(error.toString());
+      emit(ErrorAnswerState(error));
+    });
+  }
+
+
+
+  ProfileModel? profileModel;
+  void getUser() {
+    emit(LoadingUserState());
+    DioHelper.getData(
+        url: '/auth/profile/',token:'${token}')
+        .then((value) {
+      profileModel = ProfileModel.fromJson(value.data);
+      emit(SuccessUserState());
+    }).catchError((error) {
+      emit(ErrorUserState(error.toString()));
+      print('errrrrrrrrrrror ${error.toString()}');
+    });
+  }
+
+  void updateProfile({
+    required String email,
+    required String phone,
+    required String first_name,
+    required String last_name,
+    required String birthdate
+  }) {
+    emit(LoadingUpdateState());
+    DioHelper.putData(
+        lang: 'ar',
+        data: {
+          'email':email,
+          'phone':phone,
+          'first_name':first_name,
+          'last_name':last_name,
+          'birthdate':birthdate
+        },
+        url: '/auth/profile/',token: ' ${token}')
+        .then((value) {
+      profileModel = ProfileModel.fromJson(value.data);
+      emit(SuccessUpdateState());
+    }).catchError((error) {
+      emit(ErrorUpdateState(error.toString()));
+      print('errrrrrrrrrrror ${error.toString()}');
+    });
+  }
+
+
+  ChangePasswordModel? changePasswordModel;
+  void changePassword({
+    required String oldpassword,
+    required String new_password,
+    required String new_password_conf
+  }){
+    emit(ChangeLoadingState());
+    DioHelper.postData(
+      url: "/auth/password/change/",
+      token: '${token}',
+      data: {
+        "oldpassword":oldpassword,
+        "new_password":new_password,
+        "new_password_conf":new_password_conf,
+      },).then((value){
+
+      changePasswordModel = ChangePasswordModel.fromJson(value.data);
+
+      emit(ChangeSuccessState(changePasswordModel));
+    }).catchError((error){
+      print('error henaaaa ${error.toString()}');
+      emit(ChangeErrorState(error.toString(),changePasswordModel));
     });
   }
 

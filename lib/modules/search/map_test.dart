@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hawwah/models/place_details.dart';
-import 'package:hawwah/models/places_suggestion.dart';
+import 'package:hawwah/models/search/place_details.dart';
+import 'package:hawwah/models/search/places_suggestion.dart';
 import 'package:hawwah/modules/search/cubit/search_cubit.dart';
 import 'package:hawwah/modules/search/location_helper.dart';
+import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../models/place_directions_model.dart';
+import '../../models/search/place_directions_model.dart';
+import 'widgets/distance_and_time.dart';
+import 'widgets/place_item.dart';
 
 class MapsScreen extends StatefulWidget {
   const MapsScreen({Key? key}) : super(key: key);
@@ -156,9 +159,9 @@ class _MapsScreenState extends State<MapsScreen> {
         elevation: 6,
         hintStyle: const TextStyle(fontSize: 20, color: Colors.grey),
         queryStyle: const TextStyle(fontSize: 18),
-        hint: 'البحث عن طبيب ....',
+        hint: 'البحث عن معمل تحاليل ....',
         border: const BorderSide(style: BorderStyle.none),
-        margins: const EdgeInsets.fromLTRB(20, 70, 20, 0),
+        margins: const EdgeInsets.fromLTRB(20, 95, 20, 0),
         padding: const EdgeInsets.fromLTRB(2, 0, 30, 0),
         height: 52,
         iconColor: thirdColor,
@@ -210,15 +213,17 @@ class _MapsScreenState extends State<MapsScreen> {
         listener: (context, state) {
           if (state is PlacesDirectionsLoadedState) {
               placeDirections = (state).placeDirections;
+              setState(() {
+                getPolylinePoints();
+              });
 
-              getPolylinePoints();
           }
         },
       child: Container(),
 
     );
   }
-  
+
   void getPolylinePoints() {
     polylinePoints = placeDirections!.polylinePoints.map((e) => LatLng(e.latitude, e.longitude)).toList();
   }
@@ -361,7 +366,7 @@ class _MapsScreenState extends State<MapsScreen> {
         child: FloatingActionButton(
             backgroundColor: thirdColor,
             child: const Icon(
-              Icons.place,
+              Icons.my_location,
               color: Colors.white,
             ),
             onPressed: (){
@@ -382,6 +387,46 @@ class _MapsScreenState extends State<MapsScreen> {
             : const Center(
           child: CircularProgressIndicator(),
         ),
+          Positioned(
+            top: 10,
+            left: 0,
+            right: 0,
+
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SearchScreen()));
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color:thirdColor,
+                          size: 30,
+                        ),
+                      ),
+
+
+                      const Spacer(),
+                      const Image(
+                        image: AssetImage('assets/icons/search_laboratory.png'),
+                        height: 50.0,
+                        width: 50.0,
+                      ),
+
+                    ],
+                  ),
+
+                ],
+              ),
+            ),
+          ),
         buildFloatingSearchBar(),
         isSearchedPlaceMarkerClicked
         ?
@@ -396,135 +441,7 @@ class _MapsScreenState extends State<MapsScreen> {
   }
 }
 
-/// Search Place item result:
-
-class PlaceItem extends StatelessWidget {
-  final PlaceSuggestion suggestion;
-
-  const PlaceItem({Key? key, required this.suggestion}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var subTitle = suggestion.description
-        .replaceAll(suggestion.description.split(",")[0], "");
-    return Container(
-        width: double.infinity,
-        margin: const EdgeInsetsDirectional.all(8),
-        padding: const EdgeInsetsDirectional.all(4),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          children: [
-            ListTile(
-              leading: Icon(Icons.place, color: thirdColor),
-              title: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "${suggestion.description.split(",")[0]}\n",
-                      style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextSpan(
-                      text: subTitle.substring(2),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ));
-  }
-}
 
 
 
-class DistanceAndTime extends StatelessWidget {
-  final PlaceDirections? placeDirections;
-  final isTimeAndDistanceVisible;
 
-  const DistanceAndTime(
-      {Key? key, this.placeDirections, required this.isTimeAndDistanceVisible})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Visibility(
-      visible: isTimeAndDistanceVisible,
-      child: Positioned(
-        top: 0,
-        bottom: 500,
-        left: 20,
-        right: 20,
-        child: Row(
-          children: [
-            Flexible(
-              flex: 1,
-              child: Card(
-                elevation: 6,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                margin: EdgeInsets.fromLTRB(20, 50, 20, 0),
-                color: Colors.white,
-                child: ListTile(
-                  dense: true,
-                  horizontalTitleGap: 0,
-                  leading: Icon(
-                    Icons.access_time_filled,
-                    color: thirdColor,
-                    size: 30,
-                  ),
-                  title: Text(
-                    placeDirections!.totalDuration,
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ),
-              ),
-            ),
-            // SizedBox(
-            //   width: 30,
-            // ),
-            Flexible(
-              flex: 1,
-              child: Card(
-                elevation: 6,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                margin: EdgeInsets.fromLTRB(20, 50, 20, 0),
-                color: Colors.white,
-                child: ListTile(
-                  dense: true,
-                  horizontalTitleGap: 0,
-                  leading: Icon(
-                    Icons.directions_car_filled,
-                    color:thirdColor,
-                    size: 30,
-                  ),
-                  title: Text(
-                    placeDirections!.totalDistance,
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

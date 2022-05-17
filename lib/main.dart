@@ -39,17 +39,6 @@ void main() async {
     );
   }
 
-  // runApp(
-  //   DevicePreview(
-  //     enabled: true,
-  //     tools: [
-  //       ...DevicePreview.defaultTools,
-  //     ],
-  //     builder: (context) => MyApp(
-  //       startWidget: widget,
-  //     ),
-  //   ),
-  // );
   
   runApp(MyApp(
    startWidget: widget,
@@ -67,7 +56,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getReportData(),
+      create: (context) => HomeCubit()..getReportData()..getUser(),
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
           // TODO: implement listener

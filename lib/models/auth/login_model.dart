@@ -4,6 +4,7 @@ class LoginModel {
   UserData? userData;
 
   LoginModel({this.status, this.messege, this.userData});
+
   LoginModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     messege = json['messege'];
@@ -12,6 +13,15 @@ class LoginModel {
         : null;
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    data['messege'] = this.messege;
+    if (this.userData != null) {
+      data['user_data'] = this.userData!.toJson();
+    }
+    return data;
+  }
 }
 
 class UserData {
@@ -30,7 +40,16 @@ class UserData {
     json['tokens'] != null ? new Tokens.fromJson(json['tokens']) : null;
   }
 
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['first_name'] = this.firstName;
+    data['email'] = this.email;
+    data['phone'] = this.phone;
+    if (this.tokens != null) {
+      data['tokens'] = this.tokens!.toJson();
+    }
+    return data;
+  }
 }
 
 class Tokens {
@@ -44,4 +63,10 @@ class Tokens {
     access = json['access'];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['refresh'] = this.refresh;
+    data['access'] = this.access;
+    return data;
+  }
 }

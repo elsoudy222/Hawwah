@@ -1,4 +1,6 @@
-import 'package:hawwah/models/register_model.dart';
+
+
+import '../../../models/auth/register_model.dart';
 
 abstract class SignupStates {}
 
@@ -7,7 +9,7 @@ class SignupInitialState extends SignupStates {}
 class SignupLoadingState extends SignupStates {}
 
 class SignupSuccessState extends SignupStates {
-   RegisterModel registerModel;
+  RegisterModel registerModel;
    SignupSuccessState(this.registerModel);
 }
 

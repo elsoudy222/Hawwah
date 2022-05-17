@@ -1,24 +1,17 @@
-import 'dart:convert';
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hawwah/layout/cubit/home_cubit.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/signUp/cubit/signup_cubit.dart';
 import 'package:hawwah/modules/signUp/cubit/signup_states.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../layout/home_layout.dart';
 import '../../shared/components/components.dart';
-import 'package:http/http.dart' as http;
-
 class SignupScreen extends StatefulWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -39,60 +32,32 @@ class _SignupScreenState extends State<SignupScreen> {
   String? myDate ;
 
 
-  Future<bool?> register({
-    String? email,
-    String? password,
-    String? phone,
-    String? first_name,
-    String? last_name,
-    String? birthdate,
-  }) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final url = Uri.https("https://hawabc.herokuapp.com", "/auth/register");
-    try {
-      print(url);
-      print(email);
-      final response = await http.post(url,
-        headers: {
-          "Accept": "application/json",
-          "x-localization": "${preferences.getString("lang")}"
-        },
-        body: {
-          "email": "$email",
-          "password": password,
-          "first_name": first_name,
-          "last_name": last_name,
-          "birthdate": birthdate,
-          "phone": phone,
-
-        },
-      ).timeout(Duration(seconds: 7), onTimeout: () {
-        throw 'no internet';
-      });
-      print(response.body);
-      final responseData = json.decode(response.body);
-      print(responseData);
-      if (response.statusCode == 200) {
-        Fluttertoast.showToast(msg: responseData['message']);
-        print("Success=========================================");
-        return true;
-      } else {
-        Fluttertoast.showToast(msg: responseData['message']);
-        return false;
-      }
-    } catch (e, t) {
-      Fluttertoast.showToast(msg: "خطأ فى الاتصال بالسيرفر");
-      print("fail $e ,$t");
-      return false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignupCubit(),
       child: BlocConsumer<SignupCubit, SignupStates>(
-        listener: (context, state) {},
+        listener: (context, state)
+        {
+
+
+          if (state is SignupSuccessState) {
+            if (state.registerModel.status!) {
+              navigateToAndFinish(context, LoginScreen());
+              showToast(
+                text: state.registerModel.message!,
+                state: ToastStates.SUCCESS,
+              );
+            }else
+            {
+              showToast(
+                text: state.registerModel.message!,
+                state: ToastStates.ERROR,
+              );
+            }
+          }
+        },
         builder: (context, state) {
           return Scaffold(
               body: Container(
@@ -145,12 +110,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                         decoration: InputDecoration(
                                           hintText: "الاسم الاول",
                                           hintStyle: TextStyle(
-                                              color: primaryColor),
+                                              color: thirdColor),
                                           fillColor: secondaryColor,
                                           filled: true,
                                           prefixIcon: Icon(
                                             Icons.person,
-                                            color: primaryColor,
+                                            color: thirdColor,
                                           ),
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius
@@ -167,7 +132,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius
                                                   .circular(30.0),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.white,
                                                   width: 2)),
                                         ),
@@ -190,12 +155,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                         decoration: InputDecoration(
                                           hintText: "اسم العائلة ",
                                           hintStyle: TextStyle(
-                                              color: primaryColor),
+                                              color: thirdColor),
                                           fillColor: secondaryColor,
                                           filled: true,
                                           prefixIcon: Icon(
                                             Icons.person,
-                                            color: primaryColor,
+                                            color: thirdColor,
                                           ),
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius
@@ -212,7 +177,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius
                                                   .circular(30.0),
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.white,
                                                   width: 2)),
                                         ),
@@ -242,34 +207,32 @@ class _SignupScreenState extends State<SignupScreen> {
                                           color: Colors.white, width: 2),
                                     ),
 
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Icon(
-                                              CupertinoIcons.calendar_today,
-                                              color: primaryColor,),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5),
-                                            child: Text(myDate == null
-                                                ? "تاريخ الميلاد"
-                                                : myDate!,
-                                              style: TextStyle(
-                                                color: primaryColor,
-                                                fontSize: 20,
-                                                //fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    child: defaultFormField(
+                                        prefix: Icons.date_range,
+                                        keyboardType: const TextInputType.numberWithOptions(),
+                                        controller: birthdateController,
+                                        hintText: "تاريخ الميلاد",
+                                        hintColor: Colors.white,
+                                        onTap: () {
+                                          showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime(1950),
+                                              lastDate: DateTime(2050))
+                                              .then((value) {
+                                            String formattedDate =
+                                            DateFormat('yyyy-MM-dd')
+                                                .format(value!);
+                                            birthdateController.text = formattedDate;
+                                          },);
+                                        },
+                                        prefixColor: Colors.white,
+                                        validate: (String? value) {
+                                          if (value!.isEmpty) {
+                                            return " يجب إدخال تاريخ الميلاد";
+                                          }
+                                          return null;
+                                        }),
                                   ),
                                 ),
                                 const SizedBox(
@@ -311,7 +274,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(
                                             30.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Colors.white, width: 2)),
                                   ),
                                 ),
@@ -352,7 +315,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(
                                             30.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Colors.white, width: 2)),
                                   ),
                                 ),
@@ -413,7 +376,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(
                                             30.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Colors.white, width: 2)),
                                   ),
                                 ),
@@ -421,40 +384,33 @@ class _SignupScreenState extends State<SignupScreen> {
                                 const SizedBox(
                                   height: 10.0,
                                 ),
-                                (state is! SignupLoadingState)
-                                    ? defaultButton(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0,
-                                  text: 'إنشـاء حساب',
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {
-                                      SignupCubit.get(context).userRegister(
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                          firstName: firstNameController.text,
-                                          lastName: lastNameController.text,
-                                          phone: phoneController.text,
-                                          birthdate: myDate!.toString(),);
-
-
-                                      // register(email: emailController.text,
-                                      //     password: passwordController.text,
-                                      //   first_name: firstNameController.text,
-                                      //     last_name: lastNameController.text,
-                                      //     phone: phoneController.text,
-                                      //     birthdate: birthdateController.text,
-                                      // );
-                                    }
-                                  },
-                                  radius: 30.0,
-                                  // width: MediaQuery.of(context).size.width ,
-                                ) : Center(child: CircularProgressIndicator()),
+                                ConditionalBuilder(
+                                  builder: (context)=>defaultButton(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
+                                    text: 'إنشـاء حساب',
+                                    onPressed: () {
+                                      if (formKey.currentState!.validate()) {
+                                        SignupCubit.get(context).userRegister(
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                            first_name: firstNameController.text,
+                                            last_name: lastNameController.text,
+                                            phone: phoneController.text,
+                                            birthdate: birthdateController.text);
+                                      }
+                                    },
+                                    radius: 30.0,
+                                    // width: MediaQuery.of(context).size.width ,
+                                  ),
+                                  condition:state is! SignupLoadingState,
+                                  fallback: (context)=>const Center(child: CircularProgressIndicator()),),
                                 const SizedBox(
                                   height: 10.0,
                                 ),
                                 Row(
                                   children: [
-                                    Text(
+                                    const Text(
                                       "-  لديك حساب بالفعل؟",
                                       style: TextStyle(
                                         fontSize: 20.0,
@@ -470,45 +426,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                       text: "تسجيل الدخول",
                                     ),
                                   ],
-                                ),
-                                const SizedBox(
-                                  height: 10.0,
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Container(
-                                          child: const Image(
-                                            image: AssetImage(
-                                              "assets/images/google.png",
-                                            ),
-                                          ),
-                                          height: 40,
-                                          width: 40,
-                                        ),
-                                        const SizedBox(
-                                          width: 30,
-                                        ),
-                                        Text(
-                                          "الدخول باستخدام جوجل",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20.0,
-                                              color: thirdColor),
-                                        )
-                                      ],
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
