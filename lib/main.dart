@@ -6,23 +6,15 @@ import 'package:hawwah/layout/cubit/home_cubit.dart';
 import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
 import 'package:hawwah/modules/onBoarding/on_boarding_screen.dart';
+import 'package:hawwah/modules/search/search_doctor.dart';
+import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/modules/splash/splash_screen.dart';
 import 'package:hawwah/shared/bloc_observer.dart';
 import 'package:hawwah/shared/components/themes.dart';
 import 'package:hawwah/shared/network/local/cache_helper.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
-
 import 'modules/signUp/sign_up_screen.dart';
-
 void main() async {
-  // don't remove this code
-  // don't remove this code
-  // don't remove this code
-  // don't remove this code
-  // don't remove this code
-  // don't remove this code
-  // don't remove this code
-
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
@@ -38,14 +30,10 @@ void main() async {
       widget: OnBoardingScreen(),
     );
   }
-
-  
   runApp(MyApp(
    startWidget: widget,
   ));
 }
-
-
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
 
@@ -56,7 +44,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getReportData()..getUser(),
+      create: (context) => HomeCubit()..getUser()..getReportData(),
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {
           // TODO: implement listener
@@ -76,7 +64,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('ar', 'AE'),
             ],
-            home: startWidget!,
+            home: SearchScreen(),
           );
         },
       ),

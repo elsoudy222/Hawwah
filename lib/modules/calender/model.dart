@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-
 class Day {
   final int?  id;
   final String ?title;
   Color? color;
   bool? isChecked;
-
   Day({this.title, this.id, this.color, this.isChecked});
 }
-
 List<Day> days = [
   Day(id: 1, title: '1', color: Colors.white, isChecked: false),
   Day(id: 2, title: '2', color: Colors.white, isChecked: false),

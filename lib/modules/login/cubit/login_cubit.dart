@@ -1,19 +1,14 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hawwah/shared/network/end_points.dart';
 import 'package:hawwah/shared/network/remote/dio_helper.dart';
 import '../../../models/auth/forget_pssword_model.dart';
 import '../../../models/auth/login_model.dart';
 import 'login_states.dart';
-
 class LoginCubit extends Cubit<LoginStates>{
   LoginCubit() : super(LoginInitialState());
-
   static LoginCubit get(context)=> BlocProvider.of(context);
-
-
-
   LoginModel? loginModel;
   void userLogin({
   required String email,
@@ -21,7 +16,7 @@ class LoginCubit extends Cubit<LoginStates>{
 }){
     emit(LoginLoadingState());
     DioHelper.postData(
-        url: "/auth/login/",
+        url: LOGIN,
         data: {
           "email":email,
         "password":password,
@@ -32,9 +27,7 @@ class LoginCubit extends Cubit<LoginStates>{
     }).catchError((error){
           print(error.toString());
           emit(LoginErrorState(error.toString()));
-        });
-        }
-
+        });}
 
   ForgetModel? forgetModel;
   void forgetPassword({
@@ -42,7 +35,7 @@ class LoginCubit extends Cubit<LoginStates>{
   }){
     emit(ForgetLoadingState());
     DioHelper.postData(
-      url: "/auth/sending/",
+      url: FORGET_PASSWORD,
       data: {
         "email":email,
       },).then((value){

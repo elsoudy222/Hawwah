@@ -44,7 +44,6 @@ class SelfCheckScreen1 extends StatefulWidget {
   @override
   _SelfCheckScreen1State createState() => _SelfCheckScreen1State();
 }
-
 class _SelfCheckScreen1State extends State<SelfCheckScreen1> {
 
   @override

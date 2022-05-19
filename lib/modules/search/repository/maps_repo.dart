@@ -3,12 +3,9 @@ import 'package:hawwah/models/search/place_details.dart';
 import 'package:hawwah/models/search/place_directions_model.dart';
 import 'package:hawwah/models/search/places_suggestion.dart';
 import 'package:hawwah/shared/network/remote/search_helper.dart';
-
 class MapsRepo {
   final SearchHelper searchHelper;
-
   MapsRepo(this.searchHelper);
-
 
   Future<List<PlaceSuggestion>> fetchSuggestions(
       String place, String sessionToken,) async {
@@ -18,9 +15,6 @@ class MapsRepo {
         .map((suggestion) => PlaceSuggestion.fromJson(suggestion))
         .toList();
   }
-
-
-
   Future<Place> getPlaceLocation(
       String placeId,
       String sessionToken,
@@ -30,9 +24,6 @@ class MapsRepo {
 
     return Place.fromJson(place);
   }
-
-
-
   Future<PlaceDirections> getPlaceDirections(
       LatLng? origin,
       LatLng? destination,

@@ -15,9 +15,7 @@ import '../shared/network/remote/search_helper.dart';
 import 'cubit/home_cubit.dart';
 
 class HomeLayout extends StatelessWidget {
-  HomeLayout({Key? key}) : super(key: key);
-
-
+  const HomeLayout({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -153,17 +151,9 @@ class HomeLayout extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
+            ),);},),);}}
 class drawerHeader extends StatelessWidget {
   const drawerHeader({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Column(

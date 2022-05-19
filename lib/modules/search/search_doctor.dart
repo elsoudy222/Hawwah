@@ -132,6 +132,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../models/search/place_directions_model.dart';
+import 'widgets/bottom_sheet_details.dart';
 import 'widgets/distance_and_time.dart';
 import 'widgets/place_item.dart';
 
@@ -152,13 +153,22 @@ class _SearchDoctorState extends State<SearchDoctor> {
   GlobalKey<FormState> floatingSearchBarKey = GlobalKey<FormState>();
   static Position? position;
 
-  // Variables for getPlacesLocation///
+  //TODO Variables for getPlacesLocation///
   Set<Marker> markers = {};
   late PlaceSuggestion placeSuggestion;
   late Place selectedPlace;
   late Marker searchedPlaceMarker;
   late Marker currentLocationMarker;
   late CameraPosition goToSearchedForPlacePosition;
+
+  //TODO these variables for getDirections
+  PlaceDirections? placeDirections;
+  var progressIndicator = false;
+  late List<LatLng> polylinePoints;
+  var isSearchedPlaceMarkerClicked = false;
+  var isTimeAndDistanceVisible = false;
+  late String time;
+  late String distance;
 
   @override
   initState() {
@@ -168,59 +178,143 @@ class _SearchDoctorState extends State<SearchDoctor> {
   }
 
   void addMarkers() async {
+    // Current Location Marker
     markers.add(  Marker(
-      markerId:  MarkerId("Said"),
+      markerId:  MarkerId("currentLocation"),
       position:  LatLng(position!.latitude, position!.longitude),
       //TODO: add ifo window
-      infoWindow:  const InfoWindow(
-        title:  "Said Said Said Said Said Said Said Said Said Said ",
-        snippet:  "This is a marker that has a info window",
-        //TODO: add onTap
+      infoWindow:   InfoWindow(
+        title:  "Your Current Location",
+       // snippet:  "This is a marker that has a info window",
+
+        // onTap: (){
+        //   showModalBottomSheet(
+        //     shape: const RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.vertical(
+        //         top: Radius.circular(30),
+        //       ),
+        //     ),
+        //     context: context,
+        //     builder: (context)=> buildDoctorMarkerDetails(
+        //       doctorName: "klsjgksdlfm;lskjdf;",
+        //       doctorAddressArabic: " lkdsfklshgkldfsh",
+        //       doctorAddressEnglish: " -  8Mourad, Oula, Giza ;lsdfkjl;sjdf;kjs, Giza Governorate ",
+        //       doctorNumber: " 0122523515163142207",
+        //       doctorServices1: " -عـلاج السds,fmklsdرطـان",
+        //       doctorServices2: "- الكشف المبكر والوskdfjklsjoifقاية من السرطان",
+        //
+        //     ),
+        //   );
+        // },
       ),
 
-      //TODO: add icon
-      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
 
 
     ));
-    markers.add(  const Marker(
-      markerId:  MarkerId("Said"),
-      position:  LatLng(30.0541558938057, 31.346532475689095),
+    // Doctor1 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("0"),
+      position:  const LatLng(30.046428860664676, 31.21060976873396),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
-        title:  "Said Said Said Said Said Said Said Said Said Said ",
+        title:  "مركز ا.د محمد عبدالله - د. عماد شاش لعلاج الأورام",
         snippet:  "This is a marker that has a info window",
 
         //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "مركز ا.د محمد عبدالله - د. عماد شاش لعلاج الأورام",
+              doctorAddress: " - 8 مراد، أولى، قسم الجيزة، الجيزة \n -  8Mourad, Oula, Giza District, Giza Governorate",
+              doctorNumber: " 01223142207",
+              doctorServices1: " -عـلاج السرطـان",
+              doctorServices2: "- الكشف المبكر والوقاية من السرطان",
 
+            ),
+          );
+        },
       ),
+
 
       //TODO: add icon
       //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
 
 
     ));
-    markers.add(const Marker(
-      markerId: MarkerId("user"),
-      position: LatLng(30.061768001626994, 31.205321364966856),
-    ));
-    markers.add(const Marker(
-      markerId: MarkerId("Doctor"),
-      position: LatLng(30.10543804560771, 31.342990789628125),
-    ));
-    markers.add(const Marker(
-        markerId: MarkerId("Labs"),
-        position: LatLng(30.007670876789618, 31.187345161130615)));
-  }
-  // these variables for getDirections
-  PlaceDirections? placeDirections;
-  var progressIndicator = false;
-  late List<LatLng> polylinePoints;
-  var isSearchedPlaceMarkerClicked = false;
-  var isTimeAndDistanceVisible = false;
-  late String time;
-  late String distance;
+    // Doctor2 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("1"),
+      position:  const LatLng(29.99886600175735, 31.22725178737928),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "د/ أشرف الزيــات",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+         onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/ أشرف الزيــات \n Dr. Ashraf El Zaiat",
+              doctorAddress: " - 43 أول كورنيش المعادى القاهرة , مصـر ",
+              doctorNumber: " 01020223215",
+              doctorServices1: " -عملية استئصال سرطان الثدي \n - علاج سرطان الثدي \n - علاج إفرازات الثدي",
+              doctorServices2: "- علاج اورام الثدي \n - علاج الم الثدي \n - عملية اعادة بناء الثدي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
 
+
+    ));
+    // Doctor3 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("2"),
+      position:  const LatLng(29.99886600175735, 31.22725178737928),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "د/ أشرف الزيــات",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/ أشرف الزيــات \n Dr. Ashraf El Zaiat",
+              doctorAddress: " - 43 أول كورنيش المعادى القاهرة , مصـر ",
+              doctorNumber: " 01020223215",
+              doctorServices1: " -عملية استئصال سرطان الثدي \n - علاج سرطان الثدي \n - علاج إفرازات الثدي",
+              doctorServices2: "- علاج اورام الثدي \n - علاج الم الثدي \n - عملية اعادة بناء الثدي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
+    ));
+  }
   void buildCameraNewPosition() {
     goToSearchedForPlacePosition = CameraPosition(
       bearing: 0.0,
@@ -237,7 +331,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
       target: LatLng(position!.latitude, position!.longitude),
       bearing: 0.0,
       tilt: 0.0,
-      zoom: 14.0);
+      zoom: 10.0);
 
   Future<void> _getMyCurrentLocation() async {
     position = await LocationHelper.getCurrentPosition().whenComplete(() {
@@ -356,7 +450,8 @@ class _SearchDoctorState extends State<SearchDoctor> {
   }
 
   void getPolylinePoints() {
-    polylinePoints = placeDirections!.polylinePoints.map((e) => LatLng(e.latitude, e.longitude)).toList();
+    polylinePoints = placeDirections!.polylinePoints.map((e) =>
+        LatLng(e.latitude, e.longitude)).toList();
   }
 
   Widget buildSelectedPlaceLocationBloc() {
@@ -367,12 +462,10 @@ class _SearchDoctorState extends State<SearchDoctor> {
           goToMySearchedLocation();
           getDirections();
         }
-
       },
       child: Container(),
     );
   }
-
   void getDirections(){
     BlocProvider.of<SearchCubit>(context).emitPlacesDirections(
       LatLng(position!.latitude, position!.longitude),
@@ -425,7 +518,6 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
 
   void addMarkerToMarkersAndUpdateUi(Marker marker) {
-
     setState(() {
       markers.add(marker);
     });

@@ -15,7 +15,6 @@ class SignupCubit extends Cubit<SignupStates>{
   RegisterModel? registerModel;
 
    void userRegister({
-
     required String email,
     required String password,
     required String first_name,

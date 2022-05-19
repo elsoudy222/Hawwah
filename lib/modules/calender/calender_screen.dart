@@ -35,11 +35,9 @@ class _CalenderScreenState extends State<CalenderScreen> {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is SuccessCalenderDataState) {
-          print('hhhhhhhhhhhhhhh');
           showToast(text: 'تم حفظ البيانات بنجاح', state: ToastStates.SUCCESS);
         }
         if (state is ErrorCalenderDataState) {
-          print('mmmmmmm');
           showToast(
               text: 'فشل في حفظ البيانات تاكد من البيانات المدخله',
               state: ToastStates.ERROR);
@@ -59,7 +57,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
       },
     );
   }
-
   Widget _body() {
     return SingleChildScrollView(
       child: Container(
@@ -147,7 +144,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
-
   Widget _checkItem(Color? color,String ?title) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -167,7 +163,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
-
   _buttonCalender() {
     return SizedBox(
       height: 300,
@@ -204,7 +199,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
-
   void dialog(BuildContext context, {Day? day}) {
     showDialog(
       context: context,
@@ -574,51 +568,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
       },
     );
   }
-
-  Widget _appBar() {
-    return Container(
-      margin: EdgeInsets.all(5),
-      height: 60,
-      color: Color.fromRGBO(253, 220, 230, 1),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/images/menu.png',
-              fit: BoxFit.contain,
-              width: 60,
-              height: 60,
-            ),
-            iconSize: 50,
-          ),
-          const Text(
-            'حَوَّاء ',
-            style:
-                TextStyle(fontSize: 35, color: Color.fromRGBO(206, 86, 139, 1)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  _background() {
-    return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromRGBO(248, 157, 185, 1.0),
-              Color.fromRGBO(250, 250, 250, 1.0)
-            ]),
-      ),
-    );
-  }
-
   _squareImage() {
     return Container(
       height: MediaQuery.of(context).size.height,

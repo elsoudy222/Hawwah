@@ -16,6 +16,7 @@ import '../../models/report_model.dart';
 import '../../models/self_heck_model.dart';
 import '../../modules/selfCheck/self_check_screen.dart';
 import '../../shared/components/constants.dart';
+import '../../shared/network/end_points.dart';
 
 part 'home_states.dart';
 
@@ -138,7 +139,7 @@ PredictionModel ?predictionModel;
   }) {
     emit(LoadingPredictionDataState());
     DioHelper.postData(
-      url: '/predict/',
+      url: PREDICTION,
       token: token,
       data: {
         "perimeter_mean": perimeter_mean,
@@ -170,7 +171,7 @@ PredictionModel ?predictionModel;
   }) {
     emit(LoadingRiskDataState());
     DioHelper.postData(
-      url: '/risk_calculator/',
+      url: RISK_CALCULATOR,
       token: token,
       data: {
         "age": age,
@@ -198,7 +199,7 @@ PredictionModel ?predictionModel;
   }) {
     emit(LoadingCalenderDataState());
     DioHelper.postData(
-      url: '/exam/calender/',
+      url: SEND_CALENDER_DATA,
       token: token,
       data: {
         "period": data,
@@ -218,7 +219,7 @@ PredictionModel ?predictionModel;
   void getCalenderData() {
     emit(LoadingCalenderDataState());
     DioHelper.getData(
-      url: '/exam/calender/?page=35081069',
+      url: GET_CALENDER_DATA,
       token: token,
     ).then((value) {
       print(value);

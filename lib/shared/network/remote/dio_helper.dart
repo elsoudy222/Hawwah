@@ -2,9 +2,6 @@ import 'package:dio/dio.dart';
 
 class DioHelper {
   static late Dio dio;
-
-  //https://predictionapidjango.herokuapp.com
-
   static init() {
     dio = Dio(
       BaseOptions(
@@ -13,7 +10,6 @@ class DioHelper {
       ),
     );
   }
-
   static Future<Response> getData({
     required String url,
     String? token,
@@ -28,7 +24,6 @@ class DioHelper {
       queryParameters: query,
     );
   }
-
   static Future<Response> postData({
     required String url,
     required data,

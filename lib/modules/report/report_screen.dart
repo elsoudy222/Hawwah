@@ -134,7 +134,7 @@ class _ReportScreenState extends State<ReportScreen> {
                           itemCount: HomeCubit.get(context).reportModel!.questions!.length,
                           itemBuilder: (context, index) {
                             return ItemReport(
-                              isSelacted: sel,
+                              isSelected: sel,
                               date: HomeCubit.get(context).reportModel!.questions![index].date,
                               answer: HomeCubit.get(context).reportModel!.questions![index].selfCheck!.question,
                               Q: HomeCubit.get(context).reportModel!.questions![index].answer,
@@ -163,13 +163,13 @@ class _ReportScreenState extends State<ReportScreen> {
 
 
 class ItemReport extends StatefulWidget {
-  bool ?isSelacted;
+  bool? isSelected;
   String ?date;
   String ?answer;
   bool ?Q;
   ItemReport({
     Key ?key,
-    required this.isSelacted,
+    required this.isSelected,
     required this.date,
     required this.answer,
     required this.Q,
@@ -196,7 +196,7 @@ class _ItemReportState extends State<ItemReport> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isSelacted!
+    return widget.isSelected!
         ? Row(
       children: [
         Expanded(

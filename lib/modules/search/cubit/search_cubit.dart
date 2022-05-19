@@ -18,8 +18,6 @@ class SearchCubit extends Cubit<SearchStates> {
 
  static SearchCubit get(context)=> BlocProvider.of(context);
 
-
-
    void emitPlacesSuggestion(String place,String sessionToken) {
      mapsRepo.fetchSuggestions(place,sessionToken).then((suggestions){
      emit(PlacesLoadedState(suggestions));

@@ -11,15 +11,12 @@ import 'package:hawwah/shared/network/local/cache_helper.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../shared/components/components.dart';
 import '../../shared/components/constants.dart';
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
-
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var forgetController = TextEditingController();
   var passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -39,12 +36,7 @@ class LoginScreen extends StatelessWidget {
                 showToast(text: "تم تسجيل الدخول بنجاح", state: ToastStates.SUCCESS);
               });
             }else{
-              showToast(text: state.loginModel!.messege!, state: ToastStates.ERROR);
-              print('dsfdsfadsfas');
-            }
-          }
-          //________________________________//
-          //_________________//
+              showToast(text: state.loginModel!.messege!, state: ToastStates.ERROR);}}
           if (state is ForgetSuccessState) {
             showToast(
                 text: state.forgetModel!.messege!, state: ToastStates.SUCCESS);

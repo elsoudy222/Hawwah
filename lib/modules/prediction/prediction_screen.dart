@@ -8,13 +8,10 @@ import 'prediction_result_screen.dart';
 
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({Key? key}) : super(key: key);
-
   @override
   _PredictionScreenState createState() => _PredictionScreenState();
 }
-
 class _PredictionScreenState extends State<PredictionScreen> {
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -37,7 +34,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
         TextEditingController area_seController = TextEditingController();
         TextEditingController perimeter_worstController = TextEditingController();
         TextEditingController area_worstController = TextEditingController();
-        TextEditingController resultController = TextEditingController();
+        //TextEditingController resultController = TextEditingController();
         return Scaffold(
             body: Container(
               decoration: const BoxDecoration(

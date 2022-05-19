@@ -35,7 +35,6 @@ class ProfileScreen extends StatelessWidget {
               state: ToastStates.SUCCESS,
             );
             Navigator.pop(context);
-
           }else {
             showToast(
               text: state.changePasswordModel!.messege!,
@@ -45,11 +44,9 @@ class ProfileScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-// عرفت الحل
         var model = HomeCubit
             .get(context)
             .profileModel;
-
         return Scaffold(
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(200),

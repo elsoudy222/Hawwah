@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 import 'package:hawwah/modules/login/login_screen.dart';
@@ -10,6 +10,7 @@ import "package:smooth_page_indicator/smooth_page_indicator.dart";
 import 'model.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({Key? key}) : super(key: key);
   @override
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
 }
@@ -49,11 +50,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: 'لازم الكل يعرف اهميه التوعيه لأنها ممكن تنقذ حياة شخص اخر',
     ),
   ];
-
   var pageController = PageController();
-
   bool isLast = false;
-
   void submit() {
     CacheHelper.saveData(
       key: 'onBoarding',
@@ -67,13 +65,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(248, 157, 185, 1.0),
+        backgroundColor: const Color.fromRGBO(248, 157, 185, 1.0),
         elevation: 0.0,
         actions: [
           TextButton(
@@ -116,14 +113,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         });
                       }
                     },
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) =>
                         buildBoarderItem(pages[index]),
                     itemCount: pages.length,
                     controller: pageController,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40.0,
                 ),
                 SmoothPageIndicator(
@@ -137,19 +134,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     activeDotColor: thirdColor,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40.0,
                 ),
                 Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         if (isLast) {
                           submit();
                         } else {
                           pageController.nextPage(
-                              duration: Duration(milliseconds: 750),
+                              duration: const Duration(milliseconds: 750),
                               curve: Curves.fastLinearToSlowEaseIn);
                         }
                       },
@@ -166,7 +163,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               spreadRadius: 2,
                               blurRadius: 5,
                               offset:
-                                  Offset(0, 1), // changes position of shadow
+                                  const Offset(0, 1), // changes position of shadow
                             ),
                           ],
                           borderRadius: BorderRadius.circular(50),
@@ -195,14 +192,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           Expanded(
             child: Image.asset(
-              '${pages.image}',
+              pages.image,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Text(
-            "${pages.title}",
+            pages.title,
             style: TextStyle(
               fontSize: 30,
            fontWeight: FontWeight.bold,
@@ -210,11 +207,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
            //   fontFamily: "MyFlutterApp",
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Text(
-            "${pages.body}",
+            pages.body,
             style: TextStyle(
               fontSize: 20,
                 color: thirdColor

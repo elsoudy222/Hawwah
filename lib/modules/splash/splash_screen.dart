@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:location/location.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../login/login_screen.dart';
-
 class SplashScreen extends StatefulWidget {
   final Widget widget;
-
   const SplashScreen({Key? key, required this.widget}) : super(key: key);
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
