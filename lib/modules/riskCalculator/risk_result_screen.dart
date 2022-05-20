@@ -1,13 +1,21 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 
 class RiskResultScreen extends StatefulWidget {
-  final result;
-  const RiskResultScreen({Key? key, required this.result}) : super(key: key);
+  final result1;
+  final result2;
+  final result3;
+  final result4;
+
+  const RiskResultScreen({
+    Key? key,
+    required this.result1,
+    required this.result2,
+    required this.result3,
+    required this.result4,
+  }) : super(key: key);
 
   @override
   State<RiskResultScreen> createState() => _RiskResultScreenState();
@@ -16,7 +24,7 @@ class RiskResultScreen extends StatefulWidget {
 class _RiskResultScreenState extends State<RiskResultScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text("نســبة الإصابة"),
         backgroundColor: primaryColor,
@@ -33,23 +41,81 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
               ]),
         ),
         child: Stack(
-          children:  [
-            const Center(
-              child:  Image(
-                height: 500,
-                width: 500.0,
-                image: AssetImage(
-                  "assets/images/selfCheckResult.png",
-                ),),
-            ),
-             Center(
-              child: Text(
-                '${widget.result*100} %',
-                style:  TextStyle(
-                    color: thirdColor,
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold
-                ),
+          children: [
+            // const Center(
+            //   child: Image(
+            //     image: AssetImage(
+            //       "assets/images/selfCheckResult.png",
+            //     ),
+            //   ),
+            // ),
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    ' نسبه الاصابه الخاصه بك علي مدار خمس اعوام : ',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${widget.result1 * 100} %',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+
+                  Text(
+                    'نسبه الاصابه لمن يشبهك علي مدار ٥ اعوام : ',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${widget.result2 * 100} %',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+
+
+                  Text(
+                    'نسبه الاصابه لمن يشبهك مدي الحياه : ',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${widget.result3 * 100} %',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+
+
+                  Text(
+                    'نسبه الاصابه الخاصه بك علي مدار الحياه : ',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${widget.result4 * 100} %',
+                    style: TextStyle(
+                        color: thirdColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
             Positioned(
@@ -65,12 +131,12 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
                   ),
                   child: Center(
                       child: Text(
-                        "تــم",
-                        style: TextStyle(fontSize: 30.0, color: thirdColor),
-                      )),
+                    "تــم",
+                    style: TextStyle(fontSize: 30.0, color: thirdColor),
+                  )),
                 ),
                 onTap: () {
-                  navigateToAndFinish(context,  HomeLayout());
+                  navigateToAndFinish(context, HomeLayout());
                 },
               ),
             )

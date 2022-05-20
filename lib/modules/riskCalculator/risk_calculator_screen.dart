@@ -23,8 +23,10 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
   String Q3 = "كم كان عمر المرأة وقت ولادت الطفل الاول؟";
   String Q4 = "هل سبق للمرأة أن خضعت لأخذ عينة من الثدى؟";
   String Q5 = "كم عدد عينات الثدي (الإيجابية أو السلبية)التي خضعت لها المرأه؟";
-  String Q6 = "هل خضعت المرأه لخزعة ثدى واحدة على الأقل مصحوبه بتضخم غير منطقى؟";
-  String Q7 = "كم عدد اقارب المرأة من الدرجة الأولى(أم - اخوات - اطفال بنات)مصابات بسرطان الثدي؟";
+  String Q6 =
+      "هل خضعت المرأه لخزعة ثدى واحدة على الأقل مصحوبه بتضخم غير منطقى؟";
+  String Q7 =
+      "كم عدد اقارب المرأة من الدرجة الأولى(أم - اخوات - اطفال بنات)مصابات بسرطان الثدي؟";
   String Q8 = "ما هو جنس / عرق المرأة؟";
 
   // List of Answers :
@@ -98,15 +100,15 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
   int? selectAnswerValueQ8 = 0;
   bool isSelect = false;
 
-  onPressed()async{
-    if(ageController.text ==''){
+  onPressed() async {
+    if (ageController.text == '') {
       showToast(text: 'من فضلك ادخل العمر', state: ToastStates.ERROR);
-    }else{
-      int age =int.parse(ageController.value.text);
-      if(age>85||age <35 ){
+    } else {
+      int age = int.parse(ageController.value.text);
+      if (age > 85 || age < 35) {
         showToast(text: 'العمر من 35 الي 85', state: ToastStates.ERROR);
         print("ff ${ageController.value.text}");
-      }else{
+      } else {
         HomeCubit.get(context).sendRiskData(
           age: age,
           menarch_age: selectAnswerValueQ2!,
@@ -129,7 +131,11 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
           navigateTo(
               context,
               RiskResultScreen(
-                  result: HomeCubit.get(context).riskModel!.data!.results!.lifetimeAbs));
+                result1: HomeCubit.get(context).riskModel!.data!.results!.fiveYearAbs,
+                result2: HomeCubit.get(context).riskModel!.data!.results!.fiveYearAve,
+                result3: HomeCubit.get(context).riskModel!.data!.results!.lifetimeAbs,
+                result4: HomeCubit.get(context).riskModel!.data!.results!.lifetimeAve,
+              ));
         }
         // TODO: implement listener
       },
@@ -170,7 +176,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                 Text(
+                                Text(
                                   "ما هو سن المرأة؟",
                                   style: TextStyle(
                                     fontSize: 25.0,
@@ -181,19 +187,18 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                   height: 5.0,
                                 ),
                                 Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30.0),
-                                        border: Border.all(color: Colors.white,
-                                        width: 3
-                                        )),
-                                    child: defaultFormField(
-                                        controller: ageController,
-                                        keyboardType: TextInputType.number,
-                                        prefix: Icons.accessibility,
-                                        prefixColor: Colors.white,
-                                        hintColor: Colors.white,
-                                        hintText: 'العمر من 35 الي 85',
-                                    ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      border: Border.all(
+                                          color: Colors.white, width: 3)),
+                                  child: defaultFormField(
+                                    controller: ageController,
+                                    keyboardType: TextInputType.number,
+                                    prefix: Icons.accessibility,
+                                    prefixColor: Colors.white,
+                                    hintColor: Colors.white,
+                                    hintText: 'العمر من 35 الي 85',
+                                  ),
                                 )
                               ],
                             ),
@@ -238,9 +243,10 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             alignment: WrapAlignment.center,
                                             spacing: 15,
                                             children: answer2.map((answers) {
-                                              bool isSelected = selectAnswerQ2 ==
-                                                  answers['label'];
-                                              final forgroundColor =! isSelected
+                                              bool isSelected =
+                                                  selectAnswerQ2 ==
+                                                      answers['label'];
+                                              final forgroundColor = !isSelected
                                                   ? Colors.white
                                                   : thirdColor;
                                               final backgroundColor = isSelected
@@ -261,14 +267,16 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                                 child: Chip(
                                                   shape: const StadiumBorder(
                                                       side: BorderSide(
-                                                          color: Colors.white,)),
+                                                    color: Colors.white,
+                                                  )),
                                                   label: Text(
                                                     answers['label'],
                                                     style: TextStyle(
                                                       color: forgroundColor,
                                                     ),
                                                   ),
-                                                  backgroundColor: backgroundColor,
+                                                  backgroundColor:
+                                                      backgroundColor,
                                                 ),
                                               );
                                             }).toList(),
@@ -318,9 +326,10 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             alignment: WrapAlignment.center,
                                             spacing: 15,
                                             children: answer3.map((answers) {
-                                              bool isSelected = selectAnswerQ3 ==
-                                                  answers['label'];
-                                              final forgroundColor =! isSelected
+                                              bool isSelected =
+                                                  selectAnswerQ3 ==
+                                                      answers['label'];
+                                              final forgroundColor = !isSelected
                                                   ? Colors.white
                                                   : thirdColor;
                                               final backgroundColor = isSelected
@@ -339,16 +348,18 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                                   print(selectAnswerQ3);
                                                 },
                                                 child: Chip(
-                                                  shape:  const StadiumBorder(
+                                                  shape: const StadiumBorder(
                                                       side: BorderSide(
-                                                          color:Colors.white,)),
+                                                    color: Colors.white,
+                                                  )),
                                                   label: Text(
                                                     answers['label'],
                                                     style: TextStyle(
                                                       color: forgroundColor,
                                                     ),
                                                   ),
-                                                  backgroundColor: backgroundColor,
+                                                  backgroundColor:
+                                                      backgroundColor,
                                                 ),
                                               );
                                             }).toList(),
@@ -376,7 +387,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                               children: [
                                 Text(
                                   Q4,
-                                  style:TextStyle(
+                                  style: TextStyle(
                                       fontSize: 20.0,
                                       color: thirdColor,
                                       fontWeight: FontWeight.bold),
@@ -393,9 +404,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
                                           children: answer4.map((answers) {
-                                            bool isSelected =
-                                                selectAnswerQ4 == answers['label'];
-                                            final forgroundColor =! isSelected
+                                            bool isSelected = selectAnswerQ4 ==
+                                                answers['label'];
+                                            final forgroundColor = !isSelected
                                                 ? Colors.white
                                                 : thirdColor;
                                             final backgroundColor = isSelected
@@ -404,7 +415,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ4 = answers['label'];
+                                                  selectAnswerQ4 =
+                                                      answers['label'];
                                                   selectAnswerValueQ4 =
                                                       answers['value'];
                                                   isSelect = false;
@@ -413,16 +425,18 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                                 print(selectAnswerQ4);
                                               },
                                               child: Chip(
-                                                shape:  const StadiumBorder(
+                                                shape: const StadiumBorder(
                                                     side: BorderSide(
-                                                        color: Colors.white,)),
+                                                  color: Colors.white,
+                                                )),
                                                 label: Text(
                                                   answers['label'],
                                                   style: TextStyle(
                                                     color: forgroundColor,
                                                   ),
                                                 ),
-                                                backgroundColor: backgroundColor,
+                                                backgroundColor:
+                                                    backgroundColor,
                                               ),
                                             );
                                           }).toList(),
@@ -452,7 +466,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                               children: [
                                 Text(
                                   Q5,
-                                  style:  TextStyle(
+                                  style: TextStyle(
                                       fontSize: 20.0,
                                       color: thirdColor,
                                       fontWeight: FontWeight.bold),
@@ -469,9 +483,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
                                           children: answer5.map((answers) {
-                                            bool isSelected =
-                                                selectAnswerQ5 == answers['label'];
-                                            final forgroundColor =! isSelected
+                                            bool isSelected = selectAnswerQ5 ==
+                                                answers['label'];
+                                            final forgroundColor = !isSelected
                                                 ? Colors.white
                                                 : thirdColor;
                                             final backgroundColor = isSelected
@@ -480,7 +494,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ5 = answers['label'];
+                                                  selectAnswerQ5 =
+                                                      answers['label'];
                                                   selectAnswerValueQ5 =
                                                       answers['value'];
                                                   isSelect = false;
@@ -491,14 +506,16 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                               child: Chip(
                                                 shape: const StadiumBorder(
                                                     side: BorderSide(
-                                                        color: Colors.white,)),
+                                                  color: Colors.white,
+                                                )),
                                                 label: Text(
                                                   answers['label'],
                                                   style: TextStyle(
                                                     color: forgroundColor,
                                                   ),
                                                 ),
-                                                backgroundColor: backgroundColor,
+                                                backgroundColor:
+                                                    backgroundColor,
                                               ),
                                             );
                                           }).toList(),
@@ -545,9 +562,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
                                           children: answer6.map((answers) {
-                                            bool isSelected =
-                                                selectAnswerQ6 == answers['label'];
-                                            final forgroundColor =! isSelected
+                                            bool isSelected = selectAnswerQ6 ==
+                                                answers['label'];
+                                            final forgroundColor = !isSelected
                                                 ? Colors.white
                                                 : thirdColor;
                                             final backgroundColor = isSelected
@@ -556,7 +573,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ6 = answers['label'];
+                                                  selectAnswerQ6 =
+                                                      answers['label'];
                                                   selectAnswerValueQ6 =
                                                       answers['value'];
                                                   isSelect = false;
@@ -565,16 +583,18 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                                 print(selectAnswerQ6);
                                               },
                                               child: Chip(
-                                                shape:  const StadiumBorder(
+                                                shape: const StadiumBorder(
                                                     side: BorderSide(
-                                                        color: Colors.white,)),
+                                                  color: Colors.white,
+                                                )),
                                                 label: Text(
                                                   answers['label'],
                                                   style: TextStyle(
                                                     color: forgroundColor,
                                                   ),
                                                 ),
-                                                backgroundColor: backgroundColor,
+                                                backgroundColor:
+                                                    backgroundColor,
                                               ),
                                             );
                                           }).toList(),
@@ -621,9 +641,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
                                           children: answer7.map((answers) {
-                                            bool isSelected =
-                                                selectAnswerQ7 == answers['label'];
-                                            final forgroundColor =! isSelected
+                                            bool isSelected = selectAnswerQ7 ==
+                                                answers['label'];
+                                            final forgroundColor = !isSelected
                                                 ? Colors.white
                                                 : thirdColor;
                                             final backgroundColor = isSelected
@@ -632,7 +652,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ7 = answers['label'];
+                                                  selectAnswerQ7 =
+                                                      answers['label'];
                                                   selectAnswerValueQ7 =
                                                       answers['value'];
                                                   isSelect = false;
@@ -643,14 +664,16 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                               child: Chip(
                                                 shape: const StadiumBorder(
                                                     side: BorderSide(
-                                                        color: Colors.white,)),
+                                                  color: Colors.white,
+                                                )),
                                                 label: Text(
                                                   answers['label'],
                                                   style: TextStyle(
                                                     color: forgroundColor,
                                                   ),
                                                 ),
-                                                backgroundColor: backgroundColor,
+                                                backgroundColor:
+                                                    backgroundColor,
                                               ),
                                             );
                                           }).toList(),
@@ -680,7 +703,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                               children: [
                                 Text(
                                   Q8,
-                                  style:  TextStyle(
+                                  style: TextStyle(
                                       fontSize: 20.0,
                                       color: thirdColor,
                                       fontWeight: FontWeight.bold),
@@ -697,9 +720,9 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                           alignment: WrapAlignment.center,
                                           spacing: 15,
                                           children: answer8.map((answers) {
-                                            bool isSelected =
-                                                selectAnswerQ8 == answers['label'];
-                                            final forgroundColor =! isSelected
+                                            bool isSelected = selectAnswerQ8 ==
+                                                answers['label'];
+                                            final forgroundColor = !isSelected
                                                 ? Colors.white
                                                 : thirdColor;
                                             final backgroundColor = isSelected
@@ -708,7 +731,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                             return GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  selectAnswerQ8 = answers['label'];
+                                                  selectAnswerQ8 =
+                                                      answers['label'];
                                                   selectAnswerValueQ8 =
                                                       answers['value'];
                                                   isSelect = false;
@@ -717,16 +741,18 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                                 print(selectAnswerQ8);
                                               },
                                               child: Chip(
-                                                shape:  const StadiumBorder(
+                                                shape: const StadiumBorder(
                                                     side: BorderSide(
-                                                        color: Colors.white,)),
+                                                  color: Colors.white,
+                                                )),
                                                 label: Text(
                                                   answers['label'],
                                                   style: TextStyle(
                                                     color: forgroundColor,
                                                   ),
                                                 ),
-                                                backgroundColor: backgroundColor,
+                                                backgroundColor:
+                                                    backgroundColor,
                                               ),
                                             );
                                           }).toList(),
@@ -790,7 +816,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                                   BorderRadius.circular(15),
                                               color: primaryColor),
                                           items: items
-                                              .map((item) => DropdownMenuItem<int>(
+                                              .map((item) =>
+                                                  DropdownMenuItem<int>(
                                                     value: item['value'],
                                                     child: Text(
                                                       item['label'],
@@ -841,7 +868,8 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                     radius: 30.0,
                                   ),
                                 )
-                              : const Center(child: CircularProgressIndicator()),
+                              : const Center(
+                                  child: CircularProgressIndicator()),
                           const SizedBox(
                             height: 20,
                           ),
