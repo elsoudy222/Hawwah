@@ -196,64 +196,68 @@ class LoginScreen extends StatelessWidget {
                                   isCloseButton: false,
                                   isOverlayTapDismiss: false,
                                   descTextAlign: TextAlign.start,
-                                  animationDuration:
-                                      const Duration(milliseconds: 400),
+                                  animationDuration: const Duration(milliseconds: 400),
                                   alertBorder: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderRadius: BorderRadius.circular(25.0),
                                     side: const BorderSide(
-                                      color: Colors.grey,
+                                      color: Colors.white,
+                                      width: 3
                                     ),
                                   ),
                                   descStyle: TextStyle(
                                     color: secondaryColor,
+                                    // fontSize: 15
                                   ),
-                                  titleStyle: TextStyle(
+                                  titleStyle: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 25.0,
-                                    color: thirdColor,
+                                    fontSize: 30.0,
+                                    color: Colors.white,
                                   ),
                                   alertAlignment: Alignment.center,
                                 ),
                                 context: context,
-                                title: "تغير كلمه المرور",
+                                title: "تغير كلمه السر",
                                 desc:
-                                    "قم بادخال البريد الالكترونى المرتبط بحسابك وسنرسل اليك رابط تعيين كلمه المرور",
-                                content: TextFormField(
-                                  validator: (String? value) {
-                                    if (value!.isEmpty) {
-                                      return 'البريد الالكترونى غير صحيح ';
-                                    } else if (!value.contains('@')) {
-                                      return 'البريد الالكترونى غير صحيح ';
-                                    }
-                                    return null;
-                                  },
-                                  controller: forgetController,
-                                  cursorColor: thirdColor,
-                                  decoration: InputDecoration(
-                                    hintText:
-                                        "ادخل البريد الالكترونى الخاص بك ",
-                                    hintStyle: TextStyle(color: thirdColor),
-                                    fillColor: secondaryColor,
-                                    filled: true,
-                                    prefixIcon: Icon(
-                                      Icons.email_outlined,
-                                      color: thirdColor,
+                                    "ادخل البريد الالكتروني المرتبط بحسابك و سنسل اليك تعليمات لاعاده تعيين كلمه المرور عبر البريد الالكتروني",
+                                content: Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: TextFormField(
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'البريد الالكترونى غير صحيح ';
+                                      } else if (!value.contains('@')) {
+                                        return 'البريد الالكترونى غير صحيح ';
+                                      }
+                                      return null;
+                                    },
+                                    controller: forgetController,
+                                    cursorColor: thirdColor,
+                                    decoration: InputDecoration(
+                                      hintText:
+                                          "ادخل بريدك الالكتروني ",
+                                      hintStyle: const TextStyle(color: Color(-4812642)),
+                                      fillColor: secondaryColor,
+                                      filled: true,
+                                      // prefixIcon: Icon(
+                                      //   Icons.email_outlined,
+                                      //   color: thirdColor,
+                                      // ),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          borderSide: BorderSide(
+                                              color: secondaryColor, width: 2)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          borderSide: BorderSide(
+                                              color: secondaryColor, width: 2)),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          borderSide: const BorderSide(
+                                              color: Colors.white, width: 2)),
                                     ),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                        borderSide: BorderSide(
-                                            color: secondaryColor, width: 2)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                        borderSide: BorderSide(
-                                            color: secondaryColor, width: 2)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                        borderSide: const BorderSide(
-                                            color: Colors.white, width: 2)),
                                   ),
                                 ),
                                 buttons: [
@@ -265,14 +269,20 @@ class LoginScreen extends StatelessWidget {
                                       //     context, const ChangePassword());
                                     },
                                     child: const Text(
-                                      "اعادة التعيين ",
+                                      "ارسل التعليمات",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 25.0,
+                                        height: 1,
                                         color: Colors.white,
                                       ),
                                     ),
-                                    color: thirdColor,
+                                    radius: BorderRadius.circular(25),
+                                    color: primaryColor,
+                                    border: Border.all(
+                                      width: 3,
+                                      color: Colors.pink.shade50,
+                                    ),
                                   ),
                                 ],
                               ).show();

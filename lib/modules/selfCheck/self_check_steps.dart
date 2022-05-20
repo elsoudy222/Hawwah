@@ -20,7 +20,6 @@ class FirstSteps extends StatelessWidget {
     return BlocConsumer<HomeCubit,HomeStates>(
       listener: (context, state) {},
       builder: (context, state){
-
         return ConditionalBuilder(
           condition:state is! LoadingSelfDataState ,
           builder: (context)=>SelfCheckBuild(HomeCubit.get(context).selfCheckModel!,context),
@@ -74,7 +73,6 @@ class FirstSteps extends StatelessWidget {
                   buildSelfCheckQuItem(
                     question: '${model!.data!.question!.elementAt(0).question}',
                     image: "assets/images/selfCheck/self1.png",
-
                     onPressed1: () {
                       HomeCubit.get(context).postAnswer(Id:model.data!.question!.elementAt(0).id, ans:'True');
                     },
@@ -147,76 +145,49 @@ class FirstSteps extends StatelessWidget {
                           backgroundColor: primaryColor,
                           animationType: AnimationType.fromTop,
                           isCloseButton: false,
-                          isOverlayTapDismiss: true,
-                          descTextAlign: TextAlign.center,
-                          animationDuration:
-                          const Duration(milliseconds: 400),
+                          // isOverlayTapDismiss: false,
+                          descTextAlign: TextAlign.start,
+                          animationDuration: const Duration(milliseconds: 400),
                           alertBorder: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
+                            borderRadius: BorderRadius.circular(25.0),
                             side: const BorderSide(
-                              color: Colors.grey,
+                                color: Colors.white,
+                                width: 3
                             ),
                           ),
                           descStyle: TextStyle(
                             color: secondaryColor,
-                            fontSize: 50.0,
+                            // fontSize: 15
                           ),
-                          titleStyle: TextStyle(
+                          titleStyle: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30.0,
-                            color: thirdColor,
+                            color: Colors.white,
                           ),
                           alertAlignment: Alignment.center,
                         ),
                         context: context,
+                        title: 'يجب ان تذهبي الي الطبيب في الحال.',
                         buttons: [
-                          DialogButton(
-                            onPressed: () {
-                              navigateToAndFinish(context, HomeLayout());
-                            },
-                            child: const Text(
-                              "حسنا ",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            color: thirdColor,
-                          ),
+                          // DialogButton(
+                          //   onPressed: () {
+                          //     navigateToAndFinish(context, HomeLayout());
+                          //   },
+                          //   child: const Text(
+                          //     "حسنا ",
+                          //     style: TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       fontSize: 25.0,
+                          //       color: Colors.white,
+                          //     ),
+                          //   ),
+                          //   color: thirdColor,
+                          // ),
                         ],
                       ).show();
                     },
                       onPressed0: () {
                         HomeCubit.get(context).postAnswer(Id:model.data!.question!.elementAt(4).id, ans:'False' );
-                        return Alert(
-                          style: AlertStyle(
-                            backgroundColor: primaryColor,
-                            animationType: AnimationType.fromTop,
-                            isCloseButton: false,
-                            isOverlayTapDismiss: true,
-                            descTextAlign: TextAlign.center,
-                            animationDuration:
-                            const Duration(milliseconds: 400),
-                            alertBorder: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                              side: const BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            descStyle: TextStyle(
-                              color: secondaryColor,
-                              fontSize: 50.0,
-                            ),
-                            titleStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30.0,
-                              color: thirdColor,
-                            ),
-                            alertAlignment: Alignment.center,
-                          ),
-                          context: context,
-                        );
                       }
                   ),
                   const Divider(
@@ -307,7 +278,7 @@ class FirstSteps extends StatelessWidget {
                     },
                     child: const Text(
                       "لا",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                       ),
                     )),
@@ -470,7 +441,7 @@ class _SecondStepsState extends State<SecondSteps> {
                     },
                     child: const Text(
                       "نعم",
-                      style: const TextStyle(
+                      style:  TextStyle(
                         color: Colors.white,
                       ),
                     )),
