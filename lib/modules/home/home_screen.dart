@@ -110,27 +110,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       style:  TextStyle(
                           fontSize: 30.0,
                           color: thirdColor,
-                          fontWeight: FontWeight.bold),
-                    ),
+                          fontWeight: FontWeight.bold),),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.3,
-                      //margin: EdgeInsets.all(10.0),
                       child: PageView.builder(
                         onPageChanged: (index){
                           setState(() {
-                            _expermentsIndex = index;
-                          });
-                        },
+                            _expermentsIndex = index;});},
                         controller: pageController,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) =>
                             Container(
                                 margin: const EdgeInsets.all(10.0),
                                 child: Experments(context, experments[index])),
-                        itemCount: experments.length,
-
-                      ),
-                    ),
+                        itemCount: experments.length,),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

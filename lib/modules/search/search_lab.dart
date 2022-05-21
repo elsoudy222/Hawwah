@@ -47,7 +47,6 @@ class _SearchLabState extends State<SearchLab> {
     super.initState();
     _getMyCurrentLocation();
     addMarkers();
-
   }
 
 
@@ -402,7 +401,7 @@ class _SearchLabState extends State<SearchLab> {
             child: CircularProgressIndicator(),
           ),
           Positioned(
-            top: 10,
+            top: 30,
             left: 0,
             right: 0,
 

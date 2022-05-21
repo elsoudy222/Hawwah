@@ -284,10 +284,10 @@ class _SearchDoctorState extends State<SearchDoctor> {
     // Doctor3 Marker
     markers.add( Marker(
       markerId:  const MarkerId("2"),
-      position:  const LatLng(29.99886600175735, 31.22725178737928),
+      position:  const LatLng(30.019984666393285, 31.434304402304036),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
-        title:  "د/ أشرف الزيــات",
+        title:  "د/ محمد سعد ",
         //snippet:  "This is a marker that has a info window",
         //TODO: add onTap
         onTap: () {

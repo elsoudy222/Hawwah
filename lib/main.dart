@@ -21,6 +21,8 @@ void main() async {
   await CacheHelper.init();
   Widget? widget;
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+  String? token = CacheHelper.getData(key: 'token');
+
   if (onBoarding != null) {
     widget = SplashScreen(
       widget: LoginScreen(),
@@ -43,30 +45,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit()..getUser()..getReportData(),
-      child: BlocConsumer<HomeCubit, HomeStates>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            useInheritedMediaQuery: true,
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
-            theme: lightMode,
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('ar', 'AE'),
-            ],
-            home: startWidget,
-          );
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+          HomeCubit()
+          // ..getQuestion()
+            ..getUser(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        theme: lightMode,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('ar', 'AE'),
+        ],
+        home: startWidget,
       ),
     );
   }

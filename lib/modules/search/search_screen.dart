@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   initState() {
     super.initState();
+    // _getLocation();
   }
 
   @override
@@ -170,3 +171,4 @@ class _SearchScreenState extends State<SearchScreen> {
   //   }
   // }
 }
+

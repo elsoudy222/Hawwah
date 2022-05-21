@@ -278,7 +278,7 @@ PredictionModel ?predictionModel;
       print(value.data);
       emit(SuccessAnswerState());
     }).catchError((error){
-      print(error.toString());
+      print('errrrrrrrrrrror ${error.toString()}');
       emit(ErrorAnswerState(error));
     });
   }
