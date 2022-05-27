@@ -47,13 +47,17 @@ class Date {
 
 class Dates {
   int? id;
-  int? title;
+  int? m;
+  int? y;
+  String? title;
   bool? isCheck;
 
-  Dates({this.id, this.title, this.isCheck});
+  Dates({this.id, this.m, this.y, this.title, this.isCheck});
 
   Dates.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    m = json['M'];
+    y = json['Y'];
     title = json['title'];
     isCheck = json['is_check'];
   }
@@ -61,6 +65,8 @@ class Dates {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['M'] = this.m;
+    data['Y'] = this.y;
     data['title'] = this.title;
     data['is_check'] = this.isCheck;
     return data;

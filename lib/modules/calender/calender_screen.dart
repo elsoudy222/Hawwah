@@ -1,4 +1,4 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/layout/cubit/home_cubit.dart';
@@ -57,6 +57,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
       },
     );
   }
+
   Widget _body() {
     return SingleChildScrollView(
       child: Container(
@@ -81,7 +82,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: days.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return _checkItem(days[index].color,days[index].title);
+                  return _checkItem(days[index].color, days[index].title);
                 },
               ),
             ),
@@ -144,7 +145,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
-  Widget _checkItem(Color? color,String ?title) {
+
+  Widget _checkItem(Color? color, String? title) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
@@ -152,7 +154,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
         width: 35,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: color ,
+          color: color,
         ),
         child: Center(
           child: Text(
@@ -163,6 +165,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
+
   _buttonCalender() {
     return SizedBox(
       height: 300,
@@ -199,6 +202,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
+
   void dialog(BuildContext context, {Day? day}) {
     showDialog(
       context: context,
@@ -208,94 +212,94 @@ class _CalenderScreenState extends State<CalenderScreen> {
           content: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromRGBO(248, 157, 185, 1.0),
-                    Color.fromRGBO(250, 250, 250, 1.0)
-                  ]),
-            ),
+                borderRadius: BorderRadius.circular(30),
+                color: Color(-348989),
+                border: Border.all(color: Colors.white, width: 3)
+                // gradient: const LinearGradient(
+                //     begin: Alignment.topCenter,
+                //     end: Alignment.bottomCenter,
+                //     colors: [
+                //       Color.fromRGBO(248, 157, 185, 1.0),
+                //       Color.fromRGBO(250, 250, 250, 1.0)
+                //     ]),
+                ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                          onTap: () {
-                            dayController.clear();
-                            int i = 0;
-                            for (i; i < days.length; i++) {
-                              if (days[i].isChecked == true) {
-                                setState(() {
-                                  days[i].color = Colors.white;
-                                  if (i + 1 >= days.length) {
-                                    days[days.length - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 1].color = Colors.white;
-                                  }
-                                  if (i + 2 >= days.length) {
-                                    print((i + 2) - days.length);
-                                    days[(i + 2) - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 2].color = Colors.white;
-                                  }
-                                  if (i + 3 >= days.length) {
-                                    print((i + 3) - days.length);
-                                    days[(i + 3) - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 3].color = Colors.white;
-                                  }
-                                  if (i + 4 >= days.length) {
-                                    print((i + 4) - days.length);
-                                    days[(i + 4) - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 4].color = Colors.white;
-                                  }
-                                  if (i + 5 >= days.length) {
-                                    print((i + 5) - days.length);
-                                    days[(i + 5) - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 5].color = Colors.white;
-                                  }
-                                  if (i + 6 >= days.length) {
-                                    print((i + 6) - days.length);
-                                    days[(i + 6) - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 6].color = Colors.white;
-                                  }
-                                  if (i + 7 >= days.length) {
-                                    print((i + 7) - days.length);
-                                    days[(i + 7) - days.length].color =
-                                        Colors.white;
-                                  } else {
-                                    days[i + 7].color = Colors.white;
-                                  }
-                                });
-                              }
-                            }
-                          },
-                          child: const Icon(
-                            Icons.restart_alt_outlined,
-                            size: 40,
-                            color: Colors.white,
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                  ],
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: InkWell(
+                //           onTap: () {
+                //             dayController.clear();
+                //             monthController.clear();
+                //             yearController.clear();
+                //             int i = 0;
+                //             for (i; i < days.length; i++) {
+                //               if (days[i].isChecked == true) {
+                //                 setState(() {
+                //                   days[i].color = Colors.white;
+                //                   if (i + 1 >= days.length) {
+                //                     days[days.length - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 1].color = Colors.white;
+                //                   }
+                //                   if (i + 2 >= days.length) {
+                //                     print((i + 2) - days.length);
+                //                     days[(i + 2) - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 2].color = Colors.white;
+                //                   }
+                //                   if (i + 3 >= days.length) {
+                //                     print((i + 3) - days.length);
+                //                     days[(i + 3) - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 3].color = Colors.white;
+                //                   }
+                //                   if (i + 4 >= days.length) {
+                //                     print((i + 4) - days.length);
+                //                     days[(i + 4) - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 4].color = Colors.white;
+                //                   }
+                //                   if (i + 5 >= days.length) {
+                //                     print((i + 5) - days.length);
+                //                     days[(i + 5) - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 5].color = Colors.white;
+                //                   }
+                //                   if (i + 6 >= days.length) {
+                //                     print((i + 6) - days.length);
+                //                     days[(i + 6) - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 6].color = Colors.white;
+                //                   }
+                //                   if (i + 7 >= days.length) {
+                //                     print((i + 7) - days.length);
+                //                     days[(i + 7) - days.length].color = Colors.white;
+                //                   } else {
+                //                     days[i + 7].color = Colors.white;
+                //                   }
+                //                 });
+                //               }
+                //             }
+                //           },
+                //           child: const Icon(
+                //             Icons.restart_alt_outlined,
+                //             size: 40,
+                //             color: Colors.white,
+                //           )),
+                //     ),
+                //     const SizedBox(
+                //       height: 30,
+                //     ),
+                //   ],
+                // ),
+                const SizedBox(
+                  height: 20,
                 ),
                 const Center(
                   child: Text(
@@ -316,6 +320,29 @@ class _CalenderScreenState extends State<CalenderScreen> {
                   height: 20,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Text(
+                      'اليوم',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'الشهر',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'السنه',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
@@ -324,8 +351,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                         controller: dayController,
                         keyboardType: TextInputType.number,
                         maxLength: 2,
-                        cursorColor: Colors.white,
-                        style: const TextStyle(color: Colors.white),
                         onChanged: (value) {
                           value = dayController.text;
                         },
@@ -381,24 +406,21 @@ class _CalenderScreenState extends State<CalenderScreen> {
                         //     }
                         //   });
                         // },
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.fromLTRB(26, 14, 4, 14),
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.fromLTRB(26, 14, 4, 14),
                           filled: true,
-                          hintText: 'اليوم',
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
+                          // hintText: 'اليوم',
+                          // hintStyle: TextStyle(
+                          //   color: Colors.white,
+                          // ),
+                          fillColor: Colors.white,
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color.fromRGBO(248, 157, 185, 1.0),
                                 width: 0.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color.fromRGBO(248, 157, 185, 1.0),
                                 width: 0.0),
                           ),
@@ -411,30 +433,26 @@ class _CalenderScreenState extends State<CalenderScreen> {
                         controller: monthController,
                         keyboardType: TextInputType.number,
                         maxLength: 2,
-                        cursorColor: Colors.white,
-                        style: const TextStyle(color: Colors.white),
                         onChanged: (value) {
                           value = monthController.text;
                           // print(monthController.text);
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding:
-                              const EdgeInsets.fromLTRB(26, 14, 4, 14),
+                              EdgeInsets.fromLTRB(26, 14, 4, 14),
                           filled: true,
-                          hintText: 'الشهر',
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
+                          // hintText: 'الشهر',
+                          // hintStyle: TextStyle(
+                          //   color: Colors.white,
+                          // ),
+                          fillColor: Colors.white,
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color.fromRGBO(248, 157, 185, 1.0),
                                 width: 0.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color.fromRGBO(248, 157, 185, 1.0),
                                 width: 0.0),
                           ),
@@ -447,29 +465,25 @@ class _CalenderScreenState extends State<CalenderScreen> {
                         controller: yearController,
                         keyboardType: TextInputType.number,
                         maxLength: 4,
-                        cursorColor: Colors.white,
-                        style: const TextStyle(color: Colors.white),
                         onChanged: (value) {
                           value = yearController.text;
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding:
-                              const EdgeInsets.fromLTRB(26, 14, 4, 14),
+                              EdgeInsets.fromLTRB(26, 14, 4, 14),
                           filled: true,
-                          hintText: 'السنه',
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          fillColor: const Color.fromRGBO(248, 157, 185, 1.0),
+                          // hintText: 'السنه',
+                          // hintStyle: TextStyle(
+                          //   color: Colors.white,
+                          // ),
+                          fillColor: Colors.white,
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color.fromRGBO(248, 157, 185, 1.0),
                                 width: 0.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color.fromRGBO(248, 157, 185, 1.0),
                                 width: 0.0),
                           ),
@@ -482,7 +496,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                   height: 20,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: MediaQuery.of(context).size.width / 3,
                   child: defaultButton(
                     onPressed: () {
                       int i = 0;
@@ -490,48 +504,38 @@ class _CalenderScreenState extends State<CalenderScreen> {
                         for (i; i < days.length; i++) {
                           if (dayController.text == days[i].title) {
                             days[i].isChecked = true;
-
+                            days[i].color = Color.fromRGBO(170, 207, 207, 1);
                             if (i + 7 >= days.length) {
-                              days[days.length - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[days.length - days.length].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             } else {
-                              days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[i + 7].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             }
                             if (i + 8 >= days.length) {
                               print((i + 8) - days.length);
-                              days[(i + 8) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[(i + 8) - days.length].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             } else {
-                              days[i + 8].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[i + 8].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             }
                             if (i + 9 >= days.length) {
                               print((i + 9) - days.length);
-                              days[(i + 9) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[(i + 9) - days.length].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             } else {
-                              days[i + 9].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[i + 9].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             }
                             if (i + 10 >= days.length) {
                               print((i + 10) - days.length);
-                              days[(i + 10) - days.length].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[(i + 10) - days.length].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             } else {
-                              days[i + 10].color = Color.fromRGBO(239, 79, 147, 1);
+                              days[i + 10].color =
+                                  Color.fromRGBO(239, 79, 147, 1);
                             }
-                            // if (i + 5 >= days.length) {
-                            //   print((i+5)-days.length);
-                            //   days[(i+5)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            // } else {
-                            //   days[i + 5].color = Color.fromRGBO(239, 79, 147, 1);
-                            // }
-                            // if (i + 6 >= days.length) {
-                            //   print((i+6)-days.length);
-                            //   days[(i+6)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            // } else {
-                            //   days[i + 6].color = Color.fromRGBO(239, 79, 147, 1);
-                            // }
-                            // if (i + 7 >= days.length) {
-                            //   print((i+7)-days.length);
-                            //   days[(i+7)-days.length].color = Color.fromRGBO(239, 79, 147, 1);
-                            // } else {
-                            //   days[i + 7].color = Color.fromRGBO(239, 79, 147, 1);
-                            // }
                           }
                         }
                       });
@@ -550,7 +554,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                           '${yearController.text}-${monthController.text}-${dayController.text}');
                     },
                     text: 'تاكيد',
-                    radius: 30.0,
+                    radius: 20.0,
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                   ),
@@ -568,6 +572,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
       },
     );
   }
+
   _squareImage() {
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -659,6 +664,4 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
     );
   }
-
-
 }
