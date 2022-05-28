@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:hawwah/shared/components/components.dart';
 
 class RiskResultScreen extends StatefulWidget {
   final result1;
@@ -26,120 +24,158 @@ class _RiskResultScreenState extends State<RiskResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("نســبة الإصابة"),
-        backgroundColor: primaryColor,
+        title: const Text("نســبة الإصابة", style: TextStyle(color: Colors.white)),
+        backgroundColor:  Color(-471589),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_outlined,
+                color: Colors.white,
+              )),
+        ),
         elevation: 0.0,
       ),
       body: Container(
+        width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color.fromRGBO(248, 157, 185, 1.0),
+                Color(-471589),
                 Color.fromRGBO(250, 250, 250, 1.0)
               ]),
         ),
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // const Center(
-            //   child: Image(
-            //     image: AssetImage(
-            //       "assets/images/selfCheckResult.png",
-            //     ),
-            //   ),
-            // ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    ' نسبه الاصابه الخاصه بك علي مدار خمس اعوام : ',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '${widget.result1 * 100} %',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-
-                  Text(
-                    'نسبه الاصابه لمن يشبهك علي مدار ٥ اعوام : ',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '${widget.result2 * 100} %',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-
-
-                  Text(
-                    'نسبه الاصابه لمن يشبهك مدي الحياه : ',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '${widget.result3 * 100} %',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-
-
-                  Text(
-                    'نسبه الاصابه الخاصه بك علي مدار الحياه : ',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '${widget.result4 * 100} %',
-                    style: TextStyle(
-                        color: thirdColor,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
+            Text(
+              'النسبة الخاصة بك بالنسبة المئويه',
+              style: TextStyle(
+                  color: thirdColor,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 30,),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: thirdColor),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      ' نسبه الاصابه الخاصه بك علي مدار خمس اعوام : ',
+                      style: TextStyle(
+                          color: thirdColor,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        width: MediaQuery.of(context).size.width *.6,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${widget.result1 * 100} %',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'نسبه الاصابه لمن يشبهك علي مدار ٥ اعوام : ',
+                      style: TextStyle(
+                          color: thirdColor,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        width: MediaQuery.of(context).size.width *.6,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${widget.result2 * 100} %',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'نسبه الاصابه لمن يشبهك مدي الحياه : ',
+                      style: TextStyle(
+                          color: thirdColor,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        width: MediaQuery.of(context).size.width *.6,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${widget.result3 * 100} %',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'نسبه الاصابه الخاصه بك علي مدار الحياه : ',
+                      style: TextStyle(
+                          color: thirdColor,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        width: MediaQuery.of(context).size.width *.6,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '${widget.result4 * 100} %',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            Positioned(
-              bottom: 40.0,
-              right: 100,
-              child: GestureDetector(
-                child: Container(
-                  width: 200.0,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Center(
-                      child: Text(
-                    "تــم",
-                    style: TextStyle(fontSize: 30.0, color: thirdColor),
-                  )),
-                ),
-                onTap: () {
-                  navigateToAndFinish(context, HomeLayout());
-                },
-              ),
-            )
           ],
         ),
       ),
