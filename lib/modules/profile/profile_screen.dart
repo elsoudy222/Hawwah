@@ -38,11 +38,7 @@ class ProfileScreen extends StatelessWidget {
           }else {
             showToast(
               text: state.changePasswordModel!.messege!,
-              state: ToastStates.ERROR,
-            );
-          }
-        }
-      },
+              state: ToastStates.ERROR,);}}},
       builder: (context, state) {
         var model = HomeCubit
             .get(context)
@@ -54,11 +50,8 @@ class ProfileScreen extends StatelessWidget {
               height: 400,
               child: Stack(
                 children: [
-                  AppBar(
-                    leading: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                  AppBar(leading: IconButton(
+                    onPressed: () {Navigator.pop(context);},
                       icon: const Icon(
                         Icons.arrow_back_ios_sharp,
                         size: 40,
@@ -84,15 +77,7 @@ class ProfileScreen extends StatelessWidget {
                           'assets/icons/profile_pic.png',
                           fit: BoxFit.fill,
                           height: 70,
-                          width: 70,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                          width: 70,),),),),],),),),
           backgroundColor: const Color.fromRGBO(248, 157, 185, 1.0),
           body: Container(
             decoration: const BoxDecoration(
@@ -135,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 // Name formField ....
                 if (state is LoadingUpdateState)
-                  LinearProgressIndicator(),
+                  const LinearProgressIndicator(),
                 Row(
                   children: [
                     Expanded(

@@ -19,6 +19,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
   var formKey = GlobalKey<FormState>();
 
   // List of Questions :
+
   String Q2 = "كم كان سن المرأة في أول حيض لها؟";
   String Q3 = "كم كان عمر المرأة وقت ولادت الطفل الاول؟";
   String Q4 = "هل سبق للمرأة أن خضعت لأخذ عينة من الثدى؟";
@@ -122,7 +123,6 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -135,10 +135,7 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                 result2: HomeCubit.get(context).riskModel!.data!.results!.fiveYearAve,
                 result3: HomeCubit.get(context).riskModel!.data!.results!.lifetimeAbs,
                 result4: HomeCubit.get(context).riskModel!.data!.results!.lifetimeAve,
-              ));
-        }
-        // TODO: implement listener
-      },
+              ));}},
       builder: (context, state) {
         return Scaffold(
           body: Container(
@@ -236,53 +233,49 @@ class _RiskCalculatorScreenState extends State<RiskCalculatorScreen> {
                                   ),
                                   SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        Center(
-                                          child: Wrap(
-                                            alignment: WrapAlignment.center,
-                                            spacing: 15,
-                                            children: answer2.map((answers) {
-                                              bool isSelected =
-                                                  selectAnswerQ2 ==
-                                                      answers['label'];
-                                              final forgroundColor = !isSelected
-                                                  ? Colors.white
-                                                  : thirdColor;
-                                              final backgroundColor = isSelected
-                                                  ? primaryColor
-                                                  : secondaryColor;
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    selectAnswerQ2 =
-                                                        answers['label'];
-                                                    selectAnswerValueQ2 =
-                                                        answers['value'];
-                                                    isSelect = false;
-                                                  });
-                                                  print(selectAnswerValueQ2);
-                                                  print(selectAnswerQ2);
-                                                },
-                                                child: Chip(
-                                                  shape: const StadiumBorder(
-                                                      side: BorderSide(
-                                                    color: Colors.white,
-                                                  )),
-                                                  label: Text(
-                                                    answers['label'],
-                                                    style: TextStyle(
-                                                      color: forgroundColor,
-                                                    ),
-                                                  ),
-                                                  backgroundColor:
-                                                      backgroundColor,
+                                    child: Center(
+                                      child: Wrap(
+                                        alignment: WrapAlignment.center,
+                                        spacing: 15,
+                                        children: answer2.map((answers) {
+                                          bool isSelected =
+                                              selectAnswerQ2 ==
+                                                  answers['label'];
+                                          final forgroundColor = !isSelected
+                                              ? Colors.white
+                                              : thirdColor;
+                                          final backgroundColor = isSelected
+                                              ? primaryColor
+                                              : secondaryColor;
+                                          return GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                selectAnswerQ2 =
+                                                    answers['label'];
+                                                selectAnswerValueQ2 =
+                                                    answers['value'];
+                                                isSelect = false;
+                                              });
+                                              print(selectAnswerValueQ2);
+                                              print(selectAnswerQ2);
+                                            },
+                                            child: Chip(
+                                              shape: const StadiumBorder(
+                                                  side: BorderSide(
+                                                color: Colors.white,
+                                              )),
+                                              label: Text(
+                                                answers['label'],
+                                                style: TextStyle(
+                                                  color: forgroundColor,
                                                 ),
-                                              );
-                                            }).toList(),
-                                          ),
-                                        ),
-                                      ],
+                                              ),
+                                              backgroundColor:
+                                                  backgroundColor,
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
                                     ),
                                   ),
                                 ],

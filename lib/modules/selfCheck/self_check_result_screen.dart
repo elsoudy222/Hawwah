@@ -67,7 +67,7 @@ class SelfCheckResultScreen extends StatelessWidget {
                   )),
                 ),
                 onTap: () {
-                  navigateToAndFinish(context, HomeLayout());
+                  navigateToAndFinish(context, const HomeLayout());
                 },
               ),
             )

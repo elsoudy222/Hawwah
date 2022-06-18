@@ -49,13 +49,12 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-          HomeCubit()
-          // ..getQuestion()
-            ..getUser(),
+          HomeCubit()..getQuestion()..getUser()..getReportData(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
@@ -68,7 +67,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: const [
           Locale('ar', 'AE'),
         ],
-        home: HomeLayout(),
+        home: startWidget,
       ),
     );
   }

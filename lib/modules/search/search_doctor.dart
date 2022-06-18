@@ -113,8 +113,6 @@
 //   }
 // }
 
-
-
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -155,6 +153,11 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
   //TODO Variables for getPlacesLocation///
   Set<Marker> markers = {};
+   BitmapDescriptor? customIcon;
+  getCustomIcon() async {
+    customIcon = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration.empty, 'assets/icons/search_doctor.png');
+  }
   late PlaceSuggestion placeSuggestion;
   late Place selectedPlace;
   late Marker searchedPlaceMarker;
@@ -174,44 +177,46 @@ class _SearchDoctorState extends State<SearchDoctor> {
   initState() {
     super.initState();
     _getMyCurrentLocation();
+    getCustomIcon();
     addMarkers();
   }
 
   void addMarkers() async {
-    // Current Location Marker
-    markers.add(  Marker(
-      markerId:  MarkerId("currentLocation"),
-      position:  LatLng(position!.latitude, position!.longitude),
-      //TODO: add ifo window
-      infoWindow:   InfoWindow(
-        title:  "Your Current Location",
-       // snippet:  "This is a marker that has a info window",
+    // // Current Location Marker
+    // markers.add(  Marker(
+    //   markerId:  const MarkerId("currentLocation"),
+    //   position:  LatLng(position!.latitude, position!.longitude),
+    //   //TODO: add ifo window
+    //   infoWindow:   InfoWindow(
+    //     title:  "Your Current Location",
+    //    // snippet:  "This is a marker that has a info window",
+    //
+    //     // onTap: (){
+    //     //   showModalBottomSheet(
+    //     //     shape: const RoundedRectangleBorder(
+    //     //       borderRadius: BorderRadius.vertical(
+    //     //         top: Radius.circular(30),
+    //     //       ),
+    //     //     ),
+    //     //     context: context,
+    //     //     builder: (context)=> buildDoctorMarkerDetails(
+    //     //       doctorName: "klsjgksdlfm;lskjdf;",
+    //     //       doctorAddressArabic: " lkdsfklshgkldfsh",
+    //     //       doctorAddressEnglish: " -  8Mourad, Oula, Giza ;lsdfkjl;sjdf;kjs, Giza Governorate ",
+    //     //       doctorNumber: " 0122523515163142207",
+    //     //       doctorServices1: " -عـلاج السds,fmklsdرطـان",
+    //     //       doctorServices2: "- الكشف المبكر والوskdfjklsjoifقاية من السرطان",
+    //     //
+    //     //     ),
+    //     //   );
+    //     // },
+    //   ),
+    //
+    //
+    //
+    // ));
 
-        // onTap: (){
-        //   showModalBottomSheet(
-        //     shape: const RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.vertical(
-        //         top: Radius.circular(30),
-        //       ),
-        //     ),
-        //     context: context,
-        //     builder: (context)=> buildDoctorMarkerDetails(
-        //       doctorName: "klsjgksdlfm;lskjdf;",
-        //       doctorAddressArabic: " lkdsfklshgkldfsh",
-        //       doctorAddressEnglish: " -  8Mourad, Oula, Giza ;lsdfkjl;sjdf;kjs, Giza Governorate ",
-        //       doctorNumber: " 0122523515163142207",
-        //       doctorServices1: " -عـلاج السds,fmklsdرطـان",
-        //       doctorServices2: "- الكشف المبكر والوskdfjklsjoifقاية من السرطان",
-        //
-        //     ),
-        //   );
-        // },
-      ),
-
-
-
-    ));
-    // Doctor1 Marker
+       //Doctor1 Marker
     markers.add( Marker(
       markerId:  const MarkerId("0"),
       position:  const LatLng(30.046428860664676, 31.21060976873396),
@@ -287,7 +292,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
       position:  const LatLng(30.019984666393285, 31.434304402304036),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
-        title:  "د/ محمد سعد ",
+        title:  "أ.د محمد سعد العشري",
         //snippet:  "This is a marker that has a info window",
         //TODO: add onTap
         onTap: () {
@@ -300,11 +305,11 @@ class _SearchDoctorState extends State<SearchDoctor> {
             ),
             context: context,
             builder: (ctx)=> buildDoctorMarkerDetails(
-              doctorName: "د/ أشرف الزيــات \n Dr. Ashraf El Zaiat",
-              doctorAddress: " - 43 أول كورنيش المعادى القاهرة , مصـر ",
-              doctorNumber: " 01020223215",
-              doctorServices1: " -عملية استئصال سرطان الثدي \n - علاج سرطان الثدي \n - علاج إفرازات الثدي",
-              doctorServices2: "- علاج اورام الثدي \n - علاج الم الثدي \n - عملية اعادة بناء الثدي",
+              doctorName: "د/ محمد سعد العشرى\n Dr/ Mohamed Saad El Ashry",
+              doctorAddress: " التجمع الخامس : ش التسعين ميديكال بارك بريمير الدور الأرضي خلف المستشفي الجوي",
+              doctorNumber: " 01013313371",
+              doctorServices1: " -علاج الاورام \n - العلاج الكيماوي \n - العلاج الاشعاعي",
+              doctorServices2: "- العلاج الهرموني \n - العلاج الموجه \n - العلاج المناعي",
             ),
           );
         },
@@ -314,7 +319,176 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
 
     ));
+   // Doctor4 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("3"),
+      position:  const LatLng(30.04285926123055, 31.216192065783464),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "د/ إبراهيم سلام",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/ إبراهيم سلام",
+              doctorAddress: "12El Saraya St. Vinny Square. MISR International Hospital,  Giza",
+              doctorNumber: " 01003131181",
+              doctorServices1: " - جراحات الثدى و الغدد و الاورام",
+              doctorServices2: "- علاج التثدى عند الرجال \n - جراحات الاورام التجميلية",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
+    ));
+    // Doctor5 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("3"),
+      position:  const LatLng(30.11291411522357, 31.348412513443705),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "د/ جورج عزت فهمى",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/ جورج عزت فهمى \n Dr. George Ezzat Fahmy ",
+              doctorAddress: "181 شارع الحجاز، المطار، قسم النزهة، محافظة القاهرة \n 181 El Hegaz St, Al Matar, El Nozha, Cairo Governorate ",
+              doctorNumber: " 01003131181",
+              doctorServices1: " - جراحات الثدى و الغدد و الاورام",
+              doctorServices2: "- علاج التثدى عند الرجال \n - جراحات الاورام التجميلية",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
+    ));
+    // Doctor6 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("3"),
+      position:  const LatLng(31.201528870628795, 29.902265604741846),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "مركز د/محمد فاروق عسل - مدرس جراحة الأورام والمناظير المتقدمة",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/محمد فاروق عسل",
+              doctorAddress: " 5شارع الدكتور علي إبراهيم، المسلة شرق، Attarin",
+              doctorNumber: " 01225264464",
+              doctorServices1: "- دكتوراة جراحة أورام و تجميل الثدي",
+              doctorServices2: "-التخلص من كل الام ومشاكل الثدى ",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
+    ));
+    //Doctor7 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("3"),
+      position:  const LatLng(31.04614555481647, 31.387970759505436),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "أ.د محمد سعد العشري",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/ محمد سعد العشرى\n Dr/ Mohamed Saad El Ashry",
+              doctorAddress: "المنصورة :ميدان المحطة برج الأطباء الدور الثامن مركز سيتي لعلاج الأورام سابقا",
+              doctorNumber: " 01119255591 \n 0502300841",
+              doctorServices1: " -علاج الاورام \n - العلاج الكيماوي \n - العلاج الاشعاعي",
+              doctorServices2: "- العلاج الهرموني \n - العلاج الموجه \n - العلاج المناعي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+    //Doctor8 Marker
+    markers.add( Marker(
+      markerId:  const MarkerId("3"),
+      position:  const LatLng(31.045823102635545, 31.382718197874144),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title: "د/ أشرف ممدوح اسماعيل شومة",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "د/ أشرف ممدوح اسماعيل شومة",
+              doctorAddress: "برج الملكة، السكة الجديدة،, المنصورة (قسم 2)، المنصورة، الدقهلية",
+              doctorNumber: "0502250955",
+              doctorServices1: " -علاج الاورام \n - الجراحة العامه",
+              doctorServices2: "- جراحة الثدى",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+
+
   }
+
+
+
+
+
+
   void buildCameraNewPosition() {
     goToSearchedForPlacePosition = CameraPosition(
       bearing: 0.0,
@@ -323,7 +497,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
         selectedPlace.result.geometry.location.lat,
         selectedPlace.result.geometry.location.lng,
       ),
-      zoom: 13,
+      zoom: 10,
     );
   }
 
@@ -331,7 +505,8 @@ class _SearchDoctorState extends State<SearchDoctor> {
       target: LatLng(position!.latitude, position!.longitude),
       bearing: 0.0,
       tilt: 0.0,
-      zoom: 10.0);
+      zoom: 10.0
+  );
 
   Future<void> _getMyCurrentLocation() async {
     position = await LocationHelper.getCurrentPosition().whenComplete(() {
@@ -438,14 +613,10 @@ class _SearchDoctorState extends State<SearchDoctor> {
         if (state is PlacesDirectionsLoadedState) {
           placeDirections = (state).placeDirections;
           getPolylinePoints();
-          // setState(() {
-          //
-          // });
-
+          setState(() {});
         }
       },
       child: Container(),
-
     );
   }
 
@@ -466,6 +637,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
       child: Container(),
     );
   }
+
   void getDirections(){
     BlocProvider.of<SearchCubit>(context).emitPlacesDirections(
       LatLng(position!.latitude, position!.longitude),
@@ -485,7 +657,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
   void buildSearchedPlaceMarker(){
     searchedPlaceMarker = Marker(
       position: goToSearchedForPlacePosition.target,
-      markerId:  MarkerId('1'),
+      markerId:  const MarkerId('1'),
       onTap: () {
         buildCurrentLocationMarker();
         // Show Time And Distance :
@@ -514,8 +686,6 @@ class _SearchDoctorState extends State<SearchDoctor> {
     );
     addMarkerToMarkersAndUpdateUi(currentLocationMarker);
   }
-
-
 
   void addMarkerToMarkersAndUpdateUi(Marker marker) {
     setState(() {
@@ -575,8 +745,6 @@ class _SearchDoctorState extends State<SearchDoctor> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -596,15 +764,10 @@ class _SearchDoctorState extends State<SearchDoctor> {
         fit: StackFit.expand,
         children: <Widget>[
           position != null
-              ? buildMap()
-              : const Center(
-            child: CircularProgressIndicator(),
+              ? buildMap() : const Center(child: CircularProgressIndicator(),
           ),
           Positioned(
-            top: 10,
-            left: 0,
-            right: 0,
-
+            top: 10, left: 0, right: 0,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -630,10 +793,8 @@ class _SearchDoctorState extends State<SearchDoctor> {
                         height: 50.0,
                         width: 50.0,
                       ),
-
                     ],
                   ),
-
                 ],
               ),
             ),

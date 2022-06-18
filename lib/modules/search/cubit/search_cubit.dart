@@ -15,22 +15,17 @@ class SearchCubit extends Cubit<SearchStates> {
   SearchCubit(
        this.mapsRepo
       ) : super(SearchInitialState());
-
  static SearchCubit get(context)=> BlocProvider.of(context);
-
    void emitPlacesSuggestion(String place,String sessionToken) {
      mapsRepo.fetchSuggestions(place,sessionToken).then((suggestions){
      emit(PlacesLoadedState(suggestions));
    });
   }
-
   void emitPlacesDetailsLocation(String placeId,String sessionToken) {
     mapsRepo.getPlaceLocation(placeId,sessionToken).then((place){
       emit(PlacesDetailsLoadedState(place));
     });
   }
-
-
   void emitPlacesDirections( LatLng? origin, LatLng? destination,) {
     mapsRepo.getPlaceDirections(origin, destination).then((directions){
       emit(PlacesDirectionsLoadedState(directions));

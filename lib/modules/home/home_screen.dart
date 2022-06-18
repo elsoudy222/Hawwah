@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
         ),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Stack(
             children: [
               Padding(
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 30.0,
                           color: thirdColor,
                           fontWeight: FontWeight.bold),),
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.3,
                       child: PageView.builder(
                         onPageChanged: (index){
@@ -134,6 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
 
+
                     // INFORMATION...
                     const SizedBox(
                       height: 10.0,
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: thirdColor,
                           fontWeight: FontWeight.bold),
                     ),
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.3,
                       child: PageView.builder(
                         onPageChanged: (index){
@@ -176,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.8,
                       width: double.infinity,
                       child: Stack(
@@ -187,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 370,
                             child: Container(
                               decoration: BoxDecoration(
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: AssetImage("assets/images/home/home_back.png"),
                                 ),
                                 color: secondaryColor,
@@ -389,7 +390,7 @@ Widget Experments(context, Model experments) => Container(
                 children: [
                   // Title..
                   Text(
-                    "${experments.title}",
+                    experments.title,
                     style:  TextStyle(
                         fontSize: 25.0,
                         color: thirdColor,
@@ -397,7 +398,7 @@ Widget Experments(context, Model experments) => Container(
                   ),
                   //Description
                   Text(
-                    "${experments.description}",
+                    experments.description,
                     style:  TextStyle(fontSize: 22.0, color: thirdColor),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -438,15 +439,15 @@ Widget Experments(context, Model experments) => Container(
                               //       "assets/images/logo.png",
                               //     )
                               // ),
-                              borderRadius: BorderRadius.vertical(
-                                  top: const Radius.circular(25.0)),
+                              borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(25.0)),
                             ),
                             padding: const EdgeInsets.all(16.0),
                             child: ListView(
                               controller: controller,
                               children: [
                                 Text(
-                                  "${experments.info}",
+                                  experments.info,
                                   style:  TextStyle(
                                       fontSize: 25.0,
                                       color: thirdColor),
@@ -470,7 +471,7 @@ Widget Experments(context, Model experments) => Container(
                 borderRadius: BorderRadius.circular(15.0),
                 image: DecorationImage(
                     image: AssetImage(
-                      "${experments.image}",
+                      experments.image,
                     ),
                     fit: BoxFit.cover
                 )
@@ -498,14 +499,14 @@ Widget Informations(context, Model information) => Container(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${information.title}",
+                    information.title,
                     style:  TextStyle(
                         fontSize: 22.0,
                         color: thirdColor,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "${information.description}",
+                    information.description,
                     style:  TextStyle(fontSize: 22.0, color: thirdColor),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -528,7 +529,7 @@ Widget Informations(context, Model information) => Container(
                       showModalBottomSheet(
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
-                                top: const Radius.circular(25.0))),
+                                top:  Radius.circular(25.0))),
                         isDismissible: false,
                         backgroundColor: Colors.transparent,
                         isScrollControlled: true,
@@ -545,19 +546,19 @@ Widget Informations(context, Model information) => Container(
                                 opacity: .2,
                                   fit: BoxFit.cover,
                                   image: AssetImage(
-                                    "${information.image}",
+                                    information.image,
                                   )
                               ),
 
-                              borderRadius: BorderRadius.vertical(
-                                  top: const Radius.circular(25.0)),
+                              borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(25.0)),
                             ),
                             padding: const EdgeInsets.all(16.0),
                             child: ListView(
                               controller: controller,
                               children: [
                                 Text(
-                                  "${information.info}",
+                                  information.info,
                                   style:  TextStyle(
                                       fontSize: 25.0,
                                       color: thirdColor),
@@ -581,18 +582,12 @@ Widget Informations(context, Model information) => Container(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 image: AssetImage(
-                  "${information.image}",
+                  information.image,
                 ),
                 fit: BoxFit.cover
               )
             ),
-            // child: Image.asset(
-            //   "${information.image}",
-            //   fit: BoxFit.cover,
-            //
-            // ),
           ),
-          //SizedBox(width: 5.0,)
         ],
       ),
     );

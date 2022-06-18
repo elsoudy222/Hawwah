@@ -263,22 +263,22 @@ PredictionModel ?predictionModel;
       emit(SuccessSelfDataState());
     }).catchError((error) {
       emit(ErrorSelfDataState(error.toString()));
-      print(error.toString());
+      print('errrrrrrrrrrror***********${error.toString()}');
     });
   }
 
-  void postAnswer({int? Id ,String? ans}){
+  void postAnswer({int? id ,String? ans}){
     emit(LoadingAnswerState());
     DioHelper.postData(url:'/exam/questians/',token: ' ${token}',
       data: {
-        'self_check':Id,
+        'self_check':id,
         'answer':ans
       },).then((value){
       selfCheckModel = SelfCheckModel.fromJson(value.data);
       print(value.data);
       emit(SuccessAnswerState());
     }).catchError((error){
-      print('errrrrrrrrrrror ${error.toString()}');
+      print('errrrrrrrrrrror=========== ${error.toString()}');
       emit(ErrorAnswerState(error));
     });
   }

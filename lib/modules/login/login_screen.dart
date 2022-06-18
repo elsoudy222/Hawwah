@@ -11,12 +11,20 @@ import 'package:hawwah/shared/network/local/cache_helper.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../shared/components/components.dart';
 import '../../shared/components/constants.dart';
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var forgetController = TextEditingController();
   var passwordController = TextEditingController();
+  bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -86,6 +94,7 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: thirdColor),
                           ),
+
                           const SizedBox(
                             height: 20.0,
                           ),
@@ -145,18 +154,18 @@ class LoginScreen extends StatelessWidget {
                                 .isPassword,
                             decoration: InputDecoration(
                               hintText: "ادخل كلمة المرور الخاصة بك ",
-                              hintStyle: TextStyle(color: primaryColor),
+                              hintStyle: TextStyle(color: thirdColor),
                               fillColor: secondaryColor,
                               filled: true,
                               prefixIcon: Icon(
-                                Icons.lock,
-                                color: primaryColor,
+                                Icons.lock_outlined,
+                                color: thirdColor,
                               ),
                               suffixIcon: LoginCubit
                                   .get(context)
                                   .suffix != null
                                   ? IconButton(
-                                color: primaryColor,
+                                color: thirdColor,
                                 onPressed: () {
                                   LoginCubit.get(context)
                                       .changePasswordVisibility();

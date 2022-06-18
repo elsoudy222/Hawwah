@@ -14,6 +14,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../models/search/place_directions_model.dart';
+import 'widgets/bottom_sheet_details.dart';
 import 'widgets/distance_and_time.dart';
 import 'widgets/place_item.dart';
 
@@ -57,9 +58,7 @@ class _SearchLabState extends State<SearchLab> {
       position:  LatLng(position!.latitude, position!.longitude),
       //TODO: add ifo window
       infoWindow:  const InfoWindow(
-        title:  "Said Said Said Said Said Said Said Said Said Said ",
-        snippet:  "This is a marker that has a info window",
-
+        title:  "موقعك الحالى",
         //TODO: add onTap
 
       ),
@@ -69,34 +68,346 @@ class _SearchLabState extends State<SearchLab> {
 
 
     ));
-    markers.add(  Marker(
-      markerId:  MarkerId("Said"),
-      position:  LatLng(30.0541558938057, 31.346532475689095),
+    markers.add( Marker(
+      markerId:  const MarkerId("1"),
+      position:  const LatLng(30.040580224190187, 31.20536412974938),
       //TODO: add ifo window
-      infoWindow:  const InfoWindow(
-        title:  "Said Said Said Said Said Said Said Said Said Said ",
-        snippet:  "This is a marker that has a info window",
-
+      infoWindow:  InfoWindow(
+        title:  "عيادات مصر الحديثة",
         //TODO: add onTap
+        onTap: () {
 
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "عيادات مصر الحديثة",
+              doctorAddress: "٣٩ ش د/ ميشيل باخوم من ش نادى الصيد - الدقى - امام مترو ماركت -الجيزة",
+              doctorNumber: "01005511274",
+              doctorServices1: "-علاج أورام الثدى",
+              doctorServices2: "-جراحة عامة \n - اورام النسا ",
+            ),
+          );
+        },
       ),
-
       //TODO: add icon
       //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
 
 
     ));
-    markers.add(const Marker(
-      markerId: MarkerId("user"),
-      position: LatLng(30.061768001626994, 31.205321364966856),
+
+    markers.add( Marker(
+      markerId:  const MarkerId("2"),
+      position:  const LatLng(30.056669401477368, 31.205585766312964),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "ArabBreastCare (ABC)",
+        //TODO: add onTap
+        onTap: () {
+
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "ArabBreastCare (ABC)",
+              doctorAddress: "شارع جامعه الدول العربيه رقم 26 العماره اللي فيها مترو ماركت الدور الاول",
+              doctorNumber: "0233465127",
+              doctorServices1: "-علاج أورام الثدى",
+              doctorServices2: "-جراحة عامة \n - اورام النسا ",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
     ));
-    markers.add(const Marker(
-      markerId: MarkerId("Doctor"),
-      position: LatLng(30.10543804560771, 31.342990789628125),
+
+    markers.add( Marker(
+      markerId:  const MarkerId("2"),
+      position:  const LatLng(30.090081565154577, 31.328327918802596),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "مركز علاج الاورام (Egybrit)",
+        //TODO: add onTap
+        onTap: () {
+
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "مركز علاج الاورام (Egybrit)",
+              doctorAddress: "18Thawra st. QNB building, Heliopolis, Cairo",
+              doctorNumber: "01557761111",
+              doctorServices1: "-علاج أورام الثدى",
+              doctorServices2: "-الكشف المبكر والفحص والتشخيص\n - علاج الأورام \n - العلاج الطبيعى والتغذية  ",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
     ));
-    markers.add(const Marker(
-        markerId: MarkerId("Labs"),
-        position: LatLng(30.007670876789618, 31.187345161130615)));
+
+    markers.add( Marker(
+      markerId:  const MarkerId("٣"),
+      position:  const LatLng(30.098331975992483, 31.342409986474898),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "Alfa Cure Center",
+        //TODO: add onTap
+        onTap: () {
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName: "Alfa Cure Center",
+              doctorAddress: "116ش النزهة , هليوبلس, محافظة القاهرة",
+              doctorNumber: "01101142143",
+              doctorServices1: "-علاج أورام الثدى",
+              doctorServices2: "-العلاج الاشعاعى\n - العلاج الكيماوى \n - العلاج بالنظائر المشعة  ",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
+    ));
+
+    markers.add( Marker(
+      markerId:  const MarkerId("2"),
+      position:  const LatLng(30.019984666393285, 31.434304402304036),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:  "Hope Cure Oncology Center - مركز أمل لعلاج الأورام",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "Hope Cure Oncology Center - مركز أمل لعلاج الأورام",
+              doctorAddress: " التجمع الخامس : ش التسعين ميديكال بارك بريمير الدور الأرضي خلف المستشفي الجوي",
+              doctorNumber: " 01013313371",
+              doctorServices1: " -علاج الاورام \n - العلاج الكيماوي \n - العلاج الاشعاعي",
+              doctorServices2: "- العلاج الهرموني \n - العلاج الموجه \n - العلاج المناعي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+      //icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
+
+    ));
+
+    markers.add( Marker(
+      markerId:  const MarkerId("3"),
+      position:  const LatLng(31.04614555481647, 31.387970759505436),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:   "Hope Cure Oncology Center - مركز أمل لعلاج الأورام",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "Hope Cure Oncology Center - مركز أمل لعلاج الأورام",
+              doctorAddress: "المنصورة :ميدان المحطة برج الأطباء الدور الثامن مركز سيتي لعلاج الأورام سابقا",
+              doctorNumber: " 01119255591 \n 0502300841",
+              doctorServices1: " -علاج الاورام \n - العلاج الكيماوي \n - العلاج الاشعاعي",
+              doctorServices2: "- العلاج الهرموني \n - العلاج الموجه \n - العلاج المناعي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+
+
+    markers.add( Marker(
+      markerId:  const MarkerId("6"),
+      position:  const LatLng(30.063356524608636, 31.20463746556843),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:   "مركز سفنكس للتشخيص المبكر وعلاج الاورام - Sphinx Cure Oncology Center",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "مركز سفنكس للتشخيص المبكر وعلاج الاورام - Sphinx Cure Oncology Center",
+              doctorAddress: "Mohandeseen 90 (A) Ahmed Oraby St.(Omar Effendi Building)",
+              doctorNumber: " 01007074786 \n  01004141404",
+              doctorServices1: " -طب الأورام والعلاج الإشعاعي",
+              doctorServices2: "- العلاج الهرموني\n - العلاج المناعي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+
+    markers.add( Marker(
+      markerId:  const MarkerId("7"),
+      position:  const LatLng(30.004599288756157, 31.186781784412513),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:    "مؤسسة بهية",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "مؤسسة بهية",
+              doctorAddress: "4 شارع علوبة أول شارع الهرم بجوار داري , الجيزة , مصر",
+              doctorNumber: "16602",
+              doctorServices1: " -طب الأورام والعلاج الإشعاعي",
+              doctorServices2: "- الصيدلة الاكلينيكية \n - العلاج المناعي",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+    markers.add( Marker(
+      markerId:  const MarkerId("7"),
+      position:  const LatLng(30.02680612442372, 31.23225649300966),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:    "المؤسسة المصرية لمكافحة سرطان الثدى (BCFE)",
+        //snippet:  "This is a marker that has a info window",
+        //TODO: add onTap
+        onTap: () {
+          print("Marker onTap");
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "المؤسسة المصرية لمكافحة سرطان الثدى (BCFE)",
+              doctorAddress: "33 شارع القصر العيني - فم الخليج، القاهرة 11441       الدور السابع - شقة 25",
+              doctorNumber: "01003491104",
+              doctorServices1: " -الكشف المبكر عن سرطان الثدى",
+              doctorServices2: "تحليل الباثولوجى \n العمليات الجراحية \n أشعة الثدى",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+    markers.add( Marker(
+      markerId:  const MarkerId("7"),
+      position:  const LatLng(30.058213261242795, 31.32956335049295),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:    "Docspert Health",
+        //TODO: add onTap
+        onTap: () {
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "Docspert Health",
+              doctorAddress: " 12ش عز الدين طه، مدينة نصر، القاهرة",
+              doctorNumber: "01280958411 \n 01033564347",
+              doctorServices1: " -الكشف المبكر عن الأورام",
+              doctorServices2: "- جراحة النساء والخصوبة  \n -الجراحة العامة \n - المخ والأعصاب",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
+
+    markers.add( Marker(
+      markerId:  const MarkerId("7"),
+      position:  const LatLng(15.560209884647229, 32.55208833200114),
+      //TODO: add ifo window
+      infoWindow:  InfoWindow(
+        title:    "مركز الخرطوم لسرطان الثدى ",
+        //TODO: add onTap
+        onTap: () {
+          showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            context: context,
+            builder: (ctx)=> buildDoctorMarkerDetails(
+              doctorName:  "مركز الخرطوم لسرطان الثدى ",
+              doctorAddress: "19شارع مأمون بحيرى ",
+              doctorNumber: "2144",
+              doctorServices1: " -الكشف المبكر عن سرطان الثدى",
+              doctorServices2: "-العلاج الاشعاعى والكيميائى ",
+            ),
+          );
+        },
+      ),
+      //TODO: add icon
+
+    ));
 
   }
 
@@ -296,7 +607,7 @@ class _SearchLabState extends State<SearchLab> {
       infoWindow: InfoWindow(
         title: "${placeSuggestion.description}",
       ),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRose),
+
     );
     addMarkerToMarkersAndUpdateUi(searchedPlaceMarker);
   }
@@ -309,7 +620,7 @@ class _SearchLabState extends State<SearchLab> {
       infoWindow: const InfoWindow(
         title: "Your Current Location",
       ),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+
     );
     addMarkerToMarkersAndUpdateUi(currentLocationMarker);
   }
@@ -402,7 +713,7 @@ class _SearchLabState extends State<SearchLab> {
           ),
           Positioned(
             top: 30,
-            left: 0,
+            left: 10,
             right: 0,
 
             child: Padding(
@@ -438,6 +749,7 @@ class _SearchLabState extends State<SearchLab> {
               ),
             ),
           ),
+
           buildFloatingSearchBar(),
           isSearchedPlaceMarkerClicked
               ?

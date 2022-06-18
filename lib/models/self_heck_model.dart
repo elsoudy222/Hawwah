@@ -6,7 +6,7 @@ class SelfCheckModel {
 
   SelfCheckModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ?  Data.fromJson(json['data']) : null;
   }
 
  
@@ -21,7 +21,7 @@ class Data {
     if (json['question'] != null) {
       question = <Question>[];
       json['question'].forEach((v) {
-        question!.add(new Question.fromJson(v));
+        question!.add( Question.fromJson(v));
       });
     }
   }

@@ -215,13 +215,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 borderRadius: BorderRadius.circular(30),
                 color: Color(-348989),
                 border: Border.all(color: Colors.white, width: 3)
-                // gradient: const LinearGradient(
-                //     begin: Alignment.topCenter,
-                //     end: Alignment.bottomCenter,
-                //     colors: [
-                //       Color.fromRGBO(248, 157, 185, 1.0),
-                //       Color.fromRGBO(250, 250, 250, 1.0)
-                //     ]),
+
                 ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -585,9 +579,9 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 (MediaQuery.of(context).size.height * 0.2),
             width: 370,
             child: Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                image: DecorationImage(
+                image: const DecorationImage(
                   opacity: 0.3,
                   image: AssetImage(
                       "assets/images/calender/calender_background.png"),

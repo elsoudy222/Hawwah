@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modules/profile/profile_screen.dart';
@@ -12,7 +13,8 @@ import '../modules/report/report_screen.dart';
 import 'cubit/home_cubit.dart';
 
 class HomeLayout extends StatelessWidget {
-  HomeLayout({Key? key}) : super(key: key);
+
+   const HomeLayout({Key? key}) : super(key: key);
 
   // GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
@@ -44,7 +46,7 @@ class HomeLayout extends StatelessWidget {
           ),
           body: cubit.screens[cubit.currentIndex],
           floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.centerDocked,
           floatingActionButton: Visibility(
             visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
             // if the kyeboard is open then hide, else show
@@ -60,12 +62,11 @@ class HomeLayout extends StatelessWidget {
                   child: Image.asset(
                     'assets/icons/home.png',
                     color:
-                    cubit.currentIndex == 2 ? thirdColor : Colors.black87,
+                        cubit.currentIndex == 2 ? thirdColor : Colors.black87,
                   ),
                 ),
                 decoration: BoxDecoration(
-                  borderRadius:
-                  BorderRadius.all(Radius.elliptical(26.0, 23.5)),
+                  borderRadius: BorderRadius.all(Radius.elliptical(26.0, 23.5)),
                   color: Colors.white,
                   border: Border.all(
                     width: 2.0,
@@ -105,10 +106,7 @@ class HomeLayout extends StatelessWidget {
               backgroundColor: secondaryColor,
               child: Container(
                 decoration: BoxDecoration(
-                  border:  Border.all(
-                      color: Colors.white,
-                      width: 2
-                  ),
+                  border: Border.all(color: Colors.white, width: 2),
                   gradient: const LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -120,7 +118,7 @@ class HomeLayout extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height *.06,
+                      height: MediaQuery.of(context).size.height * .06,
                     ),
                     Align(
                       alignment: AlignmentDirectional.topEnd,
@@ -175,19 +173,23 @@ class drawerHeader extends StatelessWidget {
                 border: Border.all(color: thirdColor),
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage("assets/icons/profile_pic.png",),
+                  image: AssetImage(
+                    "assets/icons/profile_pic.png",
+                  ),
                 )),
           ),
         ),
-        Text(
-          '${HomeCubit.get(context).profileModel!.data!.first.firstName}'+' '+'${HomeCubit.get(context).profileModel!.data!.first.lastName}',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
-        ),
-        Text(
-          '${HomeCubit.get(context).profileModel!.data!.first.email}',
-          style: TextStyle(color: Colors.white, fontSize: 17),
-        ),
+
+        // Text(
+        //   '${HomeCubit.get(context).profileModel!.data!.first.firstName}' +
+        //       '${HomeCubit.get(context).profileModel!.data!.first.lastName}',
+        //   style: TextStyle(
+        //       fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
+        // ),
+        // Text(
+        //   '${HomeCubit.get(context).profileModel!.data!.first.email}',
+        //   style: TextStyle(color: Colors.white, fontSize: 17),
+        // ),
       ],
     );
   }
@@ -211,17 +213,97 @@ Widget drawerBody(context) {
       menuItem(
           icon: "assets/icons/search.png",
           text: 'البحـث',
-          onTap: ()  {
-
-            navigateTo(context, SearchScreen(
-            ));
+          onTap: () {
+            navigateTo(context, SearchScreen());
           }),
       const Divider(
         thickness: 1,
         height: 1,
         color: Colors.white,
       ),
-      menuItem(icon: "assets/images/help.png", text: 'المسـاعده', onTap: () {}),
+      menuItem(
+          icon: "assets/images/help.png",
+          text: 'المسـاعده',
+          onTap: () {
+            var hawwahController = TextEditingController();
+            Alert(
+              style: AlertStyle(
+                backgroundColor: primaryColor,
+                animationType: AnimationType.fromTop,
+                isCloseButton: false,
+                isOverlayTapDismiss: true,
+                animationDuration: const Duration(milliseconds: 400),
+                alertBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  side: const BorderSide(
+                      color: Colors.white,
+                      width: 3
+                  ),
+                ),
+                alertAlignment: Alignment.center,
+              ),
+              context: context,
+              content: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: TextFormField(
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'البريد الالكترونى غير صحيح ';
+                    } else if (!value.contains('@')) {
+                      return 'البريد الالكترونى غير صحيح ';
+                    }
+                    return null;
+                  },
+                  controller: hawwahController,
+                  cursorColor: thirdColor,
+                  decoration: InputDecoration(
+                    hintText:
+                    "ادخل بريدك الالكتروني ",
+                    hintStyle: const TextStyle(color: Color(-4812642)),
+                    fillColor: secondaryColor,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.circular(15.0),
+                        borderSide: BorderSide(
+                            color: secondaryColor, width: 2)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.circular(15.0),
+                        borderSide: BorderSide(
+                            color: secondaryColor, width: 2)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.circular(15.0),
+                        borderSide: const BorderSide(
+                            color: Colors.white, width: 2)),
+                  ),
+                ),
+              ),
+              buttons: [
+                DialogButton(
+                  onPressed: () {
+                    showToast(text: "تم ارسال المعلومات للحساب الخاص بك", state: ToastStates.SUCCESS);
+                  },
+                  child: const Text(
+                    "ارســال ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25.0,
+                      height: 1,
+                      color: Colors.white,
+                    ),
+                  ),
+                  radius: BorderRadius.circular(25),
+                  color: primaryColor,
+                  border: Border.all(
+                    width: 3,
+                    color: Colors.pink.shade50,
+                  ),
+                ),
+              ],
+            ).show();
+          }),
       const Divider(
         thickness: 1,
         height: 1,
@@ -230,8 +312,7 @@ Widget drawerBody(context) {
       menuItem(
           icon: "assets/icons/sign-out.png",
           text: 'تـسجيل الخروج',
-          onTap: ()
-          {
+          onTap: () {
             signOut(context);
           }),
     ],
@@ -257,14 +338,14 @@ Widget menuItem({
                 icon,
                 height: 40.0,
               )),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
           Expanded(
               flex: 3,
               child: Text(
                 text,
-                style: TextStyle(color: Colors.white, fontSize: 25.0),
+                style: const TextStyle(color: Colors.white, fontSize: 25.0),
               )),
         ],
       ),

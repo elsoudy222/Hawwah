@@ -6,8 +6,8 @@ import '../../../shared/components/colors.dart';
 
 class DistanceAndTime extends StatelessWidget {
   final PlaceDirections? placeDirections;
+  // ignore: prefer_typing_uninitialized_variables
   final isTimeAndDistanceVisible;
-
   const DistanceAndTime(
       {Key? key, this.placeDirections, required this.isTimeAndDistanceVisible})
       : super(key: key);
@@ -30,7 +30,7 @@ class DistanceAndTime extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                margin: EdgeInsets.fromLTRB(20, 50, 20, 0),
+                margin: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                 color: Colors.white,
                 child: ListTile(
                   dense: true,
@@ -42,7 +42,7 @@ class DistanceAndTime extends StatelessWidget {
                   ),
                   title: Text(
                     placeDirections!.totalDuration,
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -59,7 +59,7 @@ class DistanceAndTime extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                margin: EdgeInsets.fromLTRB(20, 50, 20, 0),
+                margin: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                 color: Colors.white,
                 child: ListTile(
                   dense: true,
@@ -71,7 +71,7 @@ class DistanceAndTime extends StatelessWidget {
                   ),
                   title: Text(
                     placeDirections!.totalDistance,
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
