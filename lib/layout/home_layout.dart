@@ -180,16 +180,16 @@ class drawerHeader extends StatelessWidget {
           ),
         ),
 
-        // Text(
-        //   '${HomeCubit.get(context).profileModel!.data!.first.firstName}' +
-        //       '${HomeCubit.get(context).profileModel!.data!.first.lastName}',
-        //   style: TextStyle(
-        //       fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
-        // ),
-        // Text(
-        //   '${HomeCubit.get(context).profileModel!.data!.first.email}',
-        //   style: TextStyle(color: Colors.white, fontSize: 17),
-        // ),
+        Text(
+          '${HomeCubit.get(context).profileModel!.data!.first.firstName}' +
+              '${HomeCubit.get(context).profileModel!.data!.first.lastName}',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: thirdColor, fontSize: 25.0),
+        ),
+        Text(
+          '${HomeCubit.get(context).profileModel!.data!.first.email}',
+          style: TextStyle(color: Colors.white, fontSize: 17),
+        ),
       ],
     );
   }
