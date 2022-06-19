@@ -6,6 +6,7 @@ abstract class HomeStates {}
 class HomeInitialState extends HomeStates {}
 
 class ChangeBottomNavBarState extends HomeStates {}
+class ChangeButtonColorState extends HomeStates {}
 
 class LoadingPredictionDataState extends HomeStates {}
 

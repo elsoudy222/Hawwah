@@ -18,7 +18,7 @@ class IntroSelfCheckScreen1 extends StatelessWidget {
       builder: (context,state){
         return SplashScreenView(
           backgroundColor: HexColor("#FAACC3"),
-          duration: 5000,
+          duration: 3000,
           speed: 200,
           navigateRoute: SelfCheckScreen1(),
           imageSrc: "assets/images/selfCheck/first_step.png",
@@ -66,7 +66,7 @@ class IntroSelfCheckScreen2 extends StatelessWidget {
       builder: (context,state){
         return SplashScreenView(
           backgroundColor: HexColor("#FAACC3"),
-          duration: 5000,
+          duration: 3000,
           speed: 200,
           navigateRoute: SelfCheckScreen2(),
           imageSrc: "assets/images/selfCheck/second_step2.png",

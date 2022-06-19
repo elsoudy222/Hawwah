@@ -129,7 +129,22 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(ChangeBottomNavBarState());
   }
 
-PredictionModel ?predictionModel;
+
+  Color backgroundColor = secondaryColor;
+  Color textColor = thirdColor;
+  bool isSelected = false;
+
+  void changeButtonColorState() {
+    isSelected = !isSelected;
+    backgroundColor = isSelected ? primaryColor : secondaryColor;
+    textColor = isSelected ? thirdColor : primaryColor;
+    emit(ChangeButtonColorState());
+  }
+
+
+
+
+  PredictionModel ?predictionModel;
   void sendPredictionData({
     required String perimeter_mean,
     required String area_mean,

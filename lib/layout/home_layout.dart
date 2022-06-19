@@ -245,46 +245,37 @@ Widget drawerBody(context) {
               context: context,
               content: Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: TextFormField(
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'البريد الالكترونى غير صحيح ';
-                    } else if (!value.contains('@')) {
-                      return 'البريد الالكترونى غير صحيح ';
-                    }
-                    return null;
-                  },
-                  controller: hawwahController,
-                  cursorColor: thirdColor,
-                  decoration: InputDecoration(
-                    hintText:
-                    "ادخل بريدك الالكتروني ",
-                    hintStyle: const TextStyle(color: Color(-4812642)),
-                    fillColor: secondaryColor,
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius:
-                        BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                            color: secondaryColor, width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius:
-                        BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                            color: secondaryColor, width: 2)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                        BorderRadius.circular(15.0),
-                        borderSide: const BorderSide(
-                            color: Colors.white, width: 2)),
+                child: Container(
+
+                  height: MediaQuery.of(context).size.height * .08,
+                  width: MediaQuery.of(context).size.width * .8,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 2.0,
+                    ),
+                    color: secondaryColor,
                   ),
+                  child:const Center(
+                    child: Text(
+                      "hawa.bc22@gmail.com",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  )
                 ),
               ),
               buttons: [
                 DialogButton(
+
                   onPressed: () {
-                    showToast(text: "تم ارسال المعلومات للحساب الخاص بك", state: ToastStates.SUCCESS);
+                    //showToast(text: "تم ارسال المعلومات للحساب الخاص بك", state: ToastStates.SUCCESS);
                   },
+                  height: MediaQuery.of(context).size.height * .06,
+                  width: MediaQuery.of(context).size.width * .3,
                   child: const Text(
                     "ارســال ",
                     style: TextStyle(
@@ -295,7 +286,7 @@ Widget drawerBody(context) {
                     ),
                   ),
                   radius: BorderRadius.circular(25),
-                  color: primaryColor,
+                  color: thirdColor,
                   border: Border.all(
                     width: 3,
                     color: Colors.pink.shade50,

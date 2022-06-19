@@ -1,20 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hawwah/layout/home_layout.dart';
 import 'package:hawwah/modules/search/cubit/search_cubit.dart';
-import 'package:hawwah/modules/search/map_test.dart';
 import 'package:hawwah/modules/search/repository/maps_repo.dart';
 import 'package:hawwah/modules/search/search_doctor.dart';
 import 'package:hawwah/modules/search/search_lab.dart';
-
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../shared/network/remote/search_helper.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -30,7 +23,6 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   initState() {
     super.initState();
-    // _getLocation();
   }
 
   @override
@@ -41,10 +33,10 @@ class _SearchScreenState extends State<SearchScreen> {
         backgroundColor: primaryColor,
         elevation: 0.0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomeLayout()));
+                context, MaterialPageRoute(builder: (context) => const HomeLayout()));
           },
         ),
         title: const Text(
@@ -66,7 +58,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 150.0),
                   child: Stack(
@@ -96,7 +88,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
 
-                                  Container(
+                                  SizedBox(
                                     height: 100,
                                     width: 100,
                                     child: IconButton(
@@ -111,15 +103,15 @@ class _SearchScreenState extends State<SearchScreen> {
                                             context,
                                             BlocProvider(
                                               create: (context) => SearchCubit(MapsRepo(SearchHelper())),
-                                              child: SearchLab(),
+                                              child: const SearchLab(),
                                             ),
                                           );
                                         }),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 100,
                                     width: 100,
                                     child: IconButton(
@@ -134,7 +126,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                             context,
                                             BlocProvider(
                                               create: (context) => SearchCubit(MapsRepo(SearchHelper())),
-                                              child: SearchDoctor(),
+                                              child: const SearchDoctor(),
                                             ),
                                           );
                                         }),
@@ -156,19 +148,5 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  // final Location location = Location();
-  //
-  // Future<void> _getLocation() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   try {
-  //     final LocationData _locationResult = await location.getLocation();
-  //     preferences.setString("lat", _locationResult.latitude.toString());
-  //     preferences.setString("lng", _locationResult.longitude.toString());
-  //     print(preferences.getString("lat"));
-  //     print(preferences.getString("lng"));
-  //   } on PlatformException catch (err) {
-  //     print("------ get current location ------");
-  //   }
-  // }
 }
 

@@ -297,9 +297,9 @@ class _FirstStepsState extends State<FirstSteps> {
     required Function onPressed0,
     String selectAnswerQ = "",
     int selectAnswerValueQ = 0,
-    bool isSelected = false ,
+    bool isSelected = false,
   }) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -318,8 +318,8 @@ class _FirstStepsState extends State<FirstSteps> {
                     GestureDetector(
                       onTap:(){
                         setState(() {
-                          isSelected = true;
                           onPressed1();
+                          isSelected = true;
                         });
                         },
                       child: Container(
@@ -345,7 +345,7 @@ class _FirstStepsState extends State<FirstSteps> {
 
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     GestureDetector(
@@ -353,7 +353,7 @@ class _FirstStepsState extends State<FirstSteps> {
 
                         setState(() {
                           onPressed0();
-                          isSelected = false;
+                           isSelected = false;
                         });},
                       child: Container(
                         width: 100,
