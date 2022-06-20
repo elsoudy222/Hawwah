@@ -69,7 +69,7 @@ class _SearchLabState extends State<SearchLab> {
 
     ));
     markers.add( Marker(
-      markerId:  const MarkerId("1"),
+      markerId:  const MarkerId("عيادات مصر الحديثة"),
       position:  const LatLng(30.040580224190187, 31.20536412974938),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -101,7 +101,7 @@ class _SearchLabState extends State<SearchLab> {
     ));
 
     markers.add( Marker(
-      markerId:  const MarkerId("2"),
+      markerId:  const MarkerId("ABC"),
       position:  const LatLng(30.056669401477368, 31.205585766312964),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -133,7 +133,7 @@ class _SearchLabState extends State<SearchLab> {
     ));
 
     markers.add( Marker(
-      markerId:  const MarkerId("2"),
+      markerId:  const MarkerId("Egybrit"),
       position:  const LatLng(30.090081565154577, 31.328327918802596),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -165,7 +165,7 @@ class _SearchLabState extends State<SearchLab> {
     ));
 
     markers.add( Marker(
-      markerId:  const MarkerId("٣"),
+      markerId:  const MarkerId("Alfa"),
       position:  const LatLng(30.098331975992483, 31.342409986474898),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -196,7 +196,7 @@ class _SearchLabState extends State<SearchLab> {
     ));
 
     markers.add( Marker(
-      markerId:  const MarkerId("2"),
+      markerId:  const MarkerId("Hope"),
       position:  const LatLng(30.019984666393285, 31.434304402304036),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -261,7 +261,7 @@ class _SearchLabState extends State<SearchLab> {
 
 
     markers.add( Marker(
-      markerId:  const MarkerId("6"),
+      markerId:  const MarkerId("Sphinx"),
       position:  const LatLng(30.063356524608636, 31.20463746556843),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -292,7 +292,7 @@ class _SearchLabState extends State<SearchLab> {
     ));
 
     markers.add( Marker(
-      markerId:  const MarkerId("7"),
+      markerId:  const MarkerId("بهية"),
       position:  const LatLng(30.004599288756157, 31.186781784412513),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -322,7 +322,7 @@ class _SearchLabState extends State<SearchLab> {
 
     ));
     markers.add( Marker(
-      markerId:  const MarkerId("7"),
+      markerId:  const MarkerId("BCFE"),
       position:  const LatLng(30.02680612442372, 31.23225649300966),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -352,7 +352,7 @@ class _SearchLabState extends State<SearchLab> {
 
     ));
     markers.add( Marker(
-      markerId:  const MarkerId("7"),
+      markerId:  const MarkerId("Docspert"),
       position:  const LatLng(30.058213261242795, 31.32956335049295),
       //TODO: add ifo window
       infoWindow:  InfoWindow(
@@ -381,7 +381,7 @@ class _SearchLabState extends State<SearchLab> {
     ));
 
     markers.add( Marker(
-      markerId:  const MarkerId("7"),
+      markerId:  const MarkerId("الخرطوم"),
       position:  const LatLng(15.560209884647229, 32.55208833200114),
       //TODO: add ifo window
       infoWindow:  InfoWindow(

@@ -12,10 +12,11 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchStates> {
   final MapsRepo mapsRepo;
-  SearchCubit(
-       this.mapsRepo
-      ) : super(SearchInitialState());
+  SearchCubit(this.mapsRepo) : super(SearchInitialState());
  static SearchCubit get(context)=> BlocProvider.of(context);
+
+
+
    void emitPlacesSuggestion(String place,String sessionToken) {
      mapsRepo.fetchSuggestions(place,sessionToken).then((suggestions){
      emit(PlacesLoadedState(suggestions));

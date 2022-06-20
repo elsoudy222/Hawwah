@@ -342,7 +342,10 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Center(child: Text('${HomeCubit.get(context).profileModel!.data!.first.age}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),),
+                      child: Center(
+                        child: Text(
+                          '${HomeCubit.get(context).profileModel!.data!.first.age}',
+                          style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),),
                     ),
                   ],
                 ),

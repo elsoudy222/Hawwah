@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hawwah/modules/search/search_screen.dart';
+import 'package:hawwah/modules/selfCheck/test.dart';
 import 'package:hawwah/shared/components/colors.dart';
 import 'package:hawwah/shared/components/components.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -22,7 +23,6 @@ class HomeLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         var cubit = HomeCubit.get(context);
@@ -306,6 +306,7 @@ Widget drawerBody(context) {
           onTap: () {
             signOut(context);
           }),
+
     ],
   );
 }

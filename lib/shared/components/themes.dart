@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hawwah/shared/components/colors.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 final ThemeData lightMode = ThemeData(
   primarySwatch: Colors.pink,
@@ -15,11 +14,8 @@ final ThemeData lightMode = ThemeData(
         color: thirdColor,
         fontSize: 30.0,
         fontFamily: GoogleFonts.amiri().fontFamily,
-      // fontFamily: "Barada",
       )),
-  // scaffoldBackgroundColor:  primaryColor,
   fontFamily: GoogleFonts.amiri().fontFamily,
- //fontFamily: "Barada",
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: secondaryColor,
     elevation: 30.0,

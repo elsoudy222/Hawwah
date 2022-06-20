@@ -41,7 +41,8 @@ class _FirstStepsState extends State<FirstSteps> {
     );
   }
 
-  Widget selfCheckBuild(SelfCheckModel? model, context) => Scaffold(
+  Widget selfCheckBuild(SelfCheckModel? model, context) =>
+      Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -81,7 +82,7 @@ class _FirstStepsState extends State<FirstSteps> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      buildSelfCheckQuItem(
+                      BuildSelfCheckQuItem(
                         question:
                             '${model!.data!.question!.elementAt(0).question}',
                         image: "assets/images/selfCheck/self1.png",
@@ -102,7 +103,7 @@ class _FirstStepsState extends State<FirstSteps> {
                         indent: 15.0,
                         endIndent: 15.0,
                       ),
-                      buildSelfCheckQuItem(
+                      BuildSelfCheckQuItem(
                         question:
                             '${model.data!.question!.elementAt(1).question}',
                         image: "assets/images/selfCheck/self2.png",
@@ -125,7 +126,7 @@ class _FirstStepsState extends State<FirstSteps> {
                         endIndent: 15.0,
                       ),
                       //
-                      buildSelfCheckQuItem(
+                      BuildSelfCheckQuItem(
                         question:
                             '${model.data!.question!.elementAt(2).question}',
                         image: "assets/images/selfCheck/self3.png",
@@ -146,7 +147,7 @@ class _FirstStepsState extends State<FirstSteps> {
                         indent: 15.0,
                         endIndent: 15.0,
                       ),
-                      buildSelfCheckQuItem(
+                      BuildSelfCheckQuItem(
                         question:
                             '${model.data!.question?.elementAt(3).question}',
                         image: "assets/images/selfCheck/self3.png",
@@ -167,7 +168,7 @@ class _FirstStepsState extends State<FirstSteps> {
                         indent: 15.0,
                         endIndent: 15.0,
                       ),
-                      buildSelfCheckQuItem(
+                      BuildSelfCheckQuItem(
                           question:
                               '${model.data!.question!.elementAt(4).question}',
                           image: "assets/images/selfCheck/self5.png",
@@ -252,7 +253,7 @@ class _FirstStepsState extends State<FirstSteps> {
                         indent: 15.0,
                         endIndent: 15.0,
                       ),
-                      buildSelfCheckQuItem(
+                      BuildSelfCheckQuItem(
                         question:
                             '${model.data!.question!.elementAt(5).question}',
                         image: "assets/images/selfCheck/self6.png",
@@ -290,22 +291,135 @@ class _FirstStepsState extends State<FirstSteps> {
         ),
       );
 
-  Widget buildSelfCheckQuItem({
-    required String question,
-    required String image,
-    required Function onPressed1,
-    required Function onPressed0,
-    String selectAnswerQ = "",
-    int selectAnswerValueQ = 0,
-    bool isSelected = false,
-  }) {
+
+
+  // Widget buildSelfCheckQuItem({
+  //   required String question,
+  //   required String image,
+  //   required Function onPressed1,
+  //   required Function onPressed0,
+  //   String selectAnswerQ = "",
+  //   int selectAnswerValueQ = 0,
+  //   bool isSelected = false,
+  // }) {
+  //   return SizedBox(
+  //     width: double.infinity,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //       children: [
+  //         Text(
+  //           question,
+  //           style: TextStyle(
+  //               color: thirdColor, fontSize: 18.0, fontWeight: FontWeight.bold),
+  //         ),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //           children: [
+  //             Center(
+  //               child: Row(
+  //                 children: [
+  //                   GestureDetector(
+  //                     onTap:(){
+  //                       onPressed1();
+  //                       HomeCubit.get(context).changeButtonColorState;
+  //                       },
+  //                     child: Container(
+  //                       width: 100,
+  //                       decoration: BoxDecoration(
+  //                         border: Border.all(
+  //                           color:  secondaryColor ,
+  //                           width: 3,
+  //                         ),
+  //                         borderRadius: BorderRadius.circular(20.0),
+  //                         color: primaryColor,
+  //                       ),
+  //                       child: Center(
+  //                         child: Text(
+  //                           "نــعم",
+  //                           style: TextStyle(
+  //                             color: thirdColor,
+  //                             fontSize: 18.0,
+  //                             fontWeight: FontWeight.bold,
+  //                           ),
+  //                         ),
+  //                       ),
+  //
+  //                     ),
+  //                   ),
+  //                   const SizedBox(
+  //                     width: 10,
+  //                   ),
+  //                   GestureDetector(
+  //                     onTap:(){
+  //                       onPressed0();
+  //                       HomeCubit.get(context).changeButtonColorState;
+  //                       isSelected = !isSelected;
+  //                       },
+  //                     child: Container(
+  //                       width: 100,
+  //                       decoration: BoxDecoration(
+  //                         border: Border.all(
+  //                           color:  secondaryColor ,
+  //                           width: 3,
+  //                         ),
+  //                         borderRadius: BorderRadius.circular(20.0),
+  //                         color: HomeCubit.get(context).backgroundColor,
+  //                       ),
+  //                       child: Center(
+  //                         child: Text(
+  //                           "لا",
+  //                           style: TextStyle(
+  //                             color: thirdColor,
+  //                             fontSize: 18.0,
+  //                             fontWeight: FontWeight.bold,
+  //                           ),
+  //                         ),
+  //                       ),
+  //
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //             CircleAvatar(
+  //               backgroundColor: secondaryColor,
+  //               backgroundImage: AssetImage(image),
+  //               maxRadius: 50.0,
+  //             )
+  //           ],
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
+}
+
+class BuildSelfCheckQuItem extends StatefulWidget {
+  final String question;
+  final String image;
+  final Function onPressed1;
+  final Function onPressed0;
+  const BuildSelfCheckQuItem({Key? key, required this.question, required this.image, required this.onPressed1, required this.onPressed0,}) : super(key: key);
+
+  @override
+  State<BuildSelfCheckQuItem> createState() => _BuildSelfCheckQuItemState();
+}
+
+class _BuildSelfCheckQuItemState extends State<BuildSelfCheckQuItem> {
+  final String selectAnswerQ="";
+
+  final int selectAnswerValueQ=0;
+  late  bool isSelected= false;
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            question,
+            widget.question,
             style: TextStyle(
                 color: thirdColor, fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
@@ -318,10 +432,10 @@ class _FirstStepsState extends State<FirstSteps> {
                     GestureDetector(
                       onTap:(){
                         setState(() {
-                          onPressed1();
-                          isSelected = true;
+                          widget.onPressed1();
+                          isSelected = !isSelected;
                         });
-                        },
+                      },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
@@ -330,7 +444,7 @@ class _FirstStepsState extends State<FirstSteps> {
                             width: 3,
                           ),
                           borderRadius: BorderRadius.circular(20.0),
-                          color: primaryColor,
+                          color: isSelected?secondaryColor:primaryColor,
                         ),
                         child: Center(
                           child: Text(
@@ -350,11 +464,11 @@ class _FirstStepsState extends State<FirstSteps> {
                     ),
                     GestureDetector(
                       onTap:(){
-
                         setState(() {
-                          onPressed0();
-                           isSelected = false;
-                        });},
+                          widget.onPressed0();
+                          isSelected = !isSelected;
+                        });
+                      },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
@@ -363,7 +477,7 @@ class _FirstStepsState extends State<FirstSteps> {
                             width: 3,
                           ),
                           borderRadius: BorderRadius.circular(20.0),
-                          color: primaryColor,
+                          color:isSelected?primaryColor:secondaryColor,
                         ),
                         child: Center(
                           child: Text(
@@ -383,7 +497,7 @@ class _FirstStepsState extends State<FirstSteps> {
               ),
               CircleAvatar(
                 backgroundColor: secondaryColor,
-                backgroundImage: AssetImage(image),
+                backgroundImage: AssetImage(widget.image),
                 maxRadius: 50.0,
               )
             ],
@@ -393,7 +507,6 @@ class _FirstStepsState extends State<FirstSteps> {
     );
   }
 }
-
 
 
 
@@ -442,7 +555,7 @@ class _SecondStepsState extends State<SecondSteps> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  buildSelfCheckQuItem(
+                  BuildSelfCheckQuItem(
                     question: '${model.data!.question!.elementAt(6).question}',
                     image: "assets/images/selfCheck/self7.png",
                     onPressed1: () {
@@ -462,7 +575,7 @@ class _SecondStepsState extends State<SecondSteps> {
                     indent: 15.0,
                     endIndent: 15.0,
                   ),
-                  buildSelfCheckQuItem(
+                  BuildSelfCheckQuItem(
                     question: '${model.data!.question!.elementAt(7).question}',
                     image: "assets/images/selfCheck/self3.png",
                     onPressed1: () {
@@ -482,7 +595,7 @@ class _SecondStepsState extends State<SecondSteps> {
                     indent: 15.0,
                     endIndent: 15.0,
                   ),
-                  buildSelfCheckQuItem(
+                  BuildSelfCheckQuItem(
                     question: '${model.data!.question!.elementAt(8).question}',
                     image: "assets/images/selfCheck/self9.png",
                     onPressed1: () {
@@ -521,107 +634,7 @@ class _SecondStepsState extends State<SecondSteps> {
         ),
       );
 
-  Widget buildSelfCheckQuItem({
-    required String question,
-    required String image,
-    required Function onPressed1,
-    required Function onPressed0,
-    bool isSelected = false,
-  }) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          //question
-          Text(
-            question,
-            style: TextStyle(
-                color: thirdColor, fontSize: 18.0, fontWeight: FontWeight.bold),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap:(){
-                        setState(() {
-                          isSelected = true;
-                          onPressed1();
-                        });
-                      },
-                      child: Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color:  secondaryColor ,
-                            width: 3,
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: primaryColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "نــعم",
-                            style: TextStyle(
-                              color: thirdColor,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
 
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    GestureDetector(
-                      onTap:(){
-
-                        setState(() {
-                          onPressed0();
-                          isSelected = false;
-                        });},
-                      child: Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color:  secondaryColor ,
-                            width: 3,
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: primaryColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "لا",
-                            style: TextStyle(
-                              color: thirdColor,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              CircleAvatar(
-                backgroundColor: secondaryColor,
-                backgroundImage: AssetImage(image),
-                maxRadius: 50.0,
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
 }
 
 

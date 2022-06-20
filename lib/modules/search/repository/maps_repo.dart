@@ -16,6 +16,8 @@ class MapsRepo {
         .map((suggestion) => PlaceSuggestion.fromJson(suggestion))
         .toList();
   }
+
+
   Future<Place> getPlaceLocation(
       String placeId,
       String sessionToken,
@@ -25,6 +27,8 @@ class MapsRepo {
 
     return Place.fromJson(place);
   }
+
+
   Future<PlaceDirections> getPlaceDirections(
       LatLng? origin,
       LatLng? destination,
